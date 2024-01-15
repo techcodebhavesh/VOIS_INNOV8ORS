@@ -1,6 +1,8 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fs = require("fs");
 
+let text;
+
 // Access your API key as an environment variable (see "Set up your API key" above)
 const genAI = new GoogleGenerativeAI("AIzaSyC7ao58BJx37LlrX_J1HuG3nfiyjTGRNMg");
 
@@ -83,10 +85,56 @@ Catalog Sample: ${promptInputs.title}
   const result = await model.generateContent([prompt, prompt2, ...imageParts]);
   console.log(result);
   const response = await result.response;
-  const text = response.text();
-  console.log(text);
+  text = response.text();
+  //console.log(text);
   // console.log(JSON.stringify(response));
   // console.log(JSON.stringify(response));
 }
 
-run();
+
+async function run2() {
+  // For text-only input, use the gemini-pro model
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+  const prompt = text + ` convert this in the below json format
+  const obj = {
+    title:{
+        rating: "",
+        suggestion:""
+    },
+    description:{
+        rating: "",
+        suggestion:""
+    },
+    image:{
+        rating: "",
+        suggestion:""
+    },
+    featuresAndBenefits:{
+        rating: "",
+        suggestion:""
+    },
+    additionalInformation:{
+        rating: "",
+        suggestion:""
+    },
+    overallScore:{
+        rating: "",
+        suggestion:""
+    }
+}
+  
+  `;
+  const result = await model.generateContent([prompt]);
+  const response = await result.response;
+  const text1 = response.text();
+  console.log(text1);
+}
+
+(async () => {
+  await run();
+  console.log(text);
+
+  run2();
+})();
+/*  */

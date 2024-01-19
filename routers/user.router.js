@@ -8,11 +8,11 @@ const userRouter = express.Router();
 // @route Post /api/user/create
 // @desc Testing My SQL Connection
 // @access Everyone
-userRouter.get("/create", createUserController);
+userRouter.post("/create", createUserController);
 
 // @route Post /api/user/login
 // @desc Testing My Server Connection
 // @access Everyone
-userRouter.get("/login", loginUserController);
+userRouter.post("/login", loginUserController);
 
 module.exports = userRouter;

@@ -78,8 +78,8 @@ Catalog Sample: ${promptInputs.title}
   // JPEG, WEBP, PNG, HEIC, HEIF works
 
   const imageParts = [
-    fileToGenerativePart("blackc (1).jpeg", "image/jpeg"),
-    fileToGenerativePart("whitec (1).jpeg", "image/jpeg"),
+    fileToGenerativePart("blackc (1).jpeg.jpg", "image/jpeg"),
+    fileToGenerativePart("whitec (1).jpeg.jpg", "image/jpeg"),
   ];
 
   const result = await model.generateContent([prompt, prompt2, ...imageParts]);

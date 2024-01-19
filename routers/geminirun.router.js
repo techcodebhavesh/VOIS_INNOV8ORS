@@ -6,10 +6,5 @@ const geminirunRouter = express.Router();
 
 geminirunRouter.get("/run",  run);
 
-
-
-
-
 //apikeyRouter.get("/retrive", retrieveApiKey);
-
 module.exports = geminirunRouter;

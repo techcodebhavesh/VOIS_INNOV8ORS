@@ -6,10 +6,8 @@ const { runQuery } = require('../connection.sql.js');
 
 const createUserController = async (req, res) => {
   try {
-    
-    const name = req.body['name'];
-    const email = req.body['email'];
-    const password = req.body['password'];
+    const{ name, email, password}= req.body;
+   
 
     // Validate input (you may want to add more validation)
     if (!name || !email || !password) {
@@ -36,8 +34,7 @@ const createUserController = async (req, res) => {
 
 const loginUserController = async (req, res) => {
   try {
-    const email = req.body['email'];
-    const password = req.body['password'];
+    const {email, password } = req.body;
 
     // Validate input
     if (!email || !password) {

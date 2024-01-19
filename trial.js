@@ -73,24 +73,51 @@ Catalog Sample: ${promptInputs.title}
   you can suggest the changes in image so that it looks more professional.
   
   Overall Score: Considering the individual ratings for image, title, features, product description, and additional information, provide an overall rating for the catalog on a scale of 1 to 10.
+  And at the end after fetching all the details convert the ratings and suggestion in the following format and display only the given format and nothing else:-
+  const obj = {
+    title:{
+        rating: "",
+        suggestion:""
+    },
+    description:{
+        rating: "",
+        suggestion:""
+    },
+    image:{
+        rating: "",
+        suggestion:""
+    },
+    featuresAndBenefits:{
+        rating: "",
+        suggestion:""
+    },
+    additionalInformation:{
+        rating: "",
+        suggestion:""
+    },
+    overallScore:{
+        rating: "",
+        suggestion:""
+    }
+}
   `;
   // JPG doesnt work
   // JPEG, WEBP, PNG, HEIC, HEIF works
 
   const imageParts = [
-    fileToGenerativePart("blackc (1).jpeg", "image/jpeg"),
-    fileToGenerativePart("whitec (1).jpeg", "image/jpeg"),
+    fileToGenerativePart("blackc (1).jpeg.jpg", "image/jpeg"),
+    fileToGenerativePart("whitec (1).jpeg.jpg", "image/jpeg"),
   ];
 
   const result = await model.generateContent([prompt, prompt2, ...imageParts]);
-  console.log(result);
+  //console.log(result);
   const response = await result.response;
   text = response.text();
   //console.log(text);
   // console.log(JSON.stringify(response));
   // console.log(JSON.stringify(response));
 }
-
+/*
 
 async function run2() {
   // For text-only input, use the gemini-pro model
@@ -130,11 +157,11 @@ async function run2() {
   const text1 = response.text();
   console.log(text1);
 }
-
+*/
 (async () => {
   await run();
   console.log(text);
 
-  run2();
+  //run2();
 })();
 /*  */

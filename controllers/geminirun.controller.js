@@ -3,7 +3,7 @@ const fs = require("fs");
 
 
 
-const run = async (entry,res) => {
+const run = async (entry)=> {
   try {
 
     let text;
@@ -61,33 +61,100 @@ Catalog Sample: ${promptInputs.title}
   you can suggest the changes in image so that it looks more professional.
   
   Overall Score: Considering the individual ratings for image, title, features, product description, and additional information, provide an overall rating for the catalog on a scale of 1 to 10.
-  And at the end after fetching all the details convert the ratings and suggestion in the following format and display only the given format and nothing else:-
-  const obj = {
-    title:{
-        rating: "",
-        suggestion:""
+  And at the end after fetching all the details convert the ratings and suggestion in the following format and output only the given format and nothing should be outside the format.Follow the format STRICTLY.dont give any intros.:-
+
+  {
+    "title":{
+        "rating": "",
+        "suggestion":""
     },
-    description:{
-        rating: "",
-        suggestion:""
+    "description":{
+        "rating": "",
+        "suggestion":""
     },
-    image:{
-        rating: "",
-        suggestion:""
+    "image":{
+        "rating": "",
+        "suggestion":""
     },
-    featuresAndBenefits:{
-        rating: "",
-        suggestion:""
+    "featuresAndBenefits":{
+        "rating": "",
+        "suggestion":""
     },
-    additionalInformation:{
-        rating: "",
-        suggestion:""
+    "additionalInformation":{
+        "rating": "",
+        "suggestion":""
     },
-    overallScore:{
-        rating: "",
-        suggestion:""
+    "overallScore":{
+        "rating": "",
+        "suggestion":""
+    }
+  }
+
+
+  For example you may refer to the following for how to display the results:
+
+  {
+    "title": {
+        "rating": "8",
+        "suggestion": "The title is clear and concise, but it does not include any information about the product. It could be improved by adding the product name or a brief description."
+    },
+    "description": {
+        "rating": "7",
+        "suggestion": "The description is informative and provides a good overview of the product. However, it could be improved by adding more details about the product's features and benefits."
+    },
+    "image": {
+        "rating": "9",
+        "suggestion": "The image is clear and professional. It shows the product in a flattering light and helps to illustrate the product's features."
+    },
+    "featuresAndBenefits": {
+        "rating": "8",
+        "suggestion": "The features and benefits are listed in a clear and concise way. They provide a good overview of the product's capabilities."
+    },
+    "additionalInformation": {
+        "rating": "7",
+        "suggestion": "The additional information is accurate and provides a good overview of the product's specifications. However, it could be improved by adding more details about the product's warranty and support."
+    },
+    "overallScore": {
+        "rating": "8",
+        "suggestion": "The overall score is a good reflection of the product's quality and value. The product is well-made and has a lot of features, but it is also expensive."
     }
 }
+
+STRICTLY follow the format and display nothing else than mentioned in the format.
+
+like  dont do the following:
+~~~json
+
+{
+  "title": {
+      "rating": "8",
+      "suggestion": "The title is clear and concise, but it does not include any information about the product. It could be improved by adding the product name or a brief description."
+  },
+  "description": {
+      "rating": "7",
+      "suggestion": "The description is informative and provides a good overview of the product. However, it could be improved by adding more details about the product's features and benefits."
+  },
+  "image": {
+      "rating": "9",
+      "suggestion": "The image is clear and professional. It shows the product in a flattering light and helps to illustrate the product's features."
+  },
+  "featuresAndBenefits": {
+      "rating": "8",
+      "suggestion": "The features and benefits are listed in a clear and concise way. They provide a good overview of the product's capabilities."
+  },
+  "additionalInformation": {
+      "rating": "7",
+      "suggestion": "The additional information is accurate and provides a good overview of the product's specifications. However, it could be improved by adding more details about the product's warranty and support."
+  },
+  "overallScore": {
+      "rating": "8",
+      "suggestion": "The overall score is a good reflection of the product's quality and value. The product is well-made and has a lot of features, but it is also expensive."
+  }
+}
+~~~
+
+Only display the format nothing else.
+  
   `;
     // JPG doesnt work
     // JPEG, WEBP, PNG, HEIC, HEIF works
@@ -103,16 +170,19 @@ Catalog Sample: ${promptInputs.title}
     //console.log(text);
     // console.log(JSON.stringify(response));
     // console.log(JSON.stringify(response));
-
-    console.log(text);
-    return text; 
+    
+       console.log(text);
+       
+        // Remove unwanted characters (assuming "const obj" is unwanted)
+       
+  
+        return text;
   }
-
   catch (error) {
     console.error('Error in run function:', error);
-    return JSON.stringify({ status: 'error', error: 'An error occurred processing the entry' });
-  }
-  
+    return { status: 'error', error: 'An error occurred processing the entry', details: error.message };
+}
+
 
   }
 ;

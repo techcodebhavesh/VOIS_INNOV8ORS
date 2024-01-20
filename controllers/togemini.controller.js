@@ -42,31 +42,49 @@ const {
 
 
 const { run } = require('./geminirun.controller.js');
+
 const processEntriesHandler = async (req, res) => {
     try {
-      const data = req.body.data;
-  
-      if (!data || !Array.isArray(data)) {
-        return res.status(400).json({ error: 'Invalid data format' });
-      }
-  
-      const results = [];
-      for (const entry of data) {
-        try {
-          const result = await run(entry);
-          results.push(result);
-        } catch (error) {
-          console.error('Error processing entry:', error);
-          results.push({ status: 'error', error: 'An error occurred processing the entry' });
+        const inputData = req.body.data;
+
+        if (!inputData || !Array.isArray(inputData)) {
+            return res.status(400).json({ error: 'Invalid data format' });
         }
-      }
-  
-      res.status(200).json(results); // Send the results array as a response
+
+        const results = [];
+
+        for (const entry of inputData) {
+            try {
+                const textResult = await run(entry);
+          
+               
+                // Log the content of textResult before parsing
+                console.log('Text Result:', textResult);
+
+                // Convert the text result to JSON
+                const resultObject = JSON.parse(textResult);
+                results.push(resultObject);
+            } catch (error) {
+                console.error('Error processing entry:', error);
+                results.push({ status: 'error', error: 'An error occurred processing the entry' });
+            }
+        }
+
+        // Sending the results array as the response to Postman
+        res.status(200).json({ data: results });
     } catch (error) {
-      console.error('Error processing entries:', error);
-      return res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error processing entries:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
-  };
+};
+
+
+
+
+// Replace 'your_file.json' with the actual path to your JSON-like file
+
+
+
 
 module.exports = {
     processEntriesHandler

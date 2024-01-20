@@ -24,5 +24,8 @@ app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/geminirun", geminirunRouter);
 
-
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "hello.html"));
+}
+)
 app.listen(PORT, () => console.log("Server running on " + PORT));

@@ -7,6 +7,8 @@ const cors = require("cors");
 const userRouter = require("./routers/user.router");
 const productRouter = require("./routers/product.router");
 const geminirunRouter = require("./routers/geminirun.router");
+const fireindiRouter = require("./routers/fireindi.router");
+const togeminiRouter = require("./routers/togemini.router");
 
 const PORT = process.env.PORT || 5001;
 
@@ -24,8 +26,23 @@ app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/geminirun", geminirunRouter);
 
+
+app.use("/api/fireindi", fireindiRouter);
+
+
+
+
+app.use("/api/togemini", togeminiRouter);
+
+
+
+
+
+
+
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "hello.html"));
 }
 )
+
 app.listen(PORT, () => console.log("Server running on " + PORT));

@@ -1,6 +1,7 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { response } = require("express");
 const fs = require("fs");
-
+let reply;
 let text;
 
 // Access your API key as an environment variable (see "Set up your API key" above)
@@ -35,7 +36,7 @@ async function run() {
       "Dove Hair Therapy Dry Scalp Care Shampoo 380ml & Conditioner 380ml (Combo Pack)",
     description:
       "Dove Hair Therapy Dry Scalp Care Shampoo 380ml & Conditioner 380ml (Combo Pack)",
-    image: "https://m.media-amazon.com/images/I/61H0g3Y1KAL._SL1500_.jpg",
+    image: "",
     featuresAndBenefits:
       "Deeply nourishes and moisturizes the scalp, Proven dry scalp relief formula,Enriched with natural ingredients for healthier hair,Two-in-one combo pack for complete care",
     additionalInformation:
@@ -73,8 +74,8 @@ Catalog Sample: ${promptInputs.title}
   you can suggest the changes in image so that it looks more professional.
   
   Overall Score: Considering the individual ratings for image, title, features, product description, and additional information, provide an overall rating for the catalog on a scale of 1 to 10.
-  And at the end after fetching all the details convert the ratings and suggestion in the following format and display only the given format and nothing else:-
-  const obj = {
+  
+    {
     title:{
         rating: "",
         suggestion:""
@@ -111,14 +112,14 @@ Catalog Sample: ${promptInputs.title}
 
   const result = await model.generateContent([prompt, prompt2, ...imageParts]);
   //console.log(result);
-  const response = await result.response;
-  text = response.text();
+  reply = await result.response;
+  text = reply.text();
   //console.log(text);
   // console.log(JSON.stringify(response));
   // console.log(JSON.stringify(response));
 }
-/*
 
+/*
 async function run2() {
   // For text-only input, use the gemini-pro model
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -160,8 +161,30 @@ async function run2() {
 */
 (async () => {
   await run();
-  console.log(text);
+  text = reply.text();
+  //console.log(text);
 
+  const fs = require('fs');
+
+  const cleanedString = text.substring(8 , text.length - 3);
+  //console.log("done");
+  console.log(cleanedString);
+
+try {
+  const dataObject = JSON.parse(cleanedString);
+
+  fs.writeFile('cleaned_data.json', JSON.stringify(dataObject, null, 2), (err) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('JSON file created successfully!');
+    }
+  });
+} catch (error) {
+  console.error('Error parsing JSON:', error);
+}
   //run2();
 })();
-/*  */
+
+
+/*  And at the end after fetching all the details convert the ratings and suggestion in the following format and display only the given JSON format and nothing else:-*/

@@ -57,12 +57,13 @@ const processEntriesHandler = async (req, res) => {
             try {
                 const textResult = await run(entry);
           
+  const cleanedText = textResult.substring(8 , textResult.length - 3);
                
                 // Log the content of textResult before parsing
-                console.log('Text Result:', textResult);
+                console.log('Text Result:', cleanedText);
 
                 // Convert the text result to JSON
-                const resultObject = JSON.parse(textResult);
+                const resultObject = JSON.parse(cleanedText);
                 results.push(resultObject);
             } catch (error) {
                 console.error('Error processing entry:', error);
@@ -70,19 +71,12 @@ const processEntriesHandler = async (req, res) => {
             }
         }
 
-        // Sending the results array as the response to Postman
         res.status(200).json({ data: results });
     } catch (error) {
         console.error('Error processing entries:', error);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
-
-
-
-// Replace 'your_file.json' with the actual path to your JSON-like file
-
 
 
 

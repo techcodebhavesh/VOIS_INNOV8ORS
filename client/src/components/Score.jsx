@@ -16,24 +16,39 @@ const TabContent1 = () => (
           <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
             <TextField className="box-inner"
               id="outlined-textarea"
-              label="Multiline Placeholder"
+              label="Title"
               placeholder="Placeholder"
               multiline
             />
           </div>
-          {/* First style with error */}
-          <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md mt-2 overflow-hidden">
+          <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
             <TextField className="box-inner"
               id="outlined-textarea"
-              label="Multiline Placeholder"
+              label="Description"
               placeholder="Placeholder"
               multiline
             />
+          </div>
+          <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
+            <TextField className="box-inner"
+              id="outlined-textarea"
+              label="Features And Benifits"
+              placeholder="Placeholder"
+              multiline
+            />
+          </div>
+          <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
+            <TextField className="box-inner"
+              id="outlined-textarea"
+              label="Additional Features"
+              placeholder="Placeholder"
+              multiline
+            />
+          </div>                  
           </div>
         </div>
       </div>
     </div>
-  </div>
 );
 
 const TabContent2 = () => <MultipleProductUpload />;

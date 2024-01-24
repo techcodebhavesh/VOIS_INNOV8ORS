@@ -189,6 +189,8 @@ h1 {
 
 .box-input{
   width: 100%;
+  margin-top: 100px;
+  margin-bottom: 5%;
 }
 .textfield{
   margin: 5%;

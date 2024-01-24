@@ -80,8 +80,21 @@ body {
     background: rgba(255, 255, 255, 0.667);
     /* height: 100vh; */
     padding : 3%;
+    display: flex;
+    justify-content: center;
 }
-
+.tab1-container{
+  width: 80%;
+  min-height: 300px;
+  margin: 50px;
+  background: linear-gradient(90deg, rgba(28, 117, 188, 0.7), rgba(74, 161, 224, 0.7) 51%, rgba(28, 117, 188, 0.7)) var(--x, 100%) / 200%;
+  border: 2px solid #002f5c;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .score-header {
   padding: 4rem 4rem 0;
   background: linear-gradient(110.84deg, #fef3e8 1.01%, #bfebf4 102.07%);
@@ -90,9 +103,9 @@ body {
 h1 {
   color: rgb(0, 0, 0);
   margin: 0 0 4rem;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family:Georgia, 'Times New Roman', Times, serif !important;
   font-weight:100 ;
-  font-size: 30px;
+  font-size: 40px !important;
 }
 
 .main {
@@ -172,6 +185,24 @@ h1 {
     white 10px,
     white 50px
   );
+}
+
+.box-input{
+  width: 100%;
+}
+.textfield{
+  margin: 5%;
+  margin-bottom: 2% !important;
+  margin-top: 2% !important;
+
+}
+.box-inner{
+  width: 100%;
+}
+.textfield label {
+  color: #000 !important;
+  font-style: bold !important; 
+  width: 100%;
 }
 
 /* tabs :end */

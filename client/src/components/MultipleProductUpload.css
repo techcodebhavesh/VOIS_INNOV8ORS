@@ -11,6 +11,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
   min-height: 60vh;
@@ -41,20 +42,27 @@ body {
 /* File Upload Area Styles */
 .upload-file-area {
   width: 80%;
-  min-height: 100px;
-  background: linear-gradient(90deg, #1c75bc, #4aa1e0 51%, #1c75bc) var(--x, 100%) / 200%;
-  border: 2px solid #acacac;
+  min-height: 300px;
+  background: linear-gradient(90deg, rgba(28, 117, 188, 0.7), rgba(74, 161, 224, 0.7) 51%, rgba(28, 117, 188, 0.7)) var(--x, 100%) / 200%;
+  border: 2px dashed #002f5c;
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-
+.cloud-icon{
+  height: 80px !important;
+  width: 80px !important;
+}
 /* Download Template Button Styles */
-.download-template-button {
-  font-size: 20px;
+/* .download-template-button {
+  font-size: 30px !important;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: 100 !important;
+} */
+.download-temp-button{
+  margin: 20px !important;
 }
 
 .product-card{

@@ -1,62 +1,58 @@
-const mysql = require('mysql');
-const { testSQL } = require('../models/test/test.queries.sql');
-const { runQuery } = require('../connection.sql.js');
-
-// Create a MySQL connection pool
+const mysql = require("mysql");
+const { testSQL } = require("../models/test/test.queries.sql");
+const { runQuery } = require("../connection.sql.js");
 
 const createUserController = async (req, res) => {
   try {
-    const{ name, email, password}= req.body;
-   
+    const { name, email, password } = req.body;
 
     // Validate input (you may want to add more validation)
     if (!name || !email || !password) {
-      return res.status(400).send('Name, email, and password are required');
+      return res.status(400).send("Name, email, and password are required");
     }
 
     // Insert the user into the database
 
-   
-   
-   await runQuery('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name,email,password]);
-
-    
-
-      console.log('User created successfully');
-      return res.status(201).send('User created successfully');
-  
+    await runQuery(
+      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+      [name, email, password]
+    );
+    console.log("User created successfully");
+    return res.status(201).send("User created successfully");
   } catch (err) {
-    console.error('Error in createUserController:', err);
-    console.error('Error creating user:', err);
-    return res.status(500).send('Internal Server Error');
+    console.error("Error in createUserController:", err);
+    console.error("Error creating user:", err);
+    return res.status(500).send("Internal Server Error");
   }
 };
 
 const loginUserController = async (req, res) => {
   try {
-    const {email, password } = req.body;
+    const { email, password } = req.body;
 
     // Validate input
     if (!email || !password) {
-      return res.status(400).send('Email and password are required');
+      return res.status(400).send("Email and password are required");
     }
 
     // Check if the user exists in the database
-    const users = await runQuery('SELECT * FROM users WHERE email = ? AND password = ?', [email, password]);
+    const users = await runQuery(
+      "SELECT * FROM users WHERE email = ? AND password = ?",
+      [email, password]
+    );
 
     // Check if the user was found
     if (users.length === 0) {
-      return res.status(404).send('User not found');
+      return res.status(404).send("User not found");
     } else {
       // User found, you might want to do further checks on the password
       // For security, you should use a secure password hashing library instead of comparing plain text passwords
-      console.log('Login successful');
-      return res.status(200).send('Login successful');
+      console.log("Login successful");
+      return res.status(200).json("loginSuccess");
     }
-
   } catch (error) {
-    console.error('Error in loginUserController:', error);
-    return res.status(500).send('Internal Server Error');
+    console.error("Error in loginUserController:", error);
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -89,7 +85,8 @@ const loginUserController = async (req, res) => {
 */
 async function validateEmail(email) {
   try {
-    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (!email.match(validRegex)) {
       return false;
@@ -114,17 +111,10 @@ async function validateEmail(email) {
 
     return true;
   } catch (error) {
-    console.error('Error in validateEmail:', error);
+    console.error("Error in validateEmail:", error);
     return false;
   }
 }
-
-
-
-
-
-
-
 
 module.exports = {
   createUserController,

@@ -146,7 +146,9 @@
     padding: 0 40px;
     height: 100%;
 }
-
+.signup-container{
+    padding-top: 80px !important;
+}
 .container input{
     background-color: #eee;
     border: none;

@@ -84,14 +84,8 @@ function readCSV(filePath, callback) {
     });
 }
 
-const createProductcsvController = async (req, res) => {
-  const { data } = req.body;
-  console.log(data);
-};
-
 module.exports = {
   createProductController,
   generateRandomProductId,
-  createProductcsvController,
   readCSV,
 };

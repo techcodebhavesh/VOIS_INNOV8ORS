@@ -36,7 +36,7 @@ const run = async (entry)=> {
     const promptInputs = {
       title: entry.ProductTitle,
       description: entry.ProductDescription,
-      image: entry.ProductImage,
+      image: entry.ProductImages,
       featuresAndBenefits: entry.ProductFeatures,
       additionalInformation: entry.ProductInfo,
   };
@@ -110,7 +110,7 @@ const run = async (entry)=> {
     
     //const imageParts = entry.ProductImage;
 
-    const imageParts = [base64ToGenerativePart(entry.ProductImage, "image/jpeg")];  
+    const imageParts = [base64ToGenerativePart(entry.ProductImages, "image/jpeg")];  
 
     const result = await model.generateContent([prompt, prompt2, ...imageParts]);
     const response = await result.response;

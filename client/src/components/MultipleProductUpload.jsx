@@ -270,10 +270,6 @@ const MultipleProductUpload = () => {
           console.log("hi xyz");
           setproductCardDropArea(true);
         }}
-        onDragOver={() => {
-          console.log("hi xyz");
-          setproductCardDropArea(true);
-        }}
       >
         <div className="product-card">
           <div className="product-card-image">

@@ -5,6 +5,7 @@ import Home from './components/Home.jsx';
 import Score from './components/Score';
 import Documentation from './components/Documentation.jsx';
 import MultipleProductUpload from './components/MultipleProductUpload.jsx';
+import OutputDashboard from './components/OutputDashboard.jsx';
 
 const App = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/score" element={<Score />} />
           <Route path="/documentation" element={<Documentation />} />
           <Route path="/demo/products" element={<MultipleProductUpload />} />
+          <Route path="/demo/display" element={<OutputDashboard />} />
           <Route path="/*" element={<Navigate to="/login" />} />
         </Routes>
     </div>

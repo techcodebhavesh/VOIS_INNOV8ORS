@@ -5,6 +5,17 @@ import "./MultipleProductUpload.css";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Papa from "papaparse";
 import Backdrop from "@mui/material/Backdrop";
+import IconButton from "@mui/material/IconButton";
+import ClearIcon from "@mui/icons-material/Clear";
+
+function srcset(image, width, height, rows = 1, cols = 1) {
+  return {
+    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+    srcSet: `${image}?w=${width * cols}&h=${
+      height * rows
+    }&fit=crop&auto=format&dpr=2 2x`,
+  };
+}
 
 const MultipleProductUpload = () => {
   const [droparea, setdroparea] = useState(false);
@@ -32,13 +43,109 @@ const MultipleProductUpload = () => {
     e.preventDefault();
     console.log("image dropped");
     console.log(e.dataTransfer.files);
+
     setCSVfile((prev) => {
-      prev.map((obj, index) => {
-        if (index === imageOpen.index) {
-          obj.ProductImages.push(e.dataTransfer.files[0].name);
+      let newCSVfile = [...prev];
+      let obj = { ...newCSVfile[imageOpen.index] };
+      newCSVfile[imageOpen.index] = obj;
+
+      let arr = [...newCSVfile[imageOpen.index].ProductImages];
+
+      // Loop through dropped files
+      for (let i = 0; i < e.dataTransfer.files.length; i++) {
+        const file = e.dataTransfer.files[i];
+
+        // Create a Blob for each file
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const blob = new Blob([event.target.result], { type: file.type });
+
+          // Push the Blob object into the ProductImages array
+          arr.push({
+            name: file.name,
+            blob: blob,
+          });
+
+          // Update the state with the modified array
+          setCSVfile((prev) => {
+            let newCSVfile = [...prev];
+            newCSVfile[imageOpen.index].ProductImages = arr;
+            return newCSVfile;
+          });
+        };
+
+        reader.readAsArrayBuffer(file);
+      }
+      return newCSVfile;
+    });
+  }
+
+  function deleteImage(index) {
+    setCSVfile((prev) => {
+      let newCSVfile = [...prev];
+      let obj = { ...newCSVfile[imageOpen.index] };
+      newCSVfile[imageOpen.index] = obj;
+
+      let arr = [...newCSVfile[imageOpen.index].ProductImages];
+      arr.splice(index, 1); // Remove the image at the specified index
+
+      newCSVfile[imageOpen.index].ProductImages = arr;
+      return newCSVfile;
+    });
+  }
+
+  function imageToBase64(imgBlob, mimeType) {
+    console.log({ mimeType });
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        if (typeof reader.result === "string") {
+          resolve({
+            data: reader.result.split(",")[1], // Extracting base64 part
+            mimeType,
+          });
+        } else {
+          reject(new Error("Failed to read image as base64."));
         }
-      });
-      return prev;
+      };
+
+      reader.onerror = () => {
+        reject(new Error("Error reading image."));
+      };
+
+      reader.readAsDataURL(imgBlob);
+    });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    let data = [...CSVfile];
+    data = await Promise.all(
+      data.map(async (obj) => {
+        let newObj = { ...obj };
+        newObj.ProductImages = await Promise.all(
+          newObj.ProductImages.map(async (imgObj) => {
+            return await imageToBase64(imgObj.blob, imgObj.blob.type);
+          })
+        );
+        return newObj;
+      })
+    );
+    console.log({ data });
+    console.log(await submitDataToServer(data));
+  }
+
+  function submitDataToServer(data) {
+    return fetch("/api/togemini/processall", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data }),
+    }).then((response) => {
+      if (response.ok) return response.json();
+      else return null;
     });
   }
 
@@ -156,11 +263,32 @@ const MultipleProductUpload = () => {
     return (
       <div
         className="product-card-parent"
-        onDragOver={() => {console.log("hi xyz");setproductCardDropArea(true)}}
+        onDragOver={() => {
+          console.log("hi xyz");
+          setproductCardDropArea(true);
+        }}
       >
         <div className="product-card">
           <div className="product-card-image">
-            <img src={CSVfile[imageOpen.index].ProductImages} alt="" />
+            {CSVfile[imageOpen.index].ProductImages.map((obj, index) => {
+              return (
+                <div className="product-card-image-container">
+                  <img
+                    src={URL.createObjectURL(obj.blob)}
+                    alt={obj.name}
+                    style={{ height: "100px", margin: "5px" }}
+                  />
+                  <div className="product-card-image-topright">
+                    <IconButton
+                      aria-label="delete"
+                      onClick={() => deleteImage(index)}
+                    >
+                      <ClearIcon />
+                    </IconButton>
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="product-card-details">
             <div className="product-card-title">
@@ -205,6 +333,7 @@ const MultipleProductUpload = () => {
 
   const excelSheetBlock = () => {
     const handleClose = (e) => {
+      if (!e) return;
       console.log(e.target.className.startsWith("MuiBackdrop-root"));
       if (!e.target.className.startsWith("MuiBackdrop-root")) return;
       setimageOpen({ open: false, index: 0 });
@@ -217,7 +346,7 @@ const MultipleProductUpload = () => {
     function handleChange(i, attr, val) {
       var newrecords = CSVfile.map((obj, index) => {
         if (index === i) {
-          if ((attr == "thickness" || attr == "quantity") && parseFloat(val))
+          if ((attr == "") && parseFloat(val))
             return { ...obj, [attr]: parseFloat(val) };
           return { ...obj, [attr]: val };
         }
@@ -318,6 +447,9 @@ const MultipleProductUpload = () => {
             ))}
           </tbody>
         </table>
+        <button type="submit" onClick={handleSubmit}>
+          Submit
+        </button>
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={imageOpen.open}

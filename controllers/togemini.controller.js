@@ -46,6 +46,7 @@ const { run } = require('./geminirun.controller.js');
 const processEntriesHandler = async (req, res) => {
     try {
         const inputData = req.body.data;
+        console.log('Input Data:', inputData[0]);
 
         if (!inputData || !Array.isArray(inputData)) {
             return res.status(400).json({ error: 'Invalid data format' });
@@ -72,7 +73,7 @@ const processEntriesHandler = async (req, res) => {
             }
         }
 
-        res.status(200).json({ data: results });
+        res.status(200).json({ data: results });    
     } catch (error) {
         console.error('Error processing entries:', error);
         return res.status(500).json({ error: 'Internal Server Error' });

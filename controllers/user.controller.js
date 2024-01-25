@@ -5,10 +5,10 @@ const { runQuery } = require("../connection.sql.js");
 const createUserController = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
+    console.log(name, email, password);
     // Validate input (you may want to add more validation)
     if (!name || !email || !password) {
-      return res.status(400).send("Name, email, and password are required");
+      return res.status(400).json("Name, email, and password are required");
     }
 
     // Insert the user into the database
@@ -17,12 +17,12 @@ const createUserController = async (req, res) => {
       "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
       [name, email, password]
     );
-    console.log("User created successfully");
-    return res.status(201).send("User created successfully");
+    //console.log("User created successfully");
+    return res.status(201).json("User created successfully");
   } catch (err) {
     console.error("Error in createUserController:", err);
     console.error("Error creating user:", err);
-    return res.status(500).send("Internal Server Error");
+    return res.status(500).json("Internal Server Error");
   }
 };
 
@@ -32,18 +32,15 @@ const loginUserController = async (req, res) => {
 
     // Validate input
     if (!email || !password) {
-      return res.status(400).send("Email and password are required");
+      return res.status(400).json("Email and password are required");
     }
 
     // Check if the user exists in the database
-    const users = await runQuery(
-      "SELECT * FROM users WHERE email = ? AND password = ?",
-      [email, password]
-    );
+    const users = await runQuery("select * from users where email = ? and password = ?",[email, password]);
 
     // Check if the user was found
     if (users.length === 0) {
-      return res.status(404).send("User not found");
+      return res.status(404).json("User not found");
     } else {
       // User found, you might want to do further checks on the password
       // For security, you should use a secure password hashing library instead of comparing plain text passwords
@@ -52,7 +49,7 @@ const loginUserController = async (req, res) => {
     }
   } catch (error) {
     console.error("Error in loginUserController:", error);
-    return res.status(500).send("Internal Server Error");
+    return res.status(500).json("Internal Server Error");
   }
 };
 

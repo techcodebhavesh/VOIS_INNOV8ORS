@@ -2,45 +2,45 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css"; // Import your stylesheet
 
+const Login = ({ onLoginSuccess }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const Login = ({ onLoginSuccess }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-  
-    const handleLogin = async () => {
-      try {
-        const apiUrl = 'http://localhost:5001/api/user/login'; // Replace with your server endpoint
-  
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        });
-  
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data);
-  
-          navigate("/home");
-          onLoginSuccess && onLoginSuccess();
-        } else {
-          const errorMessage = await response.text();
-          console.error("Failed to send data to the server:", errorMessage);
-          alert(`Error!!`);
-        }
-      } catch (error) {
-        console.error("Error:", error);
+  const handleLogin = async () => {
+    try {
+      const apiUrl = "http://localhost:5001/api/user/login"; // Replace with your server endpoint
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+
+        navigate("/home");
+        onLoginSuccess && onLoginSuccess();
+      } else {
+        const errorMessage = await response.text();
+        console.error("Failed to send data to the server:", errorMessage);
+        alert(`Error!!`);
       }
-    };
-  
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   
+
   return (
     <div className="form-container sign-in">
       <form>
@@ -66,6 +66,59 @@ import "./Login.css"; // Import your stylesheet
   );
 };
 
+const SignUp = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSignUp = async () => {
+    try {
+      const apiUrl = "http://localhost:5001/api/user/create"; // Replace with your server endpoint
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+
+        navigate("/home");
+      } else {
+        const errorMessage = await response.text();
+        console.error("Failed to send data to the server:", errorMessage);
+        alert(`Error!!`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  return (
+    <div className="login-form-container sign-up">
+      <form className="signup-container">
+        <h1>Create Account</h1>
+        <input type="text" placeholder="Name" value={name}
+          onChange={(e) => setName(e.target.value)}/>
+        <input type="email" placeholder="Email" value={email}
+          onChange={(e) => setEmail(e.target.value)} />
+        <input type="password" placeholder="Password" value={password}
+          onChange={(e) => setPassword(e.target.value)}></input>
+        <button type="button"  onClick={handleSignUp}>Sign Up</button>
+      </form>
+    </div>
+  );
+};
+
 const LoginPage = () => {
   const [isLoginFormActive, setIsLoginFormActive] = useState(true);
 
@@ -76,6 +129,8 @@ const LoginPage = () => {
   const switchToLogin = () => {
     setIsLoginFormActive(true);
   };
+
+  console.log({ isLoginFormActive });
 
   const handleLoginSuccess = () => {
     // Handle actions after successful login
@@ -110,33 +165,24 @@ const LoginPage = () => {
         </div>
       </div>
       <div className="login-parent">
-      <div className="login-h1">Welcome</div>
+        <div className="login-h1">Welcome</div>
         <div className={`container ${isLoginFormActive ? "" : "active"}`}>
-
           {isLoginFormActive ? (
             <Login onLoginSuccess={handleLoginSuccess} />
           ) : (
-            <div className="login-form-container sign-up">
-              <form className="signup-container">
-                <h1>Create Account</h1>
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password"></input>
-                <button>Sign Up</button>
-              </form>
-            </div>
+            <SignUp />
           )}
           <div className="toggle-container">
             <div className="toggle">
               <div className="toggle-panel toggle-left">
-                <h1>Welcome Back !</h1>
+                <h1>Welcome Friend !</h1>
                 <p>Enter your personal details to use all site features</p>
                 <button className="hidden" onClick={switchToLogin}>
                   Sign In
                 </button>
               </div>
               <div className="toggle-panel toggle-right">
-                <h1>Welcome, Friend!</h1>
+                <h1>Welcome!</h1>
 
                 <button className="hidden" onClick={switchToRegister}>
                   Sign Up

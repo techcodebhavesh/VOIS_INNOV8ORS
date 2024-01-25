@@ -5,6 +5,7 @@ import "./MultipleProductUpload.css";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Papa from "papaparse";
 import Backdrop from "@mui/material/Backdrop";
+import Button from '@mui/material/Button';
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -209,14 +210,16 @@ const MultipleProductUpload = () => {
     return (
       <>
         <div className="product-upload-parent" onDragOver={showdroparea}>
-          <div className="download-template-button">Download Template</div>
           {!CSVfile && (
             <div className="upload-file-area">
-              <CloudUploadIcon />
+              <CloudUploadIcon className="cloud-icon" />
               <br />
               Drag and Drop CSV file here
             </div>
           )}
+          <Button className="download-temp-button" variant="contained" color="success">
+            Download template
+          </Button>
         </div>
         <div
           id="droparea"
@@ -263,6 +266,10 @@ const MultipleProductUpload = () => {
     return (
       <div
         className="product-card-parent"
+        onDragOver={() => {
+          console.log("hi xyz");
+          setproductCardDropArea(true);
+        }}
         onDragOver={() => {
           console.log("hi xyz");
           setproductCardDropArea(true);

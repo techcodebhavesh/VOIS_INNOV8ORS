@@ -1,54 +1,66 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css"; // Import your stylesheet
 
-const Login = ({ onLoginSuccess }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  // const handleLogin = () => {
-  //   async () => {
-  //     try {
-  //       const apiUrl = `http://localhost:3000/user/${action.toLowerCase()}`;
+  const Login = ({ onLoginSuccess }) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+  
+    const handleLogin = async () => {
+      try {
+        const apiUrl = 'http://localhost:5001/api/user/login'; // Replace with your server endpoint
+  
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+  
+          navigate("/home");
+          onLoginSuccess && onLoginSuccess();
+        } else {
+          const errorMessage = await response.text();
+          console.error("Failed to send data to the server:", errorMessage);
+          alert(`Error!!`);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+  
 
-  //       const response = await fetch(apiUrl, {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           name,
-  //           email,
-  //           password,
-  //         }),
-  //       });
-
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         console.log(data);
-
-  //         navigate("/home");
-  //         onLoginSuccess && onLoginSuccess();
-  //       } else {
-  //         const errorMessage = await response.text();
-  //         console.error("Failed to send data to the server:", errorMessage);
-  //         alert(`Error!!`);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //     }
-  //   };
-
-  //   onLoginSuccess();
-  // };
-
+  
   return (
     <div className="form-container sign-in">
       <form>
         <h1>Sign In</h1>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <a href="#">Forget Your Password?</a>
-        <button>Sign In</button>
+        <button type="button" onClick={handleLogin}>
+          Sign In
+        </button>
       </form>
     </div>
   );
@@ -105,7 +117,7 @@ const LoginPage = () => {
             <Login onLoginSuccess={handleLoginSuccess} />
           ) : (
             <div className="login-form-container sign-up">
-              <form>
+              <form className="signup-container">
                 <h1>Create Account</h1>
                 <input type="text" placeholder="Name" />
                 <input type="email" placeholder="Email" />

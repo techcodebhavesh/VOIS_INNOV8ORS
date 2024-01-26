@@ -88,7 +88,7 @@ body {
   min-height: 300px;
   margin: 50px;
   background: linear-gradient(90deg, rgba(28, 117, 188, 0.3), rgba(74, 161, 224, 0.3) 51%, rgba(28, 117, 188, 0.3)) var(--x, 100%) / 200%;
-  border: 2px solid #002f5c;
+  border: 2px solid #65a0d6;
   border-radius: 15px;
   display: flex;
   justify-content: center;

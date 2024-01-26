@@ -9,14 +9,6 @@ import Button from '@mui/material/Button';
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 
-function srcset(image, width, height, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${width * cols}&h=${
-      height * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
 
 const MultipleProductUpload = () => {
   const [droparea, setdroparea] = useState(false);
@@ -209,7 +201,7 @@ const MultipleProductUpload = () => {
   const uploadFileBlock = () => {
     return (
       <>
-        <div className="product-upload-parent" onDragOver={showdroparea}>
+        <div className="product-upload-parent" on onDragOver={showdroparea}>
           {!CSVfile && (
             <div className="upload-file-area">
               <CloudUploadIcon className="cloud-icon" />

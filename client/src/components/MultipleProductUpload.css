@@ -117,7 +117,7 @@ body {
 #maintable th,
 #maintable td {
   border: 1px solid #ddd;
-  /* padding: 8px; */
+  padding: 8px;
   height: fit-content;
 }
 
@@ -175,7 +175,6 @@ body {
   color: #fff;
   z-index: 1300;
 }
-
 /* Product Card Styles */
 .product-card {
   background-color: white;

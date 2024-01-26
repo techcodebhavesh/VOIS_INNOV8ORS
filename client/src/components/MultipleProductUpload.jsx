@@ -5,11 +5,11 @@ import "./MultipleProductUpload.css";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Papa from "papaparse";
 import Backdrop from "@mui/material/Backdrop";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Link } from "react-router-dom";
-
+import TextField from "@mui/material/TextField";
 
 const MultipleProductUpload = () => {
   const [droparea, setdroparea] = useState(false);
@@ -210,7 +210,11 @@ const MultipleProductUpload = () => {
               Drag and Drop CSV file here
             </div>
           )}
-          <Button className="download-temp-button" variant="contained" color="success">
+          <Button
+            className="download-temp-button"
+            variant="contained"
+            color="success"
+          >
             Download template
           </Button>
         </div>
@@ -342,7 +346,7 @@ const MultipleProductUpload = () => {
     function handleChange(i, attr, val) {
       var newrecords = CSVfile.map((obj, index) => {
         if (index === i) {
-          if ((attr == "") && parseFloat(val))
+          if (attr == "" && parseFloat(val))
             return { ...obj, [attr]: parseFloat(val) };
           return { ...obj, [attr]: val };
         }
@@ -370,30 +374,45 @@ const MultipleProductUpload = () => {
               <tr key={i}>
                 {/* Product ID */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    className="numberinput"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="number"
                     value={value.ProductID}
                     onChange={(e) =>
                       handleChange(i, "ProductID", e.target.value)
                     }
-                    id="cell"
-                    className="numberinput"
                   />
                 </td>
                 {/* SKU */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="text"
-                    id="cell"
                     value={value.SKU}
                     onChange={(e) => handleChange(i, "SKU", e.target.value)}
                   />
                 </td>
                 {/* Product Title */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="text"
-                    id="cell"
                     value={value.ProductTitle}
                     onChange={(e) =>
                       handleChange(i, "ProductTitle", e.target.value)
@@ -408,9 +427,14 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Description */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="text"
-                    id="cell"
                     value={value.ProductDescription}
                     onChange={(e) =>
                       handleChange(i, "ProductDescription", e.target.value)
@@ -419,9 +443,14 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Features */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="text"
-                    id="cell"
                     value={value.ProductFeatures}
                     onChange={(e) =>
                       handleChange(i, "ProductFeatures", e.target.value)
@@ -430,9 +459,14 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Info */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="text"
-                    id="cell"
                     value={value.ProductInfo}
                     onChange={(e) =>
                       handleChange(i, "ProductInfo", e.target.value)
@@ -443,13 +477,13 @@ const MultipleProductUpload = () => {
             ))}
           </tbody>
         </table>
-        <button type="submit" onClick={handleSubmit}>
+        <Button variant="contained" color="success">
           Submit
-        </button>
+        </Button>
 
         <Link to="/feedback">
-        <Button variant="contained">Contained</Button>
-       </Link>
+          <Button variant="contained">Contained</Button>
+        </Link>
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={imageOpen.open}

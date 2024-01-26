@@ -5,10 +5,11 @@ import "./MultipleProductUpload.css";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Papa from "papaparse";
 import Backdrop from "@mui/material/Backdrop";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
-
+import { Link } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 
 const MultipleProductUpload = () => {
   const [droparea, setdroparea] = useState(false);
@@ -209,7 +210,11 @@ const MultipleProductUpload = () => {
               Drag and Drop CSV file here
             </div>
           )}
-          <Button className="download-temp-button" variant="contained" color="success">
+          <Button
+            className="download-temp-button"
+            variant="contained"
+            color="success"
+          >
             Download template
           </Button>
         </div>
@@ -341,7 +346,7 @@ const MultipleProductUpload = () => {
     function handleChange(i, attr, val) {
       var newrecords = CSVfile.map((obj, index) => {
         if (index === i) {
-          if ((attr == "") && parseFloat(val))
+          if (attr == "" && parseFloat(val))
             return { ...obj, [attr]: parseFloat(val) };
           return { ...obj, [attr]: val };
         }
@@ -355,10 +360,10 @@ const MultipleProductUpload = () => {
         <table id="maintable">
           <thead>
             <tr>
-              <th>Product Id</th>
-              <th>SKU</th>
+              <th className="pdt-id">Product Id</th>
+              <th className="sku">SKU</th>
               <th>Product Title</th>
-              <th>Product Images</th>
+              <th className="upimg">Product Images</th>
               <th>Product Description</th>
               <th>Product Features</th>
               <th>Product Info</th>
@@ -369,30 +374,45 @@ const MultipleProductUpload = () => {
               <tr key={i}>
                 {/* Product ID */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    className="numberinput"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="number"
                     value={value.ProductID}
                     onChange={(e) =>
                       handleChange(i, "ProductID", e.target.value)
                     }
-                    id="cell"
-                    className="numberinput"
                   />
                 </td>
                 {/* SKU */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="text"
-                    id="cell"
                     value={value.SKU}
                     onChange={(e) => handleChange(i, "SKU", e.target.value)}
                   />
                 </td>
                 {/* Product Title */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="text"
-                    id="cell"
                     value={value.ProductTitle}
                     onChange={(e) =>
                       handleChange(i, "ProductTitle", e.target.value)
@@ -401,15 +421,19 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Images */}
                 <td>
-                  <button onClick={() => handleViewImage(i)}>
-                    View or Upload Images
-                  </button>
+                  <Button component="label" variant="contained" startIcon={<CloudUploadIcon />} style={{ width: '30px', height: '40px' }} onClick={() => handleViewImage(i)}>
+                  </Button>
                 </td>
                 {/* Product Description */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="text"
-                    id="cell"
                     value={value.ProductDescription}
                     onChange={(e) =>
                       handleChange(i, "ProductDescription", e.target.value)
@@ -418,9 +442,14 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Features */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="text"
-                    id="cell"
                     value={value.ProductFeatures}
                     onChange={(e) =>
                       handleChange(i, "ProductFeatures", e.target.value)
@@ -429,9 +458,14 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Info */}
                 <td>
-                  <input
+                  <TextField
+                    id="standard-textarea"
+                    multiline
+                    variant="standard"
+                    InputProps={{
+                      disableUnderline: true,
+                    }}
                     type="text"
-                    id="cell"
                     value={value.ProductInfo}
                     onChange={(e) =>
                       handleChange(i, "ProductInfo", e.target.value)
@@ -442,9 +476,16 @@ const MultipleProductUpload = () => {
             ))}
           </tbody>
         </table>
-        <button type="submit" onClick={handleSubmit}>
+        <div className="buttons-multi-sc">
+        <Button variant="contained" color="success" className="submit-button">
           Submit
-        </button>
+        </Button>
+
+        <Link to="/feedback">
+          <Button variant="contained"  className="feedback-button">Give Feedback</Button>
+        </Link>
+        </div>
+        
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={imageOpen.open}

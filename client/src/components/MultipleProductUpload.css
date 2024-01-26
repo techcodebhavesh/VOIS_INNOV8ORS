@@ -117,8 +117,21 @@ body {
 #maintable th,
 #maintable td {
   border: 1px solid #ddd;
-  /* padding: 8px; */
-  height: fit-content;
+  padding: 8px;
+  /* height: fit-content; */
+}
+
+#maintable th.pdt-id,
+#maintable th.sku,
+#maintable th.upimg,
+#maintable td.pdt-id > input, 
+#maintable th.sku > input,
+#maintable td.upimg > input{
+  width: 50px; /* You can adjust the width as needed */
+}
+
+#maintable td.pdt-id > input {
+  text-align: center ; /* Center the text in the input field */
 }
 
 #maintable th {
@@ -175,7 +188,6 @@ body {
   color: #fff;
   z-index: 1300;
 }
-
 /* Product Card Styles */
 .product-card {
   background-color: white;
@@ -243,4 +255,13 @@ body {
   top: 8px;
   right: 16px;
   font-size: 18px;
+}
+
+.buttons-multi-sc{
+  margin: 20px ;
+  display: flex;
+  flex-direction: row;
+}
+.buttons-multi-sc .feedback-button {
+  margin-left: 20px;
 }

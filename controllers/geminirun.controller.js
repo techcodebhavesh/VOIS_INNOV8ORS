@@ -110,7 +110,7 @@ const run = async (entry)=> {
     
     //const imageParts = entry.ProductImage;
 
-    const imageParts = [base64ToGenerativePart(entry.ProductImages, "image/jpeg")];  
+    const imageParts = entry.ProductImages.map(image => base64ToGenerativePart(image, "image/jpeg"));
 
     const result = await model.generateContent([prompt, prompt2, ...imageParts]);
     const response = await result.response;

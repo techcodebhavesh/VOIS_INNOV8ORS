@@ -8,6 +8,7 @@ import Backdrop from "@mui/material/Backdrop";
 import Button from '@mui/material/Button';
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
+import { Link } from "react-router-dom";
 
 
 const MultipleProductUpload = () => {
@@ -445,6 +446,10 @@ const MultipleProductUpload = () => {
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>
+
+        <Link to="/feedback">
+        <Button variant="contained">Contained</Button>
+       </Link>
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={imageOpen.open}

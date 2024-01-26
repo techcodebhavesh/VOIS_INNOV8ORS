@@ -360,10 +360,10 @@ const MultipleProductUpload = () => {
         <table id="maintable">
           <thead>
             <tr>
-              <th>Product Id</th>
-              <th>SKU</th>
+              <th className="pdt-id">Product Id</th>
+              <th className="sku">SKU</th>
               <th>Product Title</th>
-              <th>Product Images</th>
+              <th className="upimg">Product Images</th>
               <th>Product Description</th>
               <th>Product Features</th>
               <th>Product Info</th>
@@ -421,9 +421,8 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Images */}
                 <td>
-                  <button onClick={() => handleViewImage(i)}>
-                    View or Upload Images
-                  </button>
+                  <Button component="label" variant="contained" startIcon={<CloudUploadIcon />} style={{ width: '30px', height: '40px' }} onClick={() => handleViewImage(i)}>
+                  </Button>
                 </td>
                 {/* Product Description */}
                 <td>
@@ -477,13 +476,16 @@ const MultipleProductUpload = () => {
             ))}
           </tbody>
         </table>
-        <Button variant="contained" color="success">
+        <div className="buttons-multi-sc">
+        <Button variant="contained" color="success" className="submit-button">
           Submit
         </Button>
 
         <Link to="/feedback">
-          <Button variant="contained">Contained</Button>
+          <Button variant="contained"  className="feedback-button">Give Feedback</Button>
         </Link>
+        </div>
+        
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={imageOpen.open}

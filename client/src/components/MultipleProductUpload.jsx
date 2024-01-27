@@ -95,10 +95,10 @@ const MultipleProductUpload = () => {
 
       reader.onloadend = () => {
         if (typeof reader.result === "string") {
-          resolve(
-           reader.result.split(",")[1]// Extracting base64 part
-            //mimeType,
-          );
+          resolve({
+            data: reader.result.split(",")[1], // Extracting base64 part
+            mimeType,
+          });
         } else {
           reject(new Error("Failed to read image as base64."));
         }
@@ -488,7 +488,7 @@ const MultipleProductUpload = () => {
           </tbody>
         </table>
         <div className="buttons-multi-sc">
-          <Button variant="contained" color="success" className="submit-button">
+          <Button variant="contained" color="success" className="submit-button" onClick={handleSubmit}>
             Submit
           </Button>
 

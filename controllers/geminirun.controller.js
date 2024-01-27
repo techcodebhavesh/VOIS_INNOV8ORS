@@ -68,6 +68,7 @@ const run = async (entry)=> {
   
     refer the title field ,and compare all other fields with the products descriptions available world-wide.then suggest changes in it.
     you can suggest the changes in image so that it looks more professional.
+    IMPORTANT: suggest the changes in grammer of the product description and spelling mistakes.
     
     Overall Score: Considering the individual ratings for image, title, features, product description, and additional information, provide an overall rating for the catalog on a scale of 1 to 10.
     

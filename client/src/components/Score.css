@@ -189,8 +189,15 @@ h1 {
 
 .box-input{
   width: 100%;
-  margin-top: 100px;
+  margin-top: 10px;
   margin-bottom: 5%;
+}
+.Dnd-instructions{
+  font-size: 20px !important;
+  padding:30px !important;
+  border: 2px dotted #002f5c;
+  margin: 10px;
+  border-radius: 10px;
 }
 .textfield{
   margin: 5%;

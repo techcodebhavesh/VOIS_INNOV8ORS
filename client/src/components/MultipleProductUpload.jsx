@@ -215,7 +215,7 @@ const MultipleProductUpload = () => {
             variant="contained"
             color="success"
           >
-            Download template
+            Bulk Upload
           </Button>
         </div>
         <div
@@ -260,6 +260,7 @@ const MultipleProductUpload = () => {
   console.log({ CSVfile });
 
   const productCard = () => {
+    const shouldShowInstructions = !imageOpen.open;
     return (
       <div
         className="product-card-parent"
@@ -269,6 +270,11 @@ const MultipleProductUpload = () => {
         }}
       >
         <div className="product-card">
+          {shouldShowInstructions && (
+            <h1 className="Dnd-instructions">
+              Drag and drop Images of the Catalog here
+            </h1>
+          )}
           <div className="product-card-image">
             {CSVfile[imageOpen.index].ProductImages.map((obj, index) => {
               return (
@@ -283,7 +289,7 @@ const MultipleProductUpload = () => {
                       aria-label="delete"
                       onClick={() => deleteImage(index)}
                     >
-                      <ClearIcon />
+                      <ClearIcon style={{ height: "10 px" }} />
                     </IconButton>
                   </div>
                 </div>
@@ -421,8 +427,13 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Images */}
                 <td>
-                  <Button component="label" variant="contained" startIcon={<CloudUploadIcon />} style={{ width: '30px', height: '40px' }} onClick={() => handleViewImage(i)}>
-                  </Button>
+                  <Button
+                    component="label"
+                    variant="contained"
+                    startIcon={<CloudUploadIcon />}
+                    style={{ width: "30px", height: "40px" }}
+                    onClick={() => handleViewImage(i)}
+                  ></Button>
                 </td>
                 {/* Product Description */}
                 <td>
@@ -477,15 +488,17 @@ const MultipleProductUpload = () => {
           </tbody>
         </table>
         <div className="buttons-multi-sc">
-        <Button variant="contained" color="success" className="submit-button">
-          Submit
-        </Button>
+          <Button variant="contained" color="success" className="submit-button">
+            Submit
+          </Button>
 
-        <Link to="/feedback">
-          <Button variant="contained"  className="feedback-button">Give Feedback</Button>
-        </Link>
+          <Link to="/feedback">
+            <Button variant="contained" className="feedback-button">
+              Give Feedback
+            </Button>
+          </Link>
         </div>
-        
+
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={imageOpen.open}

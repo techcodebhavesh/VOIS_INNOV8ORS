@@ -10,6 +10,7 @@ const TabContent1 = () => (
   <>
     <div className="tab1-container mx-auto">
       <div className="box-input my-10 border-dashed border-2 border-slate-200 p-5 rounded-xl">
+      <h1 className="Dnd-instructions"> Drag and drop Images of the Catalog here</h1>
         <p className="font-bold text-xl mb-5"></p>
         {/* Start white textfields bloc */}
         <div className="inline-flex gap-5 items-center">

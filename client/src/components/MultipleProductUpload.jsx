@@ -95,10 +95,10 @@ const MultipleProductUpload = () => {
 
       reader.onloadend = () => {
         if (typeof reader.result === "string") {
-          resolve({
-            data: reader.result.split(",")[1], // Extracting base64 part
-            mimeType,
-          });
+          resolve(
+            reader.result.split(",")[1] // Extracting base64 part
+            //mimeType,
+          );
         } else {
           reject(new Error("Failed to read image as base64."));
         }

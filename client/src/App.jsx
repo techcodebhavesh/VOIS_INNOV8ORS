@@ -7,6 +7,7 @@ import Documentation from './components/Documentation.jsx';
 import MultipleProductUpload from './components/MultipleProductUpload.jsx';
 import OutputDashboard from './components/OutputDashboard.jsx';
 import Feedback from './components/Feedback.jsx';
+import Getapi from './components/Getapi.jsx';
 
 const App = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/demo/products" element={<MultipleProductUpload />} />
           <Route path="/demo/display" element={<OutputDashboard />} />
           <Route path="/feedback" element={<Feedback />} />
+          <Route path="/getapi" element={<Getapi />} />
           <Route path="/*" element={<Navigate to="/login" />} />
         </Routes>
     </div>

@@ -5,27 +5,67 @@ import MultipleProductUpload from "./MultipleProductUpload";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
+import { useDropzone } from "react-dropzone";
 
-const TabContent1 = () => (
-  <>
-    <div className="tab1-container mx-auto">
-      <div className="box-input my-10 border-dashed border-2 border-slate-200 p-5 rounded-xl">
-      <h1 className="Dnd-instructions"> Drag and drop Images of the Catalog here</h1>
-        <p className="font-bold text-xl mb-5"></p>
-        {/* Start white textfields bloc */}
-        <div className="inline-flex gap-5 items-center">
-          <div id="first_style">
-            {/* First style */}
-            <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
-              <TextField
-                className="box-inner"
-                id="outlined-textarea"
-                label="Title"
-                placeholder="Placeholder"
-                multiline
-              />
-            </div>
-            <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
+const TabContent1 = () => {
+  const [files, setFiles] = useState([]);
+  const [isDragActive, setIsDragActive] = useState(false);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      );
+      console.log("Image dropped:", acceptedFiles);
+    },
+    onDragEnter: () => setIsDragActive(true),
+    onDragLeave: () => setIsDragActive(false),
+  });
+
+  return (
+    <>
+      <div
+        className={`tab1-container mx-auto ${
+          isDragActive || files.length > 0 ? "drag-active" : ""
+        }`}
+      >
+        <div className="box-input my-10 border-dashed border-2 border-slate-200 p-5 rounded-xl" {...getRootProps()}>
+          <input {...getInputProps()} />
+          {files.length > 0 ? (
+            <aside className="thumbs-container">
+              {files.map((file) => (
+                <div key={file.name} className="thumb">
+                  <div
+                    className="thumb-inner"
+                    style={{ backgroundImage: `url(${file.preview})` }}
+                  />
+                </div>
+              ))}
+            </aside>
+          ) : (
+            <h1 className="Dnd-instructions">
+              Drag and drop Images of the Catalog here
+            </h1>
+          )}
+          {/* Start white textfields bloc */}
+          <div className="inline-flex gap-5 items-center">
+            <div id="first_style">
+              {/* First style */}
+              <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
+                <TextField
+                  className="box-inner"
+                  id="outlined-textarea"
+                  label="Title"
+                  placeholder="Placeholder"
+                  multiline
+                />
+              </div>
+              <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
               <TextField
                 className="box-inner"
                 id="outlined-textarea"
@@ -52,16 +92,16 @@ const TabContent1 = () => (
                 multiline
               />
             </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <Link to="/feedback">
-    <Button variant="contained">Give Feedback</Button>
-    </Link>
-  </>
-);
-
+      <Link to="/feedback">
+        <Button variant="contained">Give Feedback</Button>
+      </Link>
+    </>
+  );
+};
 const TabContent2 = () => <MultipleProductUpload />;
 
 const Score = () => {

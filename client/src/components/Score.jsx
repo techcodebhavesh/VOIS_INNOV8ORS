@@ -4,12 +4,16 @@ import "./Score.css";
 import MultipleProductUpload from "./MultipleProductUpload";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { useDropzone } from "react-dropzone";
 
 const TabContent1 = () => {
   const [files, setFiles] = useState([]);
   const [isDragActive, setIsDragActive] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [features, setFeatures] = useState("");
+  const [additionalFeatures, setAdditionalFeatures] = useState("");
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -27,6 +31,15 @@ const TabContent1 = () => {
     onDragLeave: () => setIsDragActive(false),
   });
 
+  const handleSubmit = () => {
+    console.log("Form values submitted:", {
+      title,
+      description,
+      features,
+      additionalFeatures,
+    });
+  };
+
   return (
     <>
       <div
@@ -34,7 +47,10 @@ const TabContent1 = () => {
           isDragActive || files.length > 0 ? "drag-active" : ""
         }`}
       >
-        <div className="box-input my-10 border-dashed border-2 border-slate-200 p-5 rounded-xl" {...getRootProps()}>
+        <div
+          className="box-input my-10 border-dashed border-2 border-slate-200 p-5 rounded-xl"
+          {...getRootProps()}
+        >
           <input {...getInputProps()} />
           {files.length > 0 ? (
             <aside className="thumbs-container">
@@ -63,39 +79,51 @@ const TabContent1 = () => {
                   label="Title"
                   placeholder="Placeholder"
                   multiline
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
               <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
-              <TextField
-                className="box-inner"
-                id="outlined-textarea"
-                label="Description"
-                placeholder="Placeholder"
-                multiline
-              />
-            </div>
-            <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
-              <TextField
-                className="box-inner"
-                id="outlined-textarea"
-                label="Features And Benifits"
-                placeholder="Placeholder"
-                multiline
-              />
-            </div>
-            <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
-              <TextField
-                className="box-inner"
-                id="outlined-textarea"
-                label="Additional Features"
-                placeholder="Placeholder"
-                multiline
-              />
-            </div>
+                <TextField
+                  className="box-inner"
+                  id="outlined-textarea"
+                  label="Description"
+                  placeholder="Placeholder"
+                  multiline
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+              <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
+                <TextField
+                  className="box-inner"
+                  id="outlined-textarea"
+                  label="Features And Benefits"
+                  placeholder="Placeholder"
+                  multiline
+                  value={features}
+                  onChange={(e) => setFeatures(e.target.value)}
+                />
+              </div>
+              <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
+                <TextField
+                  className="box-inner"
+                  id="outlined-textarea"
+                  label="Additional Features"
+                  placeholder="Placeholder"
+                  multiline
+                  value={additionalFeatures}
+                  onChange={(e) => setAdditionalFeatures(e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <Button variant="contained" color="success" onClick={handleSubmit}>
+        Submit
+      </Button>
       <Link to="/feedback">
         <Button variant="contained">Give Feedback</Button>
       </Link>

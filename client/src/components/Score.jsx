@@ -69,7 +69,7 @@ const TabContent1 = () => {
             <Button
               variant="contained"
               endIcon={<SendIcon />}
-              className="Dnd-instructions">
+              className="Dnd-instructions-img">
               Drag Images
             </Button>
           )}

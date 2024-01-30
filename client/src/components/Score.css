@@ -88,7 +88,7 @@ body {
 .images-prev{
   display: flex;
   justify-content:flex-start;
-  margin: 20px;
+  padding: 20px;
 }
 .tab1-container{
   width: 100%;
@@ -205,11 +205,10 @@ h1 {
   margin-top: 10px;
   margin-bottom: 5%;
 }
-.Dnd-instructions{
+.Dnd-instructions-img{
   display: flex;
   justify-content: center;
   padding-left: 10%;
-  font-size: 20px !important;
   border: 2px dotted #002f5c;
   margin: 10px;
   border-radius: 10px;

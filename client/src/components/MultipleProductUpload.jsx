@@ -16,7 +16,7 @@ const MultipleProductUpload = () => {
   const [CSVfile, setCSVfile] = useState(null);
   const [imageOpen, setimageOpen] = useState({ open: false, index: 0 });
   const [productCardDropArea, setproductCardDropArea] = useState(false);
-
+  
   function showdroparea() {
     console.log("drag over");
     setdroparea(true);

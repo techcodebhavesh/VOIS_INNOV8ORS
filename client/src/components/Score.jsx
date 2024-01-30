@@ -15,6 +15,10 @@ const TabContent1 = () => {
   const [features, setFeatures] = useState("");
   const [additionalFeatures, setAdditionalFeatures] = useState("");
 
+  const getPreviewImage = (file) => {
+    return URL.createObjectURL(file);
+  };
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -51,14 +55,13 @@ const TabContent1 = () => {
           className="box-input my-10 border-dashed border-2 border-slate-200 p-5 rounded-xl"
           {...getRootProps()}
         >
-          <input {...getInputProps()} />
           {files.length > 0 ? (
             <aside className="thumbs-container">
               {files.map((file) => (
                 <div key={file.name} className="thumb">
                   <div
                     className="thumb-inner"
-                    style={{ backgroundImage: `url(${file.preview})` }}
+                    style={{ backgroundImage: `url(${getPreviewImage(file)})` }}
                   />
                 </div>
               ))}
@@ -81,6 +84,7 @@ const TabContent1 = () => {
                   multiline
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
+                  onClick={(e) => e.stopPropagation()}
                 />
               </div>
               <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
@@ -92,6 +96,7 @@ const TabContent1 = () => {
                   multiline
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
+                  onClick={(e) => e.stopPropagation()}
                 />
               </div>
               <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
@@ -103,6 +108,7 @@ const TabContent1 = () => {
                   multiline
                   value={features}
                   onChange={(e) => setFeatures(e.target.value)}
+                  onClick={(e) => e.stopPropagation()}
                 />
               </div>
               <div className="textfield w-[300px] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
@@ -114,6 +120,7 @@ const TabContent1 = () => {
                   multiline
                   value={additionalFeatures}
                   onChange={(e) => setAdditionalFeatures(e.target.value)}
+                  onClick={(e) => e.stopPropagation()}
                 />
               </div>
             </div>

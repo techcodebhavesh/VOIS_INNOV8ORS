@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./documentation.css";
 import { Link } from "react-router-dom";
 import Getapi from "./Getapi";
-// import HomeContent from './HomeContent';
+import Introduction from './Introduction';
 // import AboutContent from './AboutContent';
 // import ServicesContent from './ServicesContent';
 // import ContactContent from './ContactContent';
@@ -55,9 +55,10 @@ const Documentation = () => {
         </main>
       </div>
       <div className="body-doc">
+
         <div className="sidebar">
-          <a href="#home" onClick={() => handleSidebarClick("home")}>
-            Home
+          <a href="#Introduction" onClick={() => handleSidebarClick("Introduction")}>
+            Introdution
           </a>
           <a href="#about" onClick={() => handleSidebarClick("about")}>
             About
@@ -81,8 +82,8 @@ const Documentation = () => {
 
         {/* Render content based on selected link in the body */}
         <div className="content">
-          {/* {selectedContent === 'home' && <HomeContent />}
-        {selectedContent === 'about' && <AboutContent />}
+          {selectedContent === 'Introduction' && <Introduction />}
+        {/* {selectedContent === 'about' && <AboutContent />}
         {selectedContent === 'services' && <ServicesContent />}
         {selectedContent === 'contact' && <ContactContent />}
         {selectedContent === 'api-docs' && <ApiDocsContent />} */}

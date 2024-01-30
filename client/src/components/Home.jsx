@@ -1,14 +1,10 @@
 // Import necessary libraries and styles
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom"; // Import Link from React Router
-import "./Home.css"; 
-
+import "./Home.css";
+import OutputDashboard from "./OutputDashboard";
 
 const Home = () => {
-  const handleCardClick = () => {
-    // Redirect to the "score" page when the first card is clicked
-    window.location.href = "/score";
-  };
 
   return (
     <div className="page">
@@ -20,9 +16,9 @@ const Home = () => {
                 <a className="align-right" href="#">
                   Contact
                 </a>
-                <a className="align-right" href="#">
+                <Link to="./OutputDashboard" className="align-right">
                   Dashboard
-                </a>
+                </Link>
                 <a className="align-right" href="#">
                   About
                 </a>
@@ -224,6 +220,7 @@ const Home = () => {
 
         <div className="context"></div>
       </div>
+
     </div>
   );
 };

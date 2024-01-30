@@ -67,7 +67,6 @@ body {
 
 .product-card {
   background-color: white;
-  max-width: 40%;
   color: black;
   padding: 20px;
   border-radius: 20px;
@@ -87,7 +86,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 60%;
 }
 
 .product-card-parent > div {
@@ -192,7 +191,6 @@ body {
 /* Product Card Styles */
 .product-card {
   background-color: white;
-  max-width: 40%;
   color: black;
   padding: 20px;
   border-radius: 20px;

@@ -18,7 +18,7 @@ const MultipleProductUpload = () => {
   const [CSVfile, setCSVfile] = useState(null);
   const [imageOpen, setimageOpen] = useState({ open: false, index: 0 });
   const [productCardDropArea, setproductCardDropArea] = useState(false);
-
+  
   function showdroparea() {
     console.log("drag over");
     setdroparea(true);
@@ -97,10 +97,10 @@ const MultipleProductUpload = () => {
 
       reader.onloadend = () => {
         if (typeof reader.result === "string") {
-          resolve({
-            data: reader.result.split(",")[1], // Extracting base64 part
-            mimeType,
-          });
+          resolve(
+            reader.result.split(",")[1] // Extracting base64 part
+            //mimeType,
+          );
         } else {
           reject(new Error("Failed to read image as base64."));
         }

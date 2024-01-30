@@ -1,0 +1,245 @@
+.navbar {
+  background: linear-gradient(90deg, #1c75bc, #4aa1e0 51%, #1c75bc)
+    var(--x, 100%) / 200%;
+}
+/* navbar */
+* {
+  /* margin: 0;
+    padding: 0; */
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: medium;
+}
+
+.ground-glass {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  transition: 0.85s;
+  background: transparent;
+}
+
+nav {
+  position: relative;
+  display: flex;
+  padding: 10px 0;
+  flex-direction: row-reverse;
+}
+
+nav div {
+  position: relative;
+  text-decoration: none;
+  padding: 12px 25px;
+  /* color: #000000; */
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+#marker {
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  border-bottom: 3px solid #08f9ff;
+  transition: 0.5s;
+  pointer-events: none;
+  filter: drop-shadow(0 5px 25px #08f9ff);
+}
+
+.scrolled {
+  background-color: #000;
+  color: #fff;
+}
+
+.border-b {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.align-left {
+  position: absolute;
+  left: 0;
+}
+/* navbar end */
+
+/* tabs */
+/* Variables */
+:root {
+  --purple-tab: #c2b4f4;
+}
+
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+.tab-content {
+  /* background: linear-gradient(
+      180deg,
+      rgba(255, 242, 215, 0.918) 0%,
+      rgba(255, 242, 215, 0) 100%
+    ),
+    rgb(255, 255, 255); */
+    background: rgba(255, 255, 255, 0.667);
+    /* height: 100vh; */
+    padding : 3%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.images-prev{
+  display: flex;
+  justify-content:flex-start;
+  padding: 20px;
+}
+.tab1-container{
+  width: 100%;
+  min-height: 300px;
+  margin: 50px;
+  background: linear-gradient(90deg, rgba(28, 117, 188, 0.7), rgba(74, 161, 224, 0.7) 51%, rgba(28, 117, 188, 0.7)) var(--x, 100%) / 200%;
+  border: 2px solid #65a0d6;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.score-header {
+  padding: 4rem 4rem 0;
+  background: linear-gradient(110.84deg, #fef3e8 1.01%, #bfebf4 102.07%);
+}
+
+h1 {
+  color: rgb(0, 0, 0);
+  margin: 0 0 4rem;
+  font-family:Georgia, 'Times New Roman', Times, serif !important;
+  font-weight:100 ;
+  font-size: 40px !important;
+}
+
+.main {
+  padding: 2rem;
+}
+
+.tab1-container.drag-active {
+  /* Add your styles for the drag-active state here */
+  border: 2px dashed #002f5c;
+  background-color: #f0f0f0;
+}
+
+
+/* Tabs */
+.tabs div {
+  text-decoration: none;
+  background: linear-gradient(90deg, #1c75bc, #4aa1e0 51%, #1c75bc)
+    var(--x, 100%) / 200%;
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5em 0.5em 0 0;
+  color: rgb(0, 0, 0);
+  margin: 0 2px;
+  position: relative;
+}
+
+.tabs div:hover {
+  opacity: 0.8;
+}
+
+.tabs div::after,
+.tabs div::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 10px;
+  width: 10px;
+  z-index: 1;
+}
+
+.tabs div::after {
+  left: 100%;
+  background-image: radial-gradient(
+    circle at top right,
+    transparent,
+    transparent 10px,
+    /* var(--purple-tab) 10px,
+    var(--purple-tab) 50px */
+  );
+}
+
+.tabs div::before {
+  right: 100%;
+  background-image: radial-gradient(
+    circle at top left,
+    transparent,
+    transparent 10px,
+    var(--purple-tab) 10px,
+    var(--purple-tab) 50px
+  );
+}
+
+.tabs div.active {
+  background: white;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tabs div.active::after {
+  background-image: radial-gradient(
+    circle at top right,
+    transparent,
+    transparent 10px,
+    white 10px,
+    white 50px
+  );
+}
+
+.tabs div.active::before {
+  background-image: radial-gradient(
+    circle at top left,
+    transparent,
+    transparent 10px,
+    white 10px,
+    white 50px
+  );
+}
+
+.box-input{
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5%;
+}
+.Dnd-instructions-img{
+  display: flex;
+  justify-content: center;
+  padding-left: 10%;
+  border: 2px dotted #002f5c;
+  margin: 10px;
+  border-radius: 10px;
+  background-color:#ffffffa0;
+}
+.thumb {
+  /* Add any necessary styles for the container */
+  margin: 0%;
+}
+
+.thumb-inner {
+  background-size: cover; /* or contain, based on your preference */
+  width: 100%; /* Set a width for the container */
+  height: 100%; /* Set a height for the container */
+}
+
+.textfield{
+  margin: 5%;
+  margin-bottom: 2% !important;
+  margin-top: 2% !important;
+  background-color: aliceblue;
+
+
+}
+.box-inner{
+  width: 100%;
+}
+.textfield label {
+  color: #000 !important;
+  font-style: bold !important; 
+  width: 100%;
+}
+
+/* tabs :end */

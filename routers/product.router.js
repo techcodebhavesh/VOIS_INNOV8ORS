@@ -6,5 +6,4 @@ const productRouter = express.Router();
 
 productRouter.post("/productadd",  createProductController);
 
-productRouter.post("/productCsvadd", createProductcsvController);
 module.exports = productRouter;

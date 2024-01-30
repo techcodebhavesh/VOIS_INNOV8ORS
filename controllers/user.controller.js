@@ -6,29 +6,28 @@ const { runQuery } = require('../connection.sql.js');
 
 const createUserController = async (req, res) => {
   try {
-    const{ name, email, password}= req.body;
-   
+    const { name, email, password } = req.body;
 
     // Validate input (you may want to add more validation)
     if (!name || !email || !password) {
-      return res.status(400).send('Name, email, and password are required');
+      return res.status(400).json('Name, email, and password are required');
+    }
+
+    // Check if the user already exists in the database
+    const existingUser = await runQuery('SELECT * FROM users WHERE email = ?', [email]);
+
+    if (existingUser.length > 0) {
+      return res.status(409).json('User already exists');
     }
 
     // Insert the user into the database
+    await runQuery('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name, email, password]);
 
-   
-   
-   await runQuery('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name,email,password]);
-
-    
-
-      console.log('User created successfully');
-      return res.status(201).send('User created successfully');
-  
+    console.log('User created successfully');
+    return res.status(201).json('User created successfully');
   } catch (err) {
     console.error('Error in createUserController:', err);
-    console.error('Error creating user:', err);
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).json('Internal Server Error');
   }
 };
 
@@ -38,7 +37,7 @@ const loginUserController = async (req, res) => {
 
     // Validate input
     if (!email || !password) {
-      return res.status(400).send('Email and password are required');
+      return res.status(400).json('Email and password are required');
     }
 
     // Check if the user exists in the database
@@ -46,19 +45,20 @@ const loginUserController = async (req, res) => {
 
     // Check if the user was found
     if (users.length === 0) {
-      return res.status(404).send('User not found');
+      return res.status(404).json('User not found');
     } else {
       // User found, you might want to do further checks on the password
       // For security, you should use a secure password hashing library instead of comparing plain text passwords
       console.log('Login successful');
-      return res.status(200).send('Login successful');
+      return res.status(200).json('Login successful');
     }
 
   } catch (error) {
     console.error('Error in loginUserController:', error);
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).json('Internal Server Error');
   }
 };
+
 
 //
 /*const validateUser = async (uItem) => {

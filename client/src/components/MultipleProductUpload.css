@@ -1,0 +1,281 @@
+/* General Styles */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for File Upload */
+.product-upload-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-height: 60vh;
+}
+
+/* Drop Area Styles */
+#droparea {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #4aa1e0b2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+#dropareainnerdiv {
+  text-align: center;
+}
+
+#dropareatext {
+  margin-bottom: 20px;
+}
+
+/* File Upload Area Styles */
+.upload-file-area {
+  width: 80%;
+  min-height: 300px;
+  background: linear-gradient(90deg, rgba(28, 117, 188, 0.7), rgba(74, 161, 224, 0.7) 51%, rgba(28, 117, 188, 0.7)) var(--x, 100%) / 200%;
+  border: 2px dashed #002f5c;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.cloud-icon{
+  height: 80px !important;
+  width: 80px !important;
+}
+/* Download Template Button Styles */
+/* .download-template-button {
+  font-size: 30px !important;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 100 !important;
+} */
+.download-temp-button{
+  margin: 20px !important;
+}
+
+.product-card {
+  background-color: white;
+  max-width: 40%;
+  color: black;
+  padding: 20px;
+  border-radius: 20px;
+  /* z-index: 10; */
+}
+
+.product-card-details > div {
+  display: flex;
+  align-items: flex-start;
+  margin: 15px 0;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.product-card-parent {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.product-card-parent > div {
+  position: absolute;
+}
+
+.product-card-overlay {
+  z-index: 50;
+  background-color: #1c74bc7e;
+  width: 35%;
+  padding: 200px 60px;
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+  font:200;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Table Styles */
+#maintable {
+  margin: auto;
+  border-collapse: collapse;
+  overflow: auto;
+  width: 100%;
+}
+
+#maintable th,
+#maintable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  /* height: fit-content; */
+}
+
+#maintable th.pdt-id,
+#maintable th.sku,
+#maintable th.upimg,
+#maintable td.pdt-id > input, 
+#maintable th.sku > input,
+#maintable td.upimg > input{
+  width: 50px; /* You can adjust the width as needed */
+}
+
+#maintable td.pdt-id > input {
+  text-align: center ; /* Center the text in the input field */
+}
+
+#maintable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4aa1e0;
+  color: white;
+}
+
+#maintable tr:nth-child(even),
+#maintable tr:nth-child(even) > td > input,
+#maintable tr:nth-child(even) > td > select {
+  background-color: #f2f2f2b7;
+}
+
+#maintable td:hover {
+  background-color: #ddd;
+  cursor: cell;
+}
+
+/* Input and Select Styles within Table Cells */
+#maintable td > input,
+#maintable td > select {
+  border: 0;
+  margin: 0;
+  font-size: medium;
+  text-align: center;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* Focus Styles for Input and Select */
+#maintable td > input:focus-visible,
+#maintable td > select:focus-visible {
+  outline: solid #1c75bc 1px;
+}
+
+/* Button Styles */
+#maintable td > span > button {
+  border: 0;
+  padding: 2px 5px;
+  border-radius: 5px;
+  margin: 0;
+  color: #4aa1e0;
+  transition-duration: 0.4s;
+}
+
+/* Backdrop Styles */
+.MuiBackdrop-root {
+  color: #fff;
+  z-index: 1300;
+}
+/* Product Card Styles */
+.product-card {
+  background-color: white;
+  max-width: 40%;
+  color: black;
+  padding: 20px;
+  border-radius: 20px;
+  z-index: 10;
+}
+.Dnd-instructions{
+  font-size: 20px !important;
+  padding:30px !important;
+  border: 2px dotted #002f5c;
+  /* margin: 0px; */
+  border-radius: 10px;
+}
+.product-card-details > div {
+  display: flex;
+  align-items: stretch;
+  margin: 15px 0;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+/* Number Input Styles */
+.numberinput {
+  min-width: 50px;
+  text-align: end;
+}
+
+.product-card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.product-card{
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.product-card::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.product-card::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+.product-card::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+
+.product-card-image-container {
+  position: relative;
+}
+
+.product-card-image-topright {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 10px;
+  background-color: rgba(255, 255, 255, 0.747);
+  border: 1px solid #ddd;
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-multi-sc{
+  margin: 20px ;
+  display: flex;
+  flex-direction: row;
+}
+.buttons-multi-sc .feedback-button {
+  margin-left: 20px;
+}

@@ -12,7 +12,8 @@ const togeminiRouter = require("./routers/togemini.router");
 
 const PORT = process.env.PORT || 5001;
 
-app.use(express.json());
+
+app.use(express.json({ limit: '10mb' }));   
 
 app.use(cors());
 

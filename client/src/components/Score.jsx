@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useDropzone } from "react-dropzone";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
 
 const TabContent1 = () => {
   const [files, setFiles] = useState([]);
@@ -51,10 +53,7 @@ const TabContent1 = () => {
           isDragActive || files.length > 0 ? "drag-active" : ""
         }`}
       >
-        <div
-          className="box-input my-10 border-dashed border-2 border-slate-200 p-5 rounded-xl"
-          {...getRootProps()}
-        >
+        <div className="images-prev" {...getRootProps()}>
           {files.length > 0 ? (
             <aside className="thumbs-container">
               {files.map((file) => (
@@ -67,10 +66,18 @@ const TabContent1 = () => {
               ))}
             </aside>
           ) : (
-            <h1 className="Dnd-instructions">
-              Drag and drop Images of the Catalog here
-            </h1>
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              className="Dnd-instructions">
+              Drag Images
+            </Button>
           )}
+        </div>
+        <div
+          className="box-input my-10 border-dashed border-2 border-slate-200 p-5 rounded-xl"
+          
+        >
           {/* Start white textfields bloc */}
           <div className="inline-flex gap-5 items-center">
             <div id="first_style">

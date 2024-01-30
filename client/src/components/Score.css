@@ -85,14 +85,20 @@ body {
     flex-direction: column;
     align-items: center;
 }
+.images-prev{
+  display: flex;
+  justify-content:flex-start;
+  margin: 20px;
+}
 .tab1-container{
-  width: 80%;
+  width: 100%;
   min-height: 300px;
   margin: 50px;
-  background: linear-gradient(90deg, rgba(28, 117, 188, 0.3), rgba(74, 161, 224, 0.3) 51%, rgba(28, 117, 188, 0.3)) var(--x, 100%) / 200%;
+  background: linear-gradient(90deg, rgba(28, 117, 188, 0.7), rgba(74, 161, 224, 0.7) 51%, rgba(28, 117, 188, 0.7)) var(--x, 100%) / 200%;
   border: 2px solid #65a0d6;
   border-radius: 15px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 .score-header {
@@ -200,11 +206,14 @@ h1 {
   margin-bottom: 5%;
 }
 .Dnd-instructions{
+  display: flex;
+  justify-content: center;
+  padding-left: 10%;
   font-size: 20px !important;
-  padding:30px !important;
   border: 2px dotted #002f5c;
   margin: 10px;
   border-radius: 10px;
+  background-color:#ffffffa0;
 }
 .thumb {
   /* Add any necessary styles for the container */
@@ -221,6 +230,8 @@ h1 {
   margin: 5%;
   margin-bottom: 2% !important;
   margin-top: 2% !important;
+  background-color: aliceblue;
+
 
 }
 .box-inner{

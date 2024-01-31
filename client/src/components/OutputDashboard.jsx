@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import TotalSpent from "./DashboardComponents/TotalSpent";
 import WeeklyRevenue from "./DashboardComponents/WeeklyRevenue";
+import PieChart from "./DashboardComponents/PieChart";
+import Widget from "./DashboardComponents/Widget";
+import Links from "./DashboardComponents/Links";
+
 
 const OutputDashboard = () => {
   const [data, setdata] = useState({
@@ -72,6 +76,10 @@ const OutputDashboard = () => {
   return (
     <div>
       <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
+        
+        {/* <PieChart /> */}
+        <Links />
+        <Widget />
         <TotalSpent />
         <WeeklyRevenue />
       </div>

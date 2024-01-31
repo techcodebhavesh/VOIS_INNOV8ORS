@@ -1,9 +1,17 @@
 import React, { useState } from "react";
+import "./OutputDashboard.css";
 import TotalSpent from "./DashboardComponents/TotalSpent";
 import WeeklyRevenue from "./DashboardComponents/WeeklyRevenue";
 import PieChart from "./DashboardComponents/PieChart";
 import Widget from "./DashboardComponents/Widget";
 import Links from "./DashboardComponents/Links";
+import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { SelectChangeEvent } from "@mui/material/Select";
 
 
 const OutputDashboard = () => {
@@ -73,17 +81,66 @@ const OutputDashboard = () => {
       },
     },
   });
+
+  const [catalognum, setcatalognum] = useState('');
+
+  const handleChange = (event) => {
+    setcatalognum(event.target.value);
+  };
+
   return (
-    <div>
-      <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
-        
-        {/* <PieChart /> */}
-        <Links />
-        <Widget />
-        <TotalSpent />
-        <WeeklyRevenue />
+    <>
+      <div className="navbar">
+        <main>
+          <header className="fixed z-20 w-full">
+            <nav>
+              <a className="align-right" href="#">
+                Contact
+              </a>
+              <Link to="./OutputDashboard" className="align-right">
+                Dashboard
+              </Link>
+              <a className="align-right" href="#">
+                About
+              </a>
+              <a className="align-left" href="#">
+                Home
+              </a>
+            </nav>
+            <div className="h-1px bg-primary animate__animated w-full border-b"></div>
+          </header>
+
+          <div className="h-100vh w-full bg-cover"></div>
+        </main>
       </div>
-    </div>
+
+      
+      <div className="body-dash">
+      <Box sx={{ maxWidth: 400}}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Catalog number</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={catalognum}
+          label="catalognum"
+          onChange={handleChange}
+        >
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+        <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
+          {/* <PieChart /> */}
+          <Links />
+          <Widget />
+          <TotalSpent />
+          <WeeklyRevenue />
+        </div>
+      </div>
+    </>
   );
 };
 

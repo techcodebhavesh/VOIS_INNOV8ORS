@@ -1,10 +1,12 @@
 /* eslint-disable */
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import DashIcon from "components/icons/DashIcon";
+import DashIcon from "./components/icons/DashIcon";
 // chakra imports
 
+
 export function SidebarLinks(props) {
+  console.log("Props in SidebarLinks:", props);
   // Chakra color mode
   let location = useLocation();
 
@@ -16,6 +18,11 @@ export function SidebarLinks(props) {
   };
 
   const createLinks = (routes) => {
+    // Check if routes is undefined or not an array
+    if (!routes || !Array.isArray(routes)) {
+      return null; // or handle this case appropriately
+    }
+
     return routes.map((route, index) => {
       if (
         route.layout === "/admin" ||

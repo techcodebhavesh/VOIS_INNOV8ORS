@@ -10,6 +10,8 @@ import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const MultipleProductUpload = () => {
   const [droparea, setdroparea] = useState(false);
@@ -182,10 +184,10 @@ const MultipleProductUpload = () => {
 
       // Here, 'jsonArray' contains an array of objects with file names and corresponding JSON data
       console.log({ jsonData });
-      jsonData = jsonData.map((obj) => {
+      jsonData = jsonData.map((obj, index) => {
         return {
           ...obj,
-          ProductID: parseInt(obj.ProductID),
+          ProductID: parseInt(index+1),
           ProductImages: [],
           ProductTitle: obj.ProductTitle,
           ProductDescription: obj.ProductDescription,
@@ -262,85 +264,108 @@ const MultipleProductUpload = () => {
   const productCard = () => {
     const shouldShowInstructions = !imageOpen.open;
     return (
-      <div
-        className="product-card-parent"
-        onDragOver={() => {
-          console.log("hi xyz");
-          setproductCardDropArea(true);
-        }}
-      >
-        <div className="product-card">
-          {shouldShowInstructions && (
-            <h1 className="Dnd-instructions">
-              Drag and drop Images of the Catalog here
-            </h1>
-          )}
-          <div className="product-card-image">
-            {CSVfile[imageOpen.index].ProductImages.map((obj, index) => {
-              return (
-                <div className="product-card-image-container">
-                  <img
-                    src={URL.createObjectURL(obj.blob)}
-                    alt={obj.name}
-                    style={{ height: "100px", margin: "5px" }}
-                  />
-                  <div className="product-card-image-topright">
-                    <IconButton
-                      aria-label="delete"
-                      onClick={() => deleteImage(index)}
-                    >
-                      <ClearIcon style={{ height: "10 px" }} />
-                    </IconButton>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="product-card-details">
-            <div className="product-card-title">
-              <b>Title</b>
-              {CSVfile[imageOpen.index].ProductTitle}
-            </div>
-            <div className="product-card-description">
-              <b>Description</b>
-              {CSVfile[imageOpen.index].ProductDescription}
-            </div>
-            <div className="product-card-features">
-              <b>Features & Benefits</b>
-              {CSVfile[imageOpen.index].ProductFeatures}
-            </div>
-            <div className="product-card-info">
-              <b>Additional Information</b>
-              {CSVfile[imageOpen.index].ProductInfo}
-            </div>
-          </div>
-        </div>
+      <>
+        <IconButton
+          aria-label="next product"
+          disabled={imageOpen.index === 0}
+          onClick={() =>
+            setimageOpen((prev) => {
+              return { ...prev, index: prev.index - 1 };
+            })
+          }
+        >
+          <ArrowBackIosIcon sx={{ color: "white" }} />
+        </IconButton>
         <div
-          className="product-card-overlay"
-          style={{ display: productCardDropArea ? "flex" : "none" }}
-          onDragOver={(e) => {
-            e.preventDefault();
-          }}
-          onDragLeave={(e) => {
-            e.preventDefault();
-            setproductCardDropArea(false);
-          }}
-          onDrop={(e) => {
-            e.preventDefault();
-            setproductCardDropArea(false);
-            handleProductImageDrop(e);
+          className="product-card-parent"
+          onDragOver={() => {
+            setproductCardDropArea(true);
           }}
         >
-          Drop your image
+          <div className="product-card">
+            {shouldShowInstructions && (
+              <h1 className="Dnd-instructions">
+                Drag and drop Images of the Catalog here
+              </h1>
+            )}
+            <div className="product-card-image">
+              {CSVfile[imageOpen.index].ProductImages.map((obj, index) => {
+                return (
+                  <div className="product-card-image-container">
+                    <img
+                      src={URL.createObjectURL(obj.blob)}
+                      alt={obj.name}
+                      style={{ height: "100px", margin: "5px" }}
+                    />
+                    <div className="product-card-image-topright">
+                      <IconButton
+                        aria-label="delete"
+                        onClick={() => deleteImage(index)}
+                      >
+                        <ClearIcon style={{ height: "10 px" }} />
+                      </IconButton>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="product-card-details">
+              <div className="product-card-title">
+                <b>Title</b>
+                {CSVfile[imageOpen.index].ProductTitle}
+              </div>
+              <div className="product-card-description">
+                <b>Description</b>
+                {CSVfile[imageOpen.index].ProductDescription}
+              </div>
+              <div className="product-card-features">
+                <b>Features & Benefits</b>
+                {CSVfile[imageOpen.index].ProductFeatures}
+              </div>
+              <div className="product-card-info">
+                <b>Additional Information</b>
+                {CSVfile[imageOpen.index].ProductInfo}
+              </div>
+            </div>
+          </div>
+          <div
+            className="product-card-overlay"
+            style={{ display: productCardDropArea ? "flex" : "none" }}
+            onDragOver={(e) => {
+              e.preventDefault();
+            }}
+            onDragLeave={(e) => {
+              e.preventDefault();
+              setproductCardDropArea(false);
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              setproductCardDropArea(false);
+              handleProductImageDrop(e);
+            }}
+          >
+            Drop your image
+          </div>
         </div>
-      </div>
+        <IconButton
+          aria-label="previous product"
+          disabled={imageOpen.index === CSVfile.length - 1}
+          onClick={() =>
+            setimageOpen((prev) => {
+              return { ...prev, index: prev.index + 1 };
+            })
+          }
+        >
+          <ArrowForwardIosIcon sx={{ color: "white" }} />
+        </IconButton>
+      </>
     );
   };
 
   const excelSheetBlock = () => {
     const handleClose = (e) => {
       if (!e) return;
-      console.log(e.target.className.startsWith("MuiBackdrop-root"));
+      if (!e.target.className.startsWith) return;
       if (!e.target.className.startsWith("MuiBackdrop-root")) return;
       setimageOpen({ open: false, index: 0 });
     };
@@ -488,7 +513,12 @@ const MultipleProductUpload = () => {
           </tbody>
         </table>
         <div className="buttons-multi-sc">
-          <Button variant="contained" color="success" className="submit-button" onClick={handleSubmit}>
+          <Button
+            variant="contained"
+            color="success"
+            className="submit-button"
+            onClick={handleSubmit}
+          >
             Submit
           </Button>
 

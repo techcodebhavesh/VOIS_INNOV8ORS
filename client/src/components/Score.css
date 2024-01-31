@@ -79,6 +79,7 @@ body {
     rgb(255, 255, 255); */
     background: rgba(255, 255, 255, 0.667);
     /* height: 100vh; */
+    gap:5px;
     padding : 3%;
     display: flex;
     justify-content: center;
@@ -93,7 +94,7 @@ body {
 .tab1-container{
   width: 100%;
   min-height: 300px;
-  margin: 50px;
+  margin-bottom: 2%;
   background: linear-gradient(90deg, rgba(28, 117, 188, 0.7), rgba(74, 161, 224, 0.7) 51%, rgba(28, 117, 188, 0.7)) var(--x, 100%) / 200%;
   border: 2px solid #65a0d6;
   border-radius: 15px;

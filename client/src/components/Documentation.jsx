@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import "./documentation.css";
 import { Link } from "react-router-dom";
 import Getapi from "./Getapi";
+<<<<<<< HEAD
 import Introduction from "./Introduction";
+=======
+import Introduction from './Introduction';
+>>>>>>> 012c516e734ecf302b49ec92c11b109a59b4451e
 // import AboutContent from './AboutContent';
 // import ServicesContent from './ServicesContent';
 // import ContactContent from './ContactContent';
@@ -55,9 +59,14 @@ const Documentation = () => {
         </main>
       </div>
       <div className="body-doc">
+
         <div className="sidebar">
           <a href="#Introduction" onClick={() => handleSidebarClick("Introduction")}>
+<<<<<<< HEAD
             Introduction
+=======
+            Introdution
+>>>>>>> 012c516e734ecf302b49ec92c11b109a59b4451e
           </a>
           <a href="#about" onClick={() => handleSidebarClick("about")}>
             About
@@ -81,9 +90,14 @@ const Documentation = () => {
 
         {/* Render content based on selected link in the body */}
         <div className="content">
+<<<<<<< HEAD
         {selectedContent === 'Introduction' && <Introduction />}
           {/* 
         {selectedContent === 'about' && <AboutContent />}
+=======
+          {selectedContent === 'Introduction' && <Introduction />}
+        {/* {selectedContent === 'about' && <AboutContent />}
+>>>>>>> 012c516e734ecf302b49ec92c11b109a59b4451e
         {selectedContent === 'services' && <ServicesContent />}
         {selectedContent === 'contact' && <ContactContent />}
         {selectedContent === 'api-docs' && <ApiDocsContent />} */}

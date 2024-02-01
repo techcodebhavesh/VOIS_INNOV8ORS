@@ -19,7 +19,7 @@ const Documentation = () => {
     <div className="body-docm">
       <div className="navbar">
         <main>
-          <header className="w-full fixed z-20">
+          <header className="w-full z-20">
             <nav>
               <a
                 className="align-right"

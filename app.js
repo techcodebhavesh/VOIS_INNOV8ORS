@@ -9,6 +9,8 @@ const productRouter = require("./routers/product.router");
 const geminirunRouter = require("./routers/geminirun.router");
 const fireindiRouter = require("./routers/fireindi.router");
 const togeminiRouter = require("./routers/togemini.router");
+const transportRouter = require("./routers/transport.router");
+
 
 const PORT = process.env.PORT || 5001;
 
@@ -35,6 +37,7 @@ app.use("/api/fireindi", fireindiRouter);
 
 app.use("/api/togemini", togeminiRouter);
 
+app.use("/api/transport", transportRouter);
 
 
 

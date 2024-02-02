@@ -13,7 +13,6 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material/Select";
 
-
 const OutputDashboard = () => {
   const [data, setdata] = useState({
     1: {
@@ -82,7 +81,7 @@ const OutputDashboard = () => {
     },
   });
 
-  const [catalognum, setcatalognum] = useState('');
+  const [catalognum, setcatalognum] = useState("");
 
   const handleChange = (event) => {
     setcatalognum(event.target.value);
@@ -90,9 +89,9 @@ const OutputDashboard = () => {
 
   return (
     <>
-      <div className="navbar">
+      <div className="navbar-dash">
         <main>
-          <header className="fixed z-20 w-full">
+          <header className="">
             <nav>
               <a className="align-right" href="#">
                 Contact
@@ -113,33 +112,71 @@ const OutputDashboard = () => {
           <div className="h-100vh w-full bg-cover"></div>
         </main>
       </div>
-
-      
+      <div className="bodyDashb">
       <div className="body-dash">
-      <Box sx={{ maxWidth: 400}}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Catalog number</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={catalognum}
-          label="catalognum"
-          onChange={handleChange}
-        >
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+        <Box sx={{ maxWidth: 400 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">
+              Catalog number
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={catalognum}
+              label="catalognum"
+              onChange={handleChange}
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
         <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
           {/* <PieChart /> */}
           <Links />
           <Widget />
           <TotalSpent />
           <WeeklyRevenue />
+
+          
         </div>
+        
       </div>
+      <div className="card-dash col-4">
+            <div className="card-header bg-warning text-center">
+              <h1 className="h1dash">CARD TİTLE</h1>
+            </div>
+            {/* <svg
+              data-name="Layer 1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1200 120"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                className="fill-success"
+              ></path>
+            </svg> */}
+            <div className="card-body px-3">
+              <ul className="list-unstyled text-success">
+                <li>
+                  Ağlasam sesimi duyar mısınız, Mısralarımda; Dokunabilir
+                  misiniz, Gözyaşlarıma, ellerinizle?
+                </li>
+                <li>
+                  Bilmezdim şarkıların bu kadar güzel, Kelimelerinse kifayetsiz
+                  olduğunu Bu derde düşmeden önce.
+                </li>
+                <li>
+                  Bir yer var, biliyorum; Her şeyi söylemek mümkün; Epeyce
+                  yaklaşmışım, duyuyorum; Anlatamıyorum.
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+      
     </>
   );
 };

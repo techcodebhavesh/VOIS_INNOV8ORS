@@ -1,3 +1,92 @@
 .body-dash{
     padding:5%;
 }
+.App{
+    padding: 0%!important;
+    margin: 0%!important;
+}
+
+body{
+    background-color:#000;
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+  :root, [data-bs-theme=light] {
+      --bs-mode: #fefefe;
+      --bs-white-rgb: 255, 255, 255;
+      --bs-success-rgb: 255, 134, 82;
+      --bs-warning-rgb: 255, 134, 82;
+    }
+  .card-dash {
+      --bs-card-spacer-y: 1.25rem;
+      --bs-card-spacer-x: 1.25rem;
+      --bs-card-title-spacer-y: 0.5rem;
+      --bs-card-title-color: var(--bs-gray-900);
+      --bs-card-border-width: 0;
+      --bs-card-border-color: var(--bs-border-color);
+      --bs-card-border-radius: 2rem;
+      --bs-card-inner-border-radius: 2rem;
+      --bs-card-cap-padding-y: 1.25rem;
+      --bs-card-cap-padding-x: 1.25rem;
+      --bs-card-cap-bg: var(--bs-mode);
+      --bs-card-bg: var(--bs-mode);
+      --bs-card-img-overlay-padding: 1.25rem;
+      --bs-card-group-margin: 0.9375rem;
+      position: relative;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      min-width: 0;
+      background-color: var(--bs-card-bg) ;
+      background-clip: border-box;
+      border-radius: var(--bs-card-border-radius);
+      padding-bottom: 50px;
+      margin-bottom: 50px;
+
+      background-color: #fff !important;
+  }
+  .text-center {
+      text-align: center !important;
+  }
+  h1dash{
+    color:white;
+    margin-bottom: 0% !important;
+  }
+  
+  .bodyDashb{
+    padding-bottom: 10%;
+  }
+  element.style {
+  }
+  .card-header:first-child {
+      border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0;
+  }
+  .bg-warning {
+      --bs-bg-opacity: 1;
+      background-color: linear-gradient(90deg, #1c75bc, #4aa1e0 51%, #1c75bc)
+      var(--x, 100%) / 200% !important;
+  }
+  .fill-success {
+      fill: #ffffff !important;
+  }
+  /* .col-4{
+    width:33.33333333%;
+  } */
+  .text-success {
+      --bs-text-opacity: 1;
+    /* color: rgba(var(--bs-success-rgb), var(--bs-text-opacity)) !important;} */
+  }
+  .list-unstyled {
+      padding-left: 0;
+      list-style: none;
+  }
+  .px-3 {
+      padding-right: 1rem !important;
+      padding-left: 1rem !important;
+  }

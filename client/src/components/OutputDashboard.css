@@ -1,18 +1,14 @@
 .body-dash{
     padding:5%;
 }
-.App{
-    padding: 0%!important;
-    margin: 0%!important;
-}
 
-body{
+/* .body{
     background-color:#000;
     font-family: 'Oswald', sans-serif;
     display: flex;
     align-content: center;
     justify-content: center;
-  }
+  } */
   :root, [data-bs-theme=light] {
       --bs-mode: #fefefe;
       --bs-white-rgb: 255, 255, 255;
@@ -38,6 +34,7 @@ body{
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
+      justify-content: center;
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -48,14 +45,18 @@ body{
       border-radius: var(--bs-card-border-radius);
       padding-bottom: 50px;
       margin-bottom: 50px;
-
+      width:80%;
       background-color: #fff !important;
+  }
+  .suggestion-con{
+    display:flex ;
+    justify-content: center;
   }
   .text-center {
       text-align: center !important;
   }
-  h1dash{
-    color:white;
+  .h1dash{
+    color:rgb(0, 0, 0);
     margin-bottom: 0% !important;
   }
   
@@ -89,4 +90,9 @@ body{
   .px-3 {
       padding-right: 1rem !important;
       padding-left: 1rem !important;
+  }
+
+  .navbar-dash {
+    background: linear-gradient(90deg, #1c75bc, #4aa1e0 51%, #1c75bc)
+      var(--x, 100%) / 200%;
   }

@@ -13,6 +13,13 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material/Select";
 
+
+const styles = {
+  bold: {
+    fontWeight: 'bold',
+  },
+};
+
 const OutputDashboard = () => {
   const [data, setdata] = useState({
     1: {
@@ -91,7 +98,7 @@ const OutputDashboard = () => {
     <>
       <div className="navbar-dash">
         <main>
-          <header className="">
+          <header className="w-full z-20">
             <nav>
               <a className="align-right" href="#">
                 Contact
@@ -113,41 +120,39 @@ const OutputDashboard = () => {
         </main>
       </div>
       <div className="bodyDashb">
-      <div className="body-dash">
-        <Box sx={{ maxWidth: 400 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">
-              Catalog number
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={catalognum}
-              label="catalognum"
-              onChange={handleChange}
-            >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-        <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
-          {/* <PieChart /> */}
-          <Links />
-          <Widget />
-          <TotalSpent />
-          <WeeklyRevenue />
-
-          
+        <div className="body-dash">
+          <Box sx={{ maxWidth: 400 }}>
+            <FormControl fullWidth >
+              <InputLabel id="demo-simple-select-label" style={styles.bold}>
+                Catalog number
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={catalognum}
+                label="catalognum"
+                onChange={handleChange}
+              >
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
+            {/* <PieChart /> */}
+            <Links />
+            <Widget />
+            <TotalSpent />
+            <WeeklyRevenue />
+          </div>
         </div>
-        
-      </div>
-      <div className="card-dash col-4">
-            <div className="card-header bg-warning text-center">
-              <h1 className="h1dash">CARD TİTLE</h1>
-            </div>
-            {/* <svg
+        <div className="suggestion-con">
+        <div className="card-dash col-4">
+          <div className="card-header bg-warning text-center">
+            <h1 className="h1dash">CARD TİTLE</h1>
+          </div>
+          {/* <svg
               data-name="Layer 1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1200 120"
@@ -158,25 +163,26 @@ const OutputDashboard = () => {
                 className="fill-success"
               ></path>
             </svg> */}
-            <div className="card-body px-3">
-              <ul className="list-unstyled text-success">
-                <li>
-                  Ağlasam sesimi duyar mısınız, Mısralarımda; Dokunabilir
-                  misiniz, Gözyaşlarıma, ellerinizle?
-                </li>
-                <li>
-                  Bilmezdim şarkıların bu kadar güzel, Kelimelerinse kifayetsiz
-                  olduğunu Bu derde düşmeden önce.
-                </li>
-                <li>
-                  Bir yer var, biliyorum; Her şeyi söylemek mümkün; Epeyce
-                  yaklaşmışım, duyuyorum; Anlatamıyorum.
-                </li>
-              </ul>
-            </div>
+          <div className="card-body px-3">
+            <ul className="list-unstyled text-success">
+              <li>
+                Ağlasam sesimi duyar mısınız, Mısralarımda; Dokunabilir misiniz,
+                Gözyaşlarıma, ellerinizle?
+              </li>
+              <li>
+                Bilmezdim şarkıların bu kadar güzel, Kelimelerinse kifayetsiz
+                olduğunu Bu derde düşmeden önce.
+              </li>
+              <li>
+                Bir yer var, biliyorum; Her şeyi söylemek mümkün; Epeyce
+                yaklaşmışım, duyuyorum; Anlatamıyorum.
+              </li>
+            </ul>
           </div>
+        </div>
+        </div>
+        
       </div>
-      
     </>
   );
 };

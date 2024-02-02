@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+//import { response } from "express";
 
 const MultipleProductUpload = () => {
   const [droparea, setdroparea] = useState(false);
@@ -114,36 +115,76 @@ const MultipleProductUpload = () => {
     });
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    let data = [...CSVfile];
-    data = await Promise.all(
-      data.map(async (obj) => {
-        let newObj = { ...obj };
-        newObj.ProductImages = await Promise.all(
-          newObj.ProductImages.map(async (imgObj) => {
-            return await imageToBase64(imgObj.blob, imgObj.blob.type);
-          })
-        );
-        return newObj;
+    async function handleSubmit(e) {
+      e.preventDefault();
+      let data = [...CSVfile];
+      data = await Promise.all(
+        data.map(async (obj) => {
+          let newObj = { ...obj };
+          newObj.ProductImages = await Promise.all(
+            newObj.ProductImages.map(async (imgObj) => {
+              return await imageToBase64(imgObj.blob, imgObj.blob.type);
+            })
+          );
+          return newObj;
+        })
+      );
+      console.log({ data });
+      console.log(await submitDataToServer(data));
+    }
+    function submitDataToServer(data) {
+      return fetch("/api/togemini/processall", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data }),
       })
-    );
-    console.log({ data });
-    console.log(await submitDataToServer(data));
-  }
+        .then(async (response) => {
+          if (response.ok) {
+            const responseData = await response.json();
+            transport(responseData); // Pass the JSON data to transport
+            return responseData;
+          } else {
+            return null;
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          return null;
+        });
+    }
+    async function transport(response) {
+      try {
+        const apiUrl = "http://localhost:5001/api/transport/tran";
+        
+        const requestOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-  function submitDataToServer(data) {
-    return fetch("/api/togemini/processall", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data }),
-    }).then((response) => {
-      if (response.ok) return response.json();
-      else return null;
-    });
-  }
+          body: JSON.stringify({ data: response }), // Send the entire response object as the data property
+        };
+
+        const serverResponse = await fetch(apiUrl, requestOptions);
+
+        if (serverResponse.ok) {
+          const data = await serverResponse.json();
+          console.log(data);
+          // Perform any actions based on the server response
+        } else {
+          const errorMessage = await serverResponse.text();
+          console.error("Failed to send data to the server:", errorMessage);
+          // Handle the error condition
+          alert("Error!!");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        // Handle unexpected errors
+      }
+    }
+
 
   function handlefiles(array) {
     console.log({ array });

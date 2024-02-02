@@ -73,13 +73,14 @@
     /* justify-content: center; */
     flex-direction: column;
     height: 92vh;
+    padding-top: 10%;
 
 }
 .login-parent .login-h1{
     padding-top: 5vh;
     font-size: 25px !important;
 }
-.container{
+.container-ls{
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
@@ -90,7 +91,7 @@
     min-height: 480px;
 }
 
-.container p{
+.container-ls p{
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.3px;
@@ -98,23 +99,23 @@
     color: #fff !important;
 }
 
-.container h1{
+.container-ls h1{
     padding-top: 5vh;
     margin-bottom: 5vh;
     font-size: 30px !important;
 }
-.container span{
+.container-ls span{
     font-size: 12px;
 }
 
-.container a{
+.container-ls a{
     color: #333;
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
 }
 
-.container button{
+.container-ls button{
     background-color: orange;
     color: #fff;
     font-size: 12px;
@@ -128,16 +129,16 @@
     cursor: pointer;
 }
 
-.container button:hover{
+.container-ls button:hover{
     background-color: #00a1ff;
 }
 
-.container button.hidden{
+.container-ls button.hidden{
     background-color: transparent;
     border-color: #fff;
 }
 
-.container form{
+.container-ls form{
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -149,7 +150,7 @@
 .signup-container{
     padding-top: 80px !important;
 }
-.container input{
+.container-ls input{
     background-color: #eee;
     border: none;
     margin: 8px 0;

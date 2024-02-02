@@ -165,8 +165,7 @@ const LoginPage = () => {
         </div>
       </div>
       <div className="login-parent">
-        <div className="login-h1">Welcome</div>
-        <div className={`container ${isLoginFormActive ? "" : "active"}`}>
+        <div className={`container-ls ${isLoginFormActive ? "" : "active"}`}>
           {isLoginFormActive ? (
             <Login onLoginSuccess={handleLoginSuccess} />
           ) : (

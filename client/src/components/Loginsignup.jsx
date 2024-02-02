@@ -105,7 +105,7 @@ const LoginSignup = ({ onLoginSuccess }) => {
         from Seller Apps, ensuring no more missing images or compliance issues.
       </h2>
       <h3> Log in now to elevate your catalogue experience!</h3>
-      <div className="container">
+      <div className="container-loginsignup">
         <div className="box">
           <div className="header">
             <div className="text">{action}</div>

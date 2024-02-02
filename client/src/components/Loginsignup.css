@@ -30,9 +30,9 @@ body {
   white-space: nowrap; /* Prevent text from wrapping */
   margin-bottom: 20px; /* Add margin for spacing */
 }
-.container {
+.container-loginsignup {
   display: flex;
-  width: 100%;
+  /* width: 100% ; */
   justify-content: space-around;
   align-items: center;
 }
@@ -232,13 +232,13 @@ input:-internal-autofill-selected {
   .intro{
     padding-top: 0;
   }
-  .container{
+  .container-loginsignup{
     margin-top:5vh;
   }
   
 }
 @media (max-width: 768px) {
-  .container {
+  .container-loginsignup {
     width: 90%;
     flex-direction: column;
     overflow-y: scroll;

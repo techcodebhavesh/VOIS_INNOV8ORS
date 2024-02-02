@@ -497,6 +497,7 @@ const MultipleProductUpload = () => {
                   <TextField
                     id="standard-textarea"
                     multiline
+                    rows={10}
                     variant="standard"
                     InputProps={{
                       disableUnderline: true,

@@ -150,7 +150,7 @@ const OutputDashboard = () => {
         <div className="suggestion-con">
         <div className="card-dash col-4">
           <div className="card-header bg-warning text-center">
-            <h1 className="h1dash">CARD TİTLE</h1>
+            <h1 className="h1dash">CARD TITLE</h1>
           </div>
           {/* <svg
               data-name="Layer 1"
@@ -164,20 +164,9 @@ const OutputDashboard = () => {
               ></path>
             </svg> */}
           <div className="card-body px-3">
-            <ul className="list-unstyled text-success">
-              <li>
-                Ağlasam sesimi duyar mısınız, Mısralarımda; Dokunabilir misiniz,
-                Gözyaşlarıma, ellerinizle?
-              </li>
-              <li>
-                Bilmezdim şarkıların bu kadar güzel, Kelimelerinse kifayetsiz
-                olduğunu Bu derde düşmeden önce.
-              </li>
-              <li>
-                Bir yer var, biliyorum; Her şeyi söylemek mümkün; Epeyce
-                yaklaşmışım, duyuyorum; Anlatamıyorum.
-              </li>
-            </ul>
+              HeHellobhaiHellobhaiHellobhaillobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhai
+              HeHellobhaiHellobhaiHellobhaillobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhai
+              HeHellobhaiHellobhaiHellobhaillobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhai
           </div>
         </div>
         </div>

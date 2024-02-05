@@ -183,7 +183,7 @@ const LoginPage = () => {
               <div className="toggle-panel toggle-right">
                 <h1>Welcome!</h1>
 
-                <button className="hidden" onClick={switchToRegister}>
+                <button className="" onClick={switchToRegister}>
                   Sign Up
                 </button>
               </div>

@@ -14,6 +14,7 @@ const Widget = ({ icon, title, subtitle }) => {
       </div>
 
       <div className="h-50 ml-4 flex w-auto flex-col justify-center">
+      TITLE
         <p className="font-dm text-sm font-medium text-gray-600">score</p>
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           {subtitle}
@@ -30,6 +31,7 @@ const Widget = ({ icon, title, subtitle }) => {
       </div>
 
       <div className="h-50 ml-4 flex w-auto flex-col justify-center">
+      DESCRIPTION
         <p className="font-dm text-sm font-medium text-gray-600">score</p>
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           {subtitle}
@@ -46,6 +48,7 @@ const Widget = ({ icon, title, subtitle }) => {
       </div>
 
       <div className="h-50 ml-4 flex w-auto flex-col justify-center">
+      IMAGE
         <p className="font-dm text-sm font-medium text-gray-600">score</p>
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           {subtitle}
@@ -62,6 +65,7 @@ const Widget = ({ icon, title, subtitle }) => {
       </div>
 
       <div className="h-50 ml-4 flex w-auto flex-col justify-center">
+      FEATURES AND BENIFITS
         <p className="font-dm text-sm font-medium text-gray-600">score</p>
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           {subtitle}
@@ -78,6 +82,7 @@ const Widget = ({ icon, title, subtitle }) => {
       </div>
 
       <div className="h-50 ml-4 flex w-auto flex-col justify-center">
+      ADDITIONAL INFORMATION
         <p className="font-dm text-sm font-medium text-gray-600">score</p>
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           {subtitle}
@@ -94,6 +99,7 @@ const Widget = ({ icon, title, subtitle }) => {
       </div>
 
       <div className="h-50 ml-4 flex w-auto flex-col justify-center">
+      OVERALL RATING
         <p className="font-dm text-sm font-medium text-gray-600">score</p>
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           {subtitle}

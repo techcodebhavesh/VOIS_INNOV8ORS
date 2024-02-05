@@ -1,7 +1,3 @@
-
-
-
-
 /*
 
 const {
@@ -40,55 +36,51 @@ const {
 }
 */
 
-
-const { run } = require('./geminirun.controller.js');
+const { run } = require("./geminirun.controller.js");
 
 const processEntriesHandler = async (req, res) => {
-    try {
-        const inputData = req.body.data;
-        console.log('Input Data:', inputData[0]);
+  try {
+    const inputData = req.body.data;
+    console.log("Input Data:", inputData[0]);
 
-        if (!inputData || !Array.isArray(inputData)) {
-            return res.status(400).json({ error: 'Invalid data format' });
-        }
-
-        const results = {};
-
-        for (const entry of inputData) {
-            try {
-                const textResult = await run(entry);
-
-                console.log({ textResult });
-
-                let cleanedText;
-
-                if (textResult.startsWith("`"))
-                    cleanedText = textResult.substring(8, textResult.length - 3);
-                else
-                    cleanedText = textResult;
-
-                // Log the content of textResult before parsing
-                console.log('Text Result:', cleanedText);
-
-                // Convert the text result to JSON
-                const resultObject = JSON.parse(cleanedText);
-                results[entry.ProductID] = resultObject;
-            } catch (error) {
-                console.error('Error processing entry:', error);
-                // results.push({ status: 'error', error: 'An error occurred processing the entry' });
-            }
-        }
-
-        res.status(200).json({ data: results });
-    } catch (error) {
-        console.error('Error processing entries:', error);
-        return res.status(500).json({ error: 'Internal Server Error' });
+    if (!inputData || !Array.isArray(inputData)) {
+      return res.status(400).json({ error: "Invalid data format" });
     }
+
+    const results = {};
+
+    for (const entry of inputData) {
+      try {
+        const textResult = await run(entry);
+
+        console.log({ textResult });
+
+        let cleanedText;
+
+        if (textResult.includes("```json"))
+          cleanedText = textResult.substring(8, textResult.length - 3);
+        else cleanedText = textResult;
+
+        // Log the content of textResult before parsing
+        console.log("Text Result:", cleanedText);
+
+        // Convert the text result to JSON
+        const resultObject = JSON.parse(cleanedText);
+        results[entry.ProductID] = resultObject;
+      } catch (error) {
+        console.error("Error processing entry:", error);
+        // results.push({ status: 'error', error: 'An error occurred processing the entry' });
+      }
+    }
+
+    res.status(200).json({ data: results });
+  } catch (error) {
+    console.error("Error processing entries:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
-
-
 module.exports = {
-    processEntriesHandler
-    // retrieveApiKey
+  processEntriesHandler,
+  // retrieveApiKey
 };

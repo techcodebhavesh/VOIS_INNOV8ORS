@@ -11,11 +11,9 @@ const fireindiRouter = require("./routers/fireindi.router");
 const togeminiRouter = require("./routers/togemini.router");
 const transportRouter = require("./routers/transport.router");
 
-
 const PORT = process.env.PORT || 5001;
 
-
-app.use(express.json({ limit: '10mb' }));   
+app.use(express.json({ limit: "10mb" }));
 
 app.use(cors());
 
@@ -29,24 +27,14 @@ app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/geminirun", geminirunRouter);
 
-
 app.use("/api/fireindi", fireindiRouter);
-
-
-
 
 app.use("/api/togemini", togeminiRouter);
 
 app.use("/api/transport", transportRouter);
 
-
-
-
-
-
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "hello.html"));
-}
-)
+  res.sendFile(path.join(__dirname, "hello.html"));
+});
 
 app.listen(PORT, () => console.log("Server running on " + PORT));

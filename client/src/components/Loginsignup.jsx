@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import "./loginsignup.css";
+import "./Loginsignup.css";
 import img1 from "./images/pdt1-removebg-preview.png";
 import img2 from "./images/pdt2-removebg-preview.png";
 import img3 from "./images/pdt3-removebg-preview.png";

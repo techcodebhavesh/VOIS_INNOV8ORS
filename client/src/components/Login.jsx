@@ -39,8 +39,6 @@ const Login = ({ onLoginSuccess }) => {
     }
   };
 
-  
-
   return (
     <div className="form-container sign-in">
       <form>
@@ -107,13 +105,27 @@ const SignUp = () => {
     <div className="login-form-container sign-up">
       <form className="signup-container">
         <h1>Create Account</h1>
-        <input type="text" placeholder="Name" value={name}
-          onChange={(e) => setName(e.target.value)}/>
-        <input type="email" placeholder="Email" value={email}
-          onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Password" value={password}
-          onChange={(e) => setPassword(e.target.value)}></input>
-        <button type="button"  onClick={handleSignUp}>Sign Up</button>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        ></input>
+        <button type="button" onClick={handleSignUp}>
+          Sign Up
+        </button>
       </form>
     </div>
   );
@@ -142,7 +154,7 @@ const LoginPage = () => {
       <div className="navbar">
         <div className="navbar">
           <main>
-            <header className="w-full z-20">
+            <header className="z-20 w-full">
               <nav>
                 <a className="align-right" href="#">
                   Contact
@@ -157,10 +169,10 @@ const LoginPage = () => {
                   Home
                 </a>
               </nav>
-              <div className="w-full h-1px bg-primary animate__animated border-b"></div>
+              <div className="h-1px bg-primary animate__animated w-full border-b"></div>
             </header>
 
-            <div className="w-full h-100vh bg-cover"></div>
+            <div className="h-100vh w-full bg-cover"></div>
           </main>
         </div>
       </div>
@@ -176,14 +188,20 @@ const LoginPage = () => {
               <div className="toggle-panel toggle-left">
                 <h1>Welcome Friend !</h1>
                 <p>Enter your personal details to use all site features</p>
-                <button className="hidden" onClick={switchToLogin}>
+                <button
+                  className={isLoginFormActive ? "hidden" : ""}
+                  onClick={switchToLogin}
+                >
                   Sign In
                 </button>
               </div>
               <div className="toggle-panel toggle-right">
                 <h1>Welcome!</h1>
 
-                <button className="hidden" onClick={switchToRegister}>
+                <button
+                  className={isLoginFormActive ? "" : "hidden"}
+                  onClick={switchToRegister}
+                >
                   Sign Up
                 </button>
               </div>

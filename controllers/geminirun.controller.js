@@ -62,6 +62,13 @@ const run = async (entry) => {
     - Check correctness (brand logo, contact information, brand authenticity) and score.
     - Evaluate overall quality and relevance, checking category alignment, image representation, and data accuracy. Score on a scale of 1 to 10.
     You should check the title field for its category from these (Electronics, Clothing and Fashion, Home and Furniture, Beauty and Personal Care, Health and Wellness, Books, Movies, and Music, Toys and Games, Automotive, Office Supplies and Stationery, Jewelry and Accessories, Food and Grocery, Pet Supplies, Crafts and Hobbies, Baby and Maternity, Travel and Luggage).
+    Ideal Title: Clearly conveys the main purpose or essence of the content in a concise manner.
+
+Description: Provides a brief yet comprehensive overview of the content, giving readers a clear understanding of what to expect.
+
+Features and Benefits: Enumerates the key attributes and advantages of the subject matter, highlighting its value or usefulness.
+
+Additional Information: Offers supplementary details or context to enhance understanding, addressing potential questions or providing further insights. 
     Important: Check whether data from every field matched the category. If not, the rating should be affected.
     
     Important: Check what the image represents, and the title...if they don't resemble similar products, the rating should be affected. Mention the mismatched category.

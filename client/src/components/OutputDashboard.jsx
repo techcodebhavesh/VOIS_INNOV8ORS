@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./OutputDashboard.css";
 import TotalSpent from "./DashboardComponents/TotalSpent";
 import WeeklyRevenue from "./DashboardComponents/WeeklyRevenue";
-import PieChart from "./DashboardComponents/PieChart";
+import PieChartCard from "./DashboardComponents/PieChartCard.jsx";
 import Widget from "./DashboardComponents/Widget";
 import Links from "./DashboardComponents/Links";
 import { Link } from "react-router-dom";
@@ -119,6 +119,8 @@ const OutputDashboard = () => {
           <div className="h-100vh w-full bg-cover"></div>
         </main>
       </div>
+
+
       <div className="bodyDashb">
         <div className="body-dash">
           <Box sx={{ maxWidth: 400 }}>
@@ -140,7 +142,7 @@ const OutputDashboard = () => {
             </FormControl>
           </Box>
           <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
-            {/* <PieChart /> */}
+            {/* <PieChartCard /> */}
             <Links />
             <Widget />
             <TotalSpent />

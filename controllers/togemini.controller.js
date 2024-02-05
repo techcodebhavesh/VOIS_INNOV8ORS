@@ -58,8 +58,14 @@ const processEntriesHandler = async (req, res) => {
             try {
                 const textResult = await run(entry);
 
-                const cleanedText = textResult.substring(8, textResult.length - 3);
+                console.log({ textResult });
 
+                let cleanedText;
+
+                if (textResult.startsWith("`"))
+                    cleanedText = textResult.substring(8, textResult.length - 3);
+                else
+                    cleanedText = textResult;
 
                 // Log the content of textResult before parsing
                 console.log('Text Result:', cleanedText);
@@ -73,7 +79,7 @@ const processEntriesHandler = async (req, res) => {
             }
         }
 
-        res.status(200).json({ data: results });    
+        res.status(200).json({ data: results });
     } catch (error) {
         console.error('Error processing entries:', error);
         return res.status(500).json({ error: 'Internal Server Error' });

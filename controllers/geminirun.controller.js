@@ -71,7 +71,7 @@ const run = async (entry)=> {
     IMPORTANT: suggest the changes in grammer of the product description and spelling mistakes.
     
     Overall Score: Considering the individual ratings for image, title, features, product description, and additional information, provide an overall rating for the catalog on a scale of 1 to 10.
-    
+   
     And at the end after fetching all the details convert the ratings and suggestion in the following format and output only the given format and nothing should be outside the format.Follow the format STRICTLY.dont give any intros.:-
 
       {

@@ -5,17 +5,77 @@ const vision = require("@google-cloud/vision");
 const client = new vision.ImageAnnotatorClient();
 
 // Specify the image path
-const imagePath = "German-Shepherd-dog-Alsatian.webp";
+const imagePath = "googlelogo.png";
 
-// Make a label detection request
+// // Make a label detection request
+// client
+//   // .labelDetection(imagePath)
+//   // .logoDetection(imagePath)
+//   // .then((results) => {
+
+
+
+//     // const logos = results[0].logoAnnotations;
+//     // // Check if logos is defined
+//     // if (logos && logos.length > 0) {
+//     //   console.log("Logos detected:");
+//     //   logos.forEach((logo) => {
+//     //     console.log(logo.description + " (" + logo.score + ")");
+//     //   });
+//     // } else {
+//     //   console.log("No logos detected.");
+//     // }
+    
+
+//     .labelDetection(imagePath)
+//   .then((labelResults) => {
+//     const labels = labelResults[0].labelAnnotations;
+//     console.log("Labels detected:");
+//     labels.forEach((label) => {
+//       console.log(label.description + " (" + label.score + ")");
+//     });
+
+//     // Make a separate logo detection request
+//     return client.logoDetection(imagePath);
+//   })
+//   .then((logoResults) => {
+//     const logos = logoResults[0].logoAnnotations;
+//     console.log("Logos detected:");
+//     logos.forEach((logo) => {
+//       console.log(logo.description + " (" + logo.score + ")");
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Error:", error);
+//   });
 client
   .labelDetection(imagePath)
-  .then((results) => {
-    const labels = results[0].labelAnnotations;
-    console.log("Labels detected:");
-    labels.forEach((label) => {
-      console.log(label.description + " (" + label.score + ")");
-    });
+  .then((labelResults) => {
+    const labels = labelResults[0].labelAnnotations;
+    
+    // Check if labels is defined and contains at least one label
+    if (labels && labels.length > 0) {
+      const topLabel = labels[0];
+      console.log("Top label detected:");
+      console.log(topLabel.description + " (" + topLabel.score + ")");
+    } else {
+      console.log("No labels detected.");
+    }
+
+    // Make a separate logo detection request
+    return client.logoDetection(imagePath);
+  })
+  .then((logoResults) => {
+    const logos = logoResults[0].logoAnnotations;
+    
+    // Check if logos is defined and contains at least one logo
+    if (logos && logos.length > 0) {
+      const topLogo = logos[0];
+      console.log("Top logo detected:");
+      console.log(topLogo.description + " (" + topLogo.score + ")");
+    } else {
+      console.log("No logos detected.");
+    }
   })
   .catch((error) => {
     console.error("Error:", error);

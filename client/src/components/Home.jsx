@@ -9,29 +9,6 @@ const Home = () => {
   return (
     <div className="page">
       <div className="area">
-        <div className="navbar">
-          <main>
-            <header className="w-full z-20">
-              <nav>
-                <a className="align-right" href="#">
-                  Contact
-                </a>
-                <Link to="./OutputDashboard" className="align-right">
-                  Dashboard
-                </Link>
-                <a className="align-right" href="#">
-                  About
-                </a>
-                <a className="align-left" href="#">
-                  Home
-                </a>
-              </nav>
-              <div className="w-full h-1px bg-primary animate__animated border-b"></div>
-            </header>
-
-            <div className="w-full h-100vh bg-cover"></div>
-          </main>
-        </div>
         <ul className="circles">
           <li></li>
           <li></li>

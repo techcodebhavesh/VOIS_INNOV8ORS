@@ -156,29 +156,6 @@ const Score = () => {
 
   return (
     <div className="body">
-      <div className="navbar">
-        <main>
-          <header className="w-full z-20">
-            <nav>
-              <a className="align-right" href="#">
-                Contact
-              </a>
-              <a className="align-right" href="#">
-                Dashboard
-              </a>
-              <a className="align-right" href="#">
-                About
-              </a>
-              <a className="align-left" href="#">
-                Home
-              </a>
-            </nav>
-            <div className="w-full h-1px bg-primary animate__animated border-b"></div>
-          </header>
-
-          <div className="w-full h-100vh bg-cover"></div>
-        </main>
-      </div>
       <header className="score-header">
         <h1>Innova8or's Catalog Scoring</h1>
         <div className="tabs" ref={tabsRef}>

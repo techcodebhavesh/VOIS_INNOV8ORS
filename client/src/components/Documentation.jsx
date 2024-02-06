@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./documentation.css";
 import { Link } from "react-router-dom";
 import Getapi from "./Getapi";
-// Introduction from "./Introduction";
+import Introduction from "./Introduction";
 // import AboutContent from './AboutContent';
 // import ServicesContent from './ServicesContent';
 // import ContactContent from './ContactContent';
@@ -54,6 +54,8 @@ const Documentation = () => {
           </header>
         </main>
       </div>
+
+
       <div className="body-doc">
         <div className="sidebar">
           <a href="#Introduction" onClick={() => handleSidebarClick("Introduction")}>
@@ -87,6 +89,7 @@ const Documentation = () => {
         {selectedContent === 'services' && <ServicesContent />}
         {selectedContent === 'contact' && <ContactContent />}
         {selectedContent === 'api-docs' && <ApiDocsContent />} */}
+          {selectedContent === 'Introduction' && <Introduction />}
           {selectedContent === "get-apikey" && <Getapi />}
         </div>
       </div>

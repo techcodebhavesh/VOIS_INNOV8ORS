@@ -120,51 +120,56 @@ const Home = () => {
                         className="img-fluid"
                       />
                       <p>
-                        There are many variations of users of YouTube available.
+                      Elevate your catalog experience. Try CatalogScore now.
                       </p>
                       <ul className="contact-details">
                         <li>
                           <i className="fas fa-phone-alt"></i> Call Us:
-                          <a href="#">011-23456789</a>
+                          <a href="#">+91 9921318237
+                          </a>
+                          <br/>
+                          <a href="#">+91 9823632117
+                          </a>
                         </li>
                         <li>
                           <i className="fas fa-envelope-open-text"></i>
-                          <a href="#">support@scd.com</a>
+                          <a href="#">mayur.agarwal22@vit.edu</a>
+                          <br/>
+                          <a href="#">bhavesh.agone22@vit.edu</a>
+                          <br/>
+                          <a href="#">vaishnavi.mahindrakar22@vit.edu</a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
-                <div className="col-lg-3 col-sm-6">
+                <div className="col-lg-3 col-sm-6"style={{ width: "30%" }}>
                   <div className="footer-widget">
                     <div className="footer-menu">
                       <h4 className="footer-widget-title">Popular Category</h4>
                       <ul>
                         <li>
-                          <a href="#">WordPress Theme</a>
+                          <a href="#">Check Score</a>
                         </li>
                         <li>
-                          <a href="#">Bootstrap Template</a>
+                          <a href="#">Dashboard</a>
                         </li>
                         <li>
-                          <a href="#">ReactJS Template</a>
+                          <a href="#">Feedback</a>
                         </li>
                         <li>
-                          <a href="#">Dashboard Theme</a>
-                        </li>
-                        <li>
-                          <a href="#">HTML5 Template</a>
+                          <a href="#">Get suggessions</a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
-                <div className="col-lg-3 col-sm-6">
+                <div className="col-lg-3 col-sm-6"style={{ width: "30%" }}>
                   <div className="footer-widget">
                     <div className="footer-menu">
-                      <h4 className="footer-widget-title">Our Company</h4>
+                      <h4 className="footer-widget-title">Our Team</h4>
                       <ul>
                         <li>
                           <a href="#">About Us</a>
@@ -173,46 +178,14 @@ const Home = () => {
                           <a href="#">How It Works</a>
                         </li>
                         <li>
-                          <a href="#">Affiliates</a>
-                        </li>
-                        <li>
-                          <a href="#">Testimonials</a>
-                        </li>
-                        <li>
                           <a href="#">Contact Us</a>
-                        </li>
-                        <li>
-                          <a href="#">Plan & Pricing</a>
-                        </li>
-                        <li>
-                          <a href="#">Blog</a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
-                <div className="col-lg-3 col-sm-6">
-                  <div className="footer-widget">
-                    <div className="footer-menu p-0">
-                      <h4 className="footer-widget-title">Help Support</h4>
-                      <ul>
-                        <li>
-                          <a href="#">Support Forum</a>
-                        </li>
-                        <li>
-                          <a href="#">Terms & Conditions</a>
-                        </li>
-                        <li>
-                          <a href="#">Support Policy</a>
-                        </li>
-                        <li>
-                          <a href="#">FAQs</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>

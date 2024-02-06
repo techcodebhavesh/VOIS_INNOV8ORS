@@ -51,7 +51,14 @@ nav a {
   position: absolute;
   left: 0;
 }
-
+@media screen and (max-width:600px) {
+    .sidebar{
+      display: flex;
+      flex-direction: row;
+      height: 3% !important;
+      width: 100%;
+    }
+}
 /* Sidebar styles */
 .body-doc {
   display: flex;
@@ -62,8 +69,16 @@ nav a {
   width: 250px;
   background-color:#207cba85;
   padding-top: 20px;
+  width:30%;
+  max-width: 270px;
 }
-
+.content{
+  border: 2px solid #207cba85;
+  border-radius: 20px;
+  margin: 30px;
+  width: 70%;
+  
+}
 .sidebar a {
   padding: 10px 16px;
   text-decoration: none;

@@ -79,10 +79,10 @@ const TabContent1 = () => {
           
         >
           {/* Start white textfields bloc */}
-          <div className=" fieldboxes inline-flex gap-5 items-center"style={{ width: '100%' }}>
+          <div className="fieldboxes"style={{ width: '100%' }}>
             <div id="first_style">
               {/* First style */}
-              <div className=" textfield w-[380%] bg-slate-100 border border-slate-200 rounded-md overflow-hidden ">
+              <div className=" textfield rounded-md overflow-hidden ">
                 <TextField
                   className="box-inner"
                   id="outlined-textarea"
@@ -94,7 +94,7 @@ const TabContent1 = () => {
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
-              <div className="textfield w-[380%] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
+              <div className="textfield rounded-md overflow-hidden ">
                 <TextField
                   className="box-inner"
                   id="outlined-textarea"
@@ -106,7 +106,7 @@ const TabContent1 = () => {
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
-              <div className="textfield w-[380%] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
+              <div className="textfield rounded-md overflow-hidden ">
                 <TextField
                   className="box-inner"
                   id="outlined-textarea"
@@ -118,7 +118,7 @@ const TabContent1 = () => {
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
-              <div className="textfield w-[380%] bg-slate-100 border border-slate-200 rounded-md overflow-hidden">
+              <div className="textfield rounded-md overflow-hidden ">
                 <TextField
                   className="box-inner"
                   id="outlined-textarea"

@@ -67,6 +67,9 @@
 
 .bodyDashb {
   padding-bottom: 10%;
+  height: 100%;
+  background:linear-gradient(110.84deg, #fef3e8 1.01%, #bfebf4 102.07%);;
+
 }
 element.style {
 }
@@ -78,6 +81,7 @@ element.style {
   --bs-bg-opacity: 1;
   background-color: linear-gradient(90deg, #1c75bc, #4aa1e0 51%, #1c75bc)
     var(--x, 100%) / 200% !important;
+
 }
 .fill-success {
   fill: #ffffff !important;

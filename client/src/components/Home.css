@@ -432,7 +432,7 @@ h4 {
   margin: 0;
   font-weight: 400;
   padding: 0;
-  color: #363940;
+  /* color: #363940; */
 }
 
 a {
@@ -461,6 +461,7 @@ a {
 
 .footer-menu {
   padding-left: 48px;
+  padding-top: 10%;
 }
 
 .footer-menu ul li a {
@@ -491,7 +492,7 @@ a {
 .row {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 /* Responsive Css Code created by : Shift Code Design */
 

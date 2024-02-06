@@ -73,7 +73,7 @@ nav div {
   /* justify-content: center; */
   flex-direction: column;
   height: 92vh;
-  padding-top: 10%;
+  padding-top: 8%;
 }
 .login-parent .login-h1 {
   padding-top: 5vh;
@@ -147,7 +147,7 @@ nav div {
   height: 100%;
 }
 .signup-container {
-  padding-top: 80px !important;
+  padding-top: 40px !important;
 }
 .container-ls input {
   background-color: #eee;

@@ -5,10 +5,7 @@ import Getapi from "./Getapi";
 import Introduction from "./Introduction";
 import About from "./About";
 import Services from "./Services";
-// import AboutContent from './AboutContent';
-// import ServicesContent from './ServicesContent';
-// import ContactContent from './ContactContent';
-// import ApiDocsContent from './ApiDocsContent';
+import Apidocs from "./Apidocs";
 
 const Documentation = () => {
   const [selectedContent, setSelectedContent] = useState("home");
@@ -26,16 +23,10 @@ const Documentation = () => {
           <a href="#Introduction" onClick={() => handleSidebarClick("Introduction")}>
             Introduction
           </a>
-          <a href="#about" onClick={() => handleSidebarClick("about")}>
-            About
-          </a>
           <a href="#services" onClick={() => handleSidebarClick("services")}>
             Services
           </a>
-          <a href="#contact" onClick={() => handleSidebarClick("contact")}>
-            Contact
-          </a>
-          <a href="#api-docs" onClick={() => handleSidebarClick("api-docs")}>
+          <a href="#apidocs" onClick={() => handleSidebarClick("apidocs")}>
             API Documentation
           </a>
           <a
@@ -45,19 +36,12 @@ const Documentation = () => {
             Get API key
           </a>
         </div>
-
-        {/* Render content based on selected link in the body */}
+        
         <div className="content">
-    
-          {/* 
-        
-        
-        {selectedContent === 'contact' && <ContactContent />}
-        {selectedContent === 'api-docs' && <ApiDocsContent />} */}
         
           {selectedContent === 'Introduction' && <Introduction />}
-          {selectedContent === 'about' && <About />}
           {selectedContent === 'services' && <Services />}
+          {selectedContent === 'apidocs' && <Apidocs />}
           {selectedContent === "get-apikey" && <Getapi />}
         </div>
       </div>

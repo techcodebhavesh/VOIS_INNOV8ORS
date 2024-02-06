@@ -5,13 +5,14 @@ const Services = () => {
   return (
     <div className="services-container">
       <div className="service-section">
-        <h1>API Documentation</h1>
+        <h1>Services</h1>
         <ul>
           <li>
             <h3>Get API Key (API Generation)</h3>
             <p>Information on obtaining an API key for programmatic access.</p>
             <p>Required credentials for using the API.</p>
           </li>
+          <br />
           <li>
             <h3>API Authentication</h3>
             <p>Request format including necessary parameters.</p>

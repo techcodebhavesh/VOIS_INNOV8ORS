@@ -52,12 +52,18 @@ nav a {
   left: 0;
 }
 @media screen and (max-width:600px) {
-    .sidebar{
-      display: flex;
-      flex-direction: row;
-      height: 3% !important;
-      width: 100%;
-    }
+.body-doc{
+  flex-direction: column;
+  
+}
+.sidebar{
+  width: 600px !important;
+  max-width: 1000px !important;
+
+}
+.content{
+  width: 80% !important;
+}
 }
 /* Sidebar styles */
 .body-doc {

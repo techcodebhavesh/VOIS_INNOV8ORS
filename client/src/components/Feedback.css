@@ -15,8 +15,11 @@
 body {
   background: linear-gradient(110.84deg, #fef3e8 1.01%, #bfebf4 102.07%);
   height: 100vh;
-}
 
+}
+.feedback-body{
+  padding-bottom: 30px;
+}
 .feedback-container {
   background: #f8faff;
   color: #4b537c;

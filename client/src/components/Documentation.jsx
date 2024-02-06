@@ -8,7 +8,7 @@ import Services from "./Services";
 import Apidocs from "./Apidocs";
 
 const Documentation = () => {
-  const [selectedContent, setSelectedContent] = useState("home");
+  const [selectedContent, setSelectedContent] = useState("Introduction");
 
   const handleSidebarClick = (content) => {
     setSelectedContent(content);
@@ -36,7 +36,7 @@ const Documentation = () => {
             Get API key
           </a>
         </div>
-        
+
         <div className="content">
         
           {selectedContent === 'Introduction' && <Introduction />}

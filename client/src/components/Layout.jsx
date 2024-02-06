@@ -10,14 +10,14 @@ const Layout = () => {
           <main>
             <header className="z-20 w-full">
               <nav>
-                <Link className="align-right" to="contact">
-                  Contact
+                <Link className="align-right" to="Feedback">
+                  Feedback
+                </Link>
+                <Link className="align-right" to="Documentation">
+                  Documentation
                 </Link>
                 <Link className="align-right" to="score">
-                  Dashboard
-                </Link>
-                <Link className="align-right" to="about">
-                  About
+                  Get Score
                 </Link>
                 <Link className="align-left" to="">
                   Home
@@ -55,8 +55,12 @@ const Layout = () => {
                           <a href="#">+91 9921318237
                           </a>
                           <br/>
+                          <a href="#">+91 9322087344
+                          </a>
+                          <br/>
                           <a href="#">+91 9823632117
                           </a>
+                          
                         </li>
                         <li>
                           <i className="fas fa-envelope-open-text"></i>
@@ -66,6 +70,9 @@ const Layout = () => {
                           <a href="#">bhavesh.agone22@vit.edu</a>
                           <br/>
                           <a href="#">vaishnavi.mahindrakar22@vit.edu</a>
+                          <br/>
+                          <a href="#">kamlakant.aryan22@vit.edu</a>
+
                         </li>
                       </ul>
                     </div>

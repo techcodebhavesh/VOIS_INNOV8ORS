@@ -1,8 +1,10 @@
 /* Home.css */
 
 .page {
-  min-height: 100vh;
+  min-height: 150vh;
   background-image: linear-gradient(#1c75bc 0%, #fdfdfd 40%, #4aa1e0  100%) !important;
+  display: flex;
+  flex-direction: column; /* Ensure flex items stack vertically */
 }
 
 
@@ -139,6 +141,7 @@ h1 {
   margin-top: 20px;
   margin-top: 20px;
   gap: 12vh;
+  margin-bottom: 40px;
 }
 
 .card {
@@ -403,10 +406,10 @@ body {
 /* background animation end */
 
 /* footerstart */
-.footer-container{
+/* .footer-container{
   margin-top: 10vh;
 
-}
+} */
 ul {
   padding:0;
   margin: 0;
@@ -434,7 +437,7 @@ h4 {
   margin: 0;
   font-weight: 400;
   padding: 0;
-  /* color: #363940; */
+  color: #fff;
 }
 
 a {
@@ -443,13 +446,13 @@ a {
 
 
 .footer-big .footer-widget {
-  margin-bottom: 40px;
-  margin-top: 20px;
-  margin-right:5%;
+  margin:4%;
+  margin-left: 4%;
 }
 
 .footer--light {
   background: #001441;
+
 }
 
 .footer-big .footer-menu ul li a,
@@ -460,7 +463,6 @@ a {
 }
 
 /* Responsive Css Code created by : Shift Code Design */
-
 .footer-menu {
   padding-left: 48px;
   padding-top: 10%;
@@ -497,7 +499,10 @@ a {
   justify-content: space-evenly;
 }
 /* Responsive Css Code created by : Shift Code Design */
-
+.widget-about{
+  padding-left: 5%;
+  padding-bottom: 10%;
+}
 .widget-about img {
   display: block;
   margin-bottom: 30px;

@@ -1,38 +1,33 @@
-/* introductionStyles.css */
-.docmBox-intro {
-
+/* aboutStyles.css */
+.about-container {
+    /* background-color: #f9f9f9; */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .intro-head {
+  .about-section {
+    margin-bottom: 20px;
+  }
+  
+  .about-section h2 {
     color: #333;
     font-size: 24px;
     margin-bottom: 10px;
   }
   
-  .intro_para {
+  .about-section p {
     color: #666;
     font-size: 16px;
     line-height: 1.6;
   }
   
-  .intro-list {
-    margin-top: 20px;
+  .about-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
   }
   
-  .intro-list-item {
-    margin-bottom: 10px;
-  }
-  
-  .intro-list-item h3 {
-    color: #000000;
-    font-size: 20px !important;
-    margin-bottom: 5px;
-  }
-  
-  .intro-list-item p {
+  .about-section ul li {
     color: #666;
     font-size: 16px;
     line-height: 1.6;

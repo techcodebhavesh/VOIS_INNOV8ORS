@@ -96,30 +96,6 @@ const OutputDashboard = () => {
 
   return (
     <>
-      <div className="navbar-dash">
-        <main>
-          <header className="w-full z-20">
-            <nav>
-              <a className="align-right" href="#">
-                Contact
-              </a>
-              <Link to="./OutputDashboard" className="align-right">
-                Dashboard
-              </Link>
-              <a className="align-right" href="#">
-                About
-              </a>
-              <a className="align-left" href="#">
-                Home
-              </a>
-            </nav>
-            <div className="h-1px bg-primary animate__animated w-full border-b"></div>
-          </header>
-
-          <div className="h-100vh w-full bg-cover"></div>
-        </main>
-      </div>
-
 
       <div className="bodyDashb">
         <div className="body-dash">

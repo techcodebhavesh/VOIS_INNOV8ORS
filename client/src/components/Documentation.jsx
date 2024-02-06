@@ -3,6 +3,8 @@ import "./documentation.css";
 import { Link } from "react-router-dom";
 import Getapi from "./Getapi";
 import Introduction from "./Introduction";
+import About from "./About";
+import Services from "./Services";
 // import AboutContent from './AboutContent';
 // import ServicesContent from './ServicesContent';
 // import ContactContent from './ContactContent';
@@ -17,43 +19,6 @@ const Documentation = () => {
 
   return (
     <div className="body-docm">
-      <div className="navbar">
-        <main>
-          <header className="w-full z-20">
-            <nav>
-              <a
-                className="align-right"
-                href="#"
-                onClick={() => handleSidebarClick("contact")}
-              >
-                Contact
-              </a>
-              <a
-                className="align-right"
-                href="#"
-                onClick={() => handleSidebarClick("dashboard")}
-              >
-                Dashboard
-              </a>
-              <a
-                className="align-right"
-                href="#"
-                onClick={() => handleSidebarClick("about")}
-              >
-                About
-              </a>
-              <a
-                className="align-left"
-                href="#"
-                onClick={() => handleSidebarClick("home")}
-              >
-                Home
-              </a>  
-            </nav>
-            <div className="w-full h-1px bg-primary animate__animated bor der-b"></div>
-          </header>
-        </main>
-      </div>
 
 
       <div className="body-doc">
@@ -85,11 +50,14 @@ const Documentation = () => {
         <div className="content">
     
           {/* 
-        {selectedContent === 'about' && <AboutContent />}
-        {selectedContent === 'services' && <ServicesContent />}
+        
+        
         {selectedContent === 'contact' && <ContactContent />}
         {selectedContent === 'api-docs' && <ApiDocsContent />} */}
+        
           {selectedContent === 'Introduction' && <Introduction />}
+          {selectedContent === 'about' && <About />}
+          {selectedContent === 'services' && <Services />}
           {selectedContent === "get-apikey" && <Getapi />}
         </div>
       </div>

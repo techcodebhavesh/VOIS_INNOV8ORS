@@ -38,10 +38,19 @@ const {
 
 const { run } = require("./geminirun.controller.js");
 
+function isJsonString(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
 const processEntriesHandler = async (req, res) => {
   try {
     const inputData = req.body.data;
-    console.log("Input Data:", inputData[0]);
+    // console.log("Input Data:", inputData[0]);
 
     if (!inputData || !Array.isArray(inputData)) {
       return res.status(400).json({ error: "Invalid data format" });
@@ -51,21 +60,37 @@ const processEntriesHandler = async (req, res) => {
 
     for (const entry of inputData) {
       try {
-        const textResult = await run(entry);
+        let resultObject;
+        let resultValidated = false;
+        console.log("hi");
+        while (!resultValidated) {
+          const textResult = await run(entry);
 
-        console.log({ textResult });
+          // console.log({ textResult });
 
-        let cleanedText;
+          let cleanedText;
 
-        if (textResult.includes("```json"))
-          cleanedText = textResult.substring(8, textResult.length - 3);
-        else cleanedText = textResult;
+          if (textResult.includes("```json"))
+            cleanedText = textResult.substring(8, textResult.length - 3);
+          else cleanedText = textResult;
 
-        // Log the content of textResult before parsing
-        console.log("Text Result:", cleanedText);
+          // Log the content of textResult before parsing
+          console.log("Text Result:", cleanedText);
 
-        // Convert the text result to JSON
-        const resultObject = JSON.parse(cleanedText);
+          if (isJsonString(cleanedText)) {
+            resultValidated = true;
+          } else {
+            resultValidated = false;
+            continue;
+          }
+
+          // Convert the text result to JSON
+          resultObject = JSON.parse(cleanedText);
+
+          for (let i = 0; i < Object.values(resultObject).length; i++) {
+            console.log(Object.values(resultObject));
+          }
+        }
         results[entry.ProductID] = resultObject;
       } catch (error) {
         console.error("Error processing entry:", error);

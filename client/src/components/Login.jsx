@@ -151,31 +151,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="navbar">
-        <div className="navbar">
-          <main>
-            <header className="z-20 w-full">
-              <nav>
-                <a className="align-right" href="#">
-                  Contact
-                </a>
-                <a className="align-right" href="#">
-                  Dashboard
-                </a>
-                <a className="align-right" href="#">
-                  About
-                </a>
-                <a className="align-left" href="#">
-                  Home
-                </a>
-              </nav>
-              <div className="h-1px bg-primary animate__animated w-full border-b"></div>
-            </header>
-
-            <div className="h-100vh w-full bg-cover"></div>
-          </main>
-        </div>
-      </div>
+      
       <div className="login-parent">
         <div className={`container-ls ${isLoginFormActive ? "" : "active"}`}>
           {isLoginFormActive ? (

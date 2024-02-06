@@ -252,6 +252,8 @@ a:hover {
   }
   .navbar{
     display: none;
+    position: relative;
+    z-index: 1500;
   }
   .card img{
     padding: 0;

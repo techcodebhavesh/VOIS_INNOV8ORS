@@ -20,7 +20,6 @@ app.use("/api/apikey", apikeyRouter);
 app.use("/api/user", userRouter);
 app.use("/api/togemini", togeminiRouter);
 
-app.use("/api/transport", transportRouter);
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });

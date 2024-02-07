@@ -32,7 +32,9 @@ const App = () => {
             path="login"
             element={<Login onLoginSuccess={handleLoginSuccess} />}
           />
+          
           <Route path="" element={<Home />} />
+          <Route path="Login" element={<Login />} />
           <Route path="score" element={<Score />} />
           <Route path="documentation" element={<Documentation />} />
           <Route path="demo/products" element={<MultipleProductUpload />} />

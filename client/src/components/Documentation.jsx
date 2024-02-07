@@ -6,6 +6,12 @@ import Introduction from "./Introduction";
 import About from "./About";
 import Services from "./Services";
 import Apidocs from "./Apidocs";
+import Nodejsdoc from "./Nodejsdoc";
+import Phpdoc from "./Phpdoc";
+import Pythondoc from "./pythondoc";
+import Ruby from "./Ruby";
+import Jquerydoc from "./Jquerydoc";
+import Godoc from "./Godoc";
 
 const Documentation = () => {
   const [selectedContent, setSelectedContent] = useState("Introduction");
@@ -29,6 +35,27 @@ const Documentation = () => {
           <a href="#apidocs" onClick={() => handleSidebarClick("apidocs")}>
             API Documentation
           </a>
+          <a href="#apidocs" onClick={() => handleSidebarClick("Nodejsdoc")}>
+          NodeJs
+          </a>
+          
+          <a href="#apidocs" onClick={() => handleSidebarClick("Pythondoc")}>
+          Pyhton
+          </a>
+          <a href="#apidocs" onClick={() => handleSidebarClick("Phpdoc")}>
+          PHP
+
+          </a>
+          <a href="#apidocs" onClick={() => handleSidebarClick("Jquerydoc")}>
+          jQuery
+          </a>
+          <a href="#apidocs" onClick={() => handleSidebarClick("Godoc")}>
+            Go
+          </a>
+          <a href="#apidocs" onClick={() => handleSidebarClick("Ruby")}>
+            Ruby
+          </a>
+        
           <a
             href="#get-apikey"
             onClick={() => handleSidebarClick("get-apikey")}
@@ -40,8 +67,16 @@ const Documentation = () => {
         <div className="content">
         
           {selectedContent === 'Introduction' && <Introduction />}
+
           {selectedContent === 'services' && <Services />}
           {selectedContent === 'apidocs' && <Apidocs />}
+          {selectedContent === "Nodejsdoc" && <Nodejsdoc />}
+          {selectedContent === "Pythondoc" && <Pythondoc />}
+          {selectedContent === "Phpdoc" && <Phpdoc />}
+          {selectedContent === "Jquerydoc" && <Jquerydoc />}
+          {selectedContent === "Godoc" && <Godoc />}
+          {selectedContent === "Ruby" && <Ruby />}       
+        
           {selectedContent === "get-apikey" && <Getapi />}
         </div>
       </div>

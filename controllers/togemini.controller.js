@@ -63,7 +63,6 @@ const processEntriesHandler = async (req, res) => {
         let resultObject;
         let resultValidated = false;
         let i = 0;
-        console.log("hi");
         while (!resultValidated) {
           if (i >= 5)
             return res.status(500).json({ error: "Internal Server Error" });
@@ -93,6 +92,7 @@ const processEntriesHandler = async (req, res) => {
             resultValidated = false;
             continue;
           }
+          resultObject["data"] = entry;
         }
         results[entry.ProductID] = resultObject;
       } catch (error) {

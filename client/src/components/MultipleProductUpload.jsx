@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import uploadimg from "./Assets/uploadimg.png";
@@ -9,13 +10,11 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Link } from "react-router-dom";
-import TextField from "@mui/material/TextField";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import OutputDashboard from "./OutputDashboard";
 import CircularProgress from "@mui/material/CircularProgress";
-//import { response } from "express";
 
 const MultipleProductUpload = () => {
   const [droparea, setdroparea] = useState(false);

@@ -15,6 +15,7 @@ import OutputDashboard from "./components/OutputDashboard.jsx";
 import Feedback from "./components/Feedback.jsx";
 import Getapi from "./components/Getapi.jsx";
 import Layout from "./components/Layout.jsx";
+import Banner from "./components/DashboardComponents/Banner.jsx";
 
 const App = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="demo/display" element={<OutputDashboard />} />
           <Route path="feedback" element={<Feedback />} />
           <Route path="getapi" element={<Getapi />} />
+          <Route path="Banner" element={<Banner />} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Route>
       </Routes>

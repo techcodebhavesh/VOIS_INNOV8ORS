@@ -157,7 +157,7 @@ const Score = () => {
   return (
     <div className="body">
       <header className="score-header">
-        <h1>Innova8or's Catalog Scoring</h1>
+        <h1>Innov8or's Catalog Scoring</h1>
         <div className="tabs" ref={tabsRef}>
           <div
             href="#tab1"

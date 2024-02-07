@@ -62,14 +62,16 @@ const processEntriesHandler = async (req, res) => {
       try {
         let resultObject;
         let resultValidated = false;
+        let i = 0;
         console.log("hi");
         while (!resultValidated) {
-          const textResult = await run(entry);
+          if (i >= 5)
+            return res.status(500).json({ error: "Internal Server Error" });
 
-          // console.log({ textResult });
+          const textResult = await run(entry);
+          i++;
 
           let cleanedText;
-
           if (textResult.includes("```json"))
             cleanedText = textResult.substring(8, textResult.length - 3);
           else cleanedText = textResult;
@@ -85,10 +87,11 @@ const processEntriesHandler = async (req, res) => {
           }
 
           // Convert the text result to JSON
-          resultObject = JSON.parse(cleanedText);
+          resultObject = validateAndConvertRating(JSON.parse(cleanedText));
 
-          for (let i = 0; i < Object.values(resultObject).length; i++) {
-            console.log(Object.values(resultObject));
+          if (resultObject === null) {
+            resultValidated = false;
+            continue;
           }
         }
         results[entry.ProductID] = resultObject;
@@ -104,6 +107,53 @@ const processEntriesHandler = async (req, res) => {
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+function validateAndConvertRating(obj) {
+  // Check if the object contains all required fields
+  if (
+    obj.hasOwnProperty("title") &&
+    obj.hasOwnProperty("description") &&
+    obj.hasOwnProperty("image") &&
+    obj.hasOwnProperty("featuresAndBenefits") &&
+    obj.hasOwnProperty("additionalInformation") &&
+    obj.hasOwnProperty("overallScore") &&
+    obj.title.hasOwnProperty("rating") &&
+    obj.description.hasOwnProperty("rating") &&
+    obj.image.hasOwnProperty("rating") &&
+    obj.featuresAndBenefits.hasOwnProperty("rating") &&
+    obj.additionalInformation.hasOwnProperty("rating") &&
+    obj.overallScore.hasOwnProperty("rating") &&
+    !isNaN(parseInt(obj.title.rating)) &&
+    !isNaN(parseInt(obj.description.rating)) &&
+    !isNaN(parseInt(obj.image.rating)) &&
+    !isNaN(parseInt(obj.featuresAndBenefits.rating)) &&
+    !isNaN(parseInt(obj.additionalInformation.rating)) &&
+    !isNaN(parseInt(obj.overallScore.rating)) &&
+    obj.title.hasOwnProperty("suggestion") &&
+    obj.description.hasOwnProperty("suggestion") &&
+    obj.image.hasOwnProperty("suggestion") &&
+    obj.featuresAndBenefits.hasOwnProperty("suggestion") &&
+    obj.additionalInformation.hasOwnProperty("suggestion") &&
+    obj.overallScore.hasOwnProperty("suggestion")
+  ) {
+    // Convert ratings to integers
+    obj.title.rating = parseInt(obj.title.rating);
+    obj.description.rating = parseInt(obj.description.rating);
+    obj.image.rating = parseInt(obj.image.rating);
+    obj.featuresAndBenefits.rating = parseInt(obj.featuresAndBenefits.rating);
+    obj.additionalInformation.rating = parseInt(
+      obj.additionalInformation.rating
+    );
+    obj.overallScore.rating = parseInt(obj.overallScore.rating);
+  } else {
+    // Return null if any required field is missing or ratings are invalid
+    console.log("Invalid data:", obj);
+    return null;
+  }
+
+  // Return the validated data
+  return obj;
+}
 
 module.exports = {
   processEntriesHandler,

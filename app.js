@@ -32,9 +32,11 @@ app.use("/api/fireindi", fireindiRouter);
 app.use("/api/togemini", togeminiRouter);
 
 app.use("/api/transport", transportRouter);
-
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "hello.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
+// app.get("/", function (req, res) {
+//   res.sendFile(path.join(__dirname, "hello.html"));
+// });
 
 app.listen(PORT, () => console.log("Server running on " + PORT));

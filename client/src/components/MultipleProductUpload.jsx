@@ -10,8 +10,11 @@ import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import OutputDashboard from "./OutputDashboard";
+import CircularProgress from "@mui/material/CircularProgress";
 //import { response } from "express";
 
 const MultipleProductUpload = () => {
@@ -19,7 +22,13 @@ const MultipleProductUpload = () => {
   const [CSVfile, setCSVfile] = useState(null);
   const [imageOpen, setimageOpen] = useState({ open: false, index: 0 });
   const [productCardDropArea, setproductCardDropArea] = useState(false);
-  
+  const [submitted, setsubmitted] = useState({
+    submitted: false,
+    error: false,
+    errormsg: "",
+    success: false,
+  });
+  const [ouptuResult, setOuptuResult] = useState(undefined);
   function showdroparea() {
     console.log("drag over");
     setdroparea(true);
@@ -38,9 +47,6 @@ const MultipleProductUpload = () => {
 
   function handleProductImageDrop(e) {
     e.preventDefault();
-    console.log("image dropped");
-    console.log(e.dataTransfer.files);
-
     setCSVfile((prev) => {
       let newCSVfile = [...prev];
       let obj = { ...newCSVfile[imageOpen.index] };
@@ -92,7 +98,6 @@ const MultipleProductUpload = () => {
   }
 
   function imageToBase64(imgBlob, mimeType) {
-    console.log({ mimeType });
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
 
@@ -115,76 +120,62 @@ const MultipleProductUpload = () => {
     });
   }
 
-    async function handleSubmit(e) {
-      e.preventDefault();
-      let data = [...CSVfile];
-      data = await Promise.all(
-        data.map(async (obj) => {
-          let newObj = { ...obj };
-          newObj.ProductImages = await Promise.all(
-            newObj.ProductImages.map(async (imgObj) => {
-              return await imageToBase64(imgObj.blob, imgObj.blob.type);
-            })
-          );
-          return newObj;
-        })
-      );
-      console.log({ data });
-      console.log(await submitDataToServer(data));
-    }
-    function submitDataToServer(data) {
-      return fetch("/api/togemini/processall", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ data }),
+  async function handleSubmit(e) {
+    e.preventDefault();
+    let data = [...CSVfile];
+    data = await Promise.all(
+      data.map(async (obj) => {
+        let newObj = { ...obj };
+        newObj.ProductImages = await Promise.all(
+          newObj.ProductImages.map(async (imgObj) => {
+            return await imageToBase64(imgObj.blob, imgObj.blob.type);
+          })
+        );
+        return newObj;
       })
-        .then(async (response) => {
-          if (response.ok) {
-            const responseData = await response.json();
-            transport(responseData); // Pass the JSON data to transport
-            return responseData;
-          } else {
-            return null;
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          return null;
-        });
-    }
-    async function transport(response) {
-      try {
-        const apiUrl = "http://localhost:5001/api/transport/tran";
-        
-        const requestOptions = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+    );
+    // validate data
+    console.log({ data });
+    // fetch data
+    setsubmitted((prev) => {
+      return { ...prev, submitted: true };
+    });
 
-          body: JSON.stringify({ data: response }), // Send the entire response object as the data property
-        };
+    await submitDataToServer(data);
+  }
 
-        const serverResponse = await fetch(apiUrl, requestOptions);
+  function submitDataToServer(data) {
+    return fetch("/api/togemini/processall", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data }),
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          const responseData = await response.json();
+          setsubmitted((prev) => {
+            return { ...prev, submitted: true, success: true };
+          });
+          setOuptuResult(responseData);
 
-        if (serverResponse.ok) {
-          const data = await serverResponse.json();
-          console.log(data);
-          // Perform any actions based on the server response
+          return responseData;
         } else {
-          const errorMessage = await serverResponse.text();
-          console.error("Failed to send data to the server:", errorMessage);
-          // Handle the error condition
-          alert("Error!!");
+          setsubmitted((prev) => {
+            return { ...prev, submitted: false, error: true };
+          });
+          return null;
         }
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("Error:", error);
-        // Handle unexpected errors
-      }
-    }
-
+        setsubmitted((prev) => {
+          return { ...prev, submitted: false, error: true, errormsg: error };
+        });
+        return null;
+      });
+  }
 
   function handlefiles(array) {
     console.log({ array });
@@ -228,7 +219,7 @@ const MultipleProductUpload = () => {
       jsonData = jsonData.map((obj, index) => {
         return {
           ...obj,
-          ProductID: parseInt(index+1),
+          ProductID: parseInt(index + 1),
           ProductImages: [],
           ProductTitle: obj.ProductTitle,
           ProductDescription: obj.ProductDescription,
@@ -245,7 +236,7 @@ const MultipleProductUpload = () => {
   const uploadFileBlock = () => {
     return (
       <>
-        <div className="product-upload-parent" on onDragOver={showdroparea}>
+        <div className="product-upload-parent" onDragOver={showdroparea}>
           {!CSVfile && (
             <div className="upload-file-area">
               <CloudUploadIcon className="cloud-icon" />
@@ -300,8 +291,6 @@ const MultipleProductUpload = () => {
     );
   };
 
-  console.log({ CSVfile });
-
   const productCard = () => {
     const shouldShowInstructions = !imageOpen.open;
     return (
@@ -332,7 +321,7 @@ const MultipleProductUpload = () => {
             <div className="product-card-image">
               {CSVfile[imageOpen.index].ProductImages.map((obj, index) => {
                 return (
-                  <div className="product-card-image-container">
+                  <div className="product-card-image-container" key={index}>
                     <img
                       src={URL.createObjectURL(obj.blob)}
                       alt={obj.name}
@@ -446,14 +435,10 @@ const MultipleProductUpload = () => {
               <tr key={i}>
                 {/* Product ID */}
                 <td>
-                  <TextField
+                  <TextareaAutosize
                     id="standard-textarea"
                     className="numberinput"
-                    multiline
                     variant="standard"
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
                     type="number"
                     value={value.ProductID}
                     onChange={(e) =>
@@ -463,13 +448,9 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* SKU */}
                 <td>
-                  <TextField
+                  <TextareaAutosize
                     id="standard-textarea"
-                    multiline
                     variant="standard"
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
                     type="text"
                     value={value.SKU}
                     onChange={(e) => handleChange(i, "SKU", e.target.value)}
@@ -477,13 +458,9 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Title */}
                 <td>
-                  <TextField
+                  <TextareaAutosize
                     id="standard-textarea"
-                    multiline
                     variant="standard"
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
                     type="text"
                     value={value.ProductTitle}
                     onChange={(e) =>
@@ -503,13 +480,9 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Description */}
                 <td>
-                  <TextField
+                  <TextareaAutosize
                     id="standard-textarea"
-                    multiline
                     variant="standard"
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
                     type="text"
                     value={value.ProductDescription}
                     onChange={(e) =>
@@ -519,13 +492,9 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Features */}
                 <td>
-                  <TextField
+                  <TextareaAutosize
                     id="standard-textarea"
-                    multiline
                     variant="standard"
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
                     type="text"
                     value={value.ProductFeatures}
                     onChange={(e) =>
@@ -535,14 +504,9 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Info */}
                 <td>
-                  <TextField
+                  <TextareaAutosize
                     id="standard-textarea"
-                    multiline
-                    rows={10}
                     variant="standard"
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
                     type="text"
                     value={value.ProductInfo}
                     onChange={(e) =>
@@ -582,7 +546,15 @@ const MultipleProductUpload = () => {
     );
   };
 
-  return CSVfile ? excelSheetBlock() : uploadFileBlock();
+  return !CSVfile ? (
+    uploadFileBlock()
+  ) : submitted.submitted === false ? (
+    excelSheetBlock()
+  ) : submitted.success === true ? (
+    <OutputDashboard data={ouptuResult} />
+  ) : (
+    <CircularProgress />
+  );
 };
 
 export default MultipleProductUpload;

@@ -13,15 +13,15 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material/Select";
 
-
 const styles = {
   bold: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 };
 
-const OutputDashboard = () => {
-  const [data, setdata] = useState({
+const OutputDashboard = ({ data }) => {
+  console.log("output result from dashboard", data);
+  const [sampleData, setSampleData] = useState({
     1: {
       title: {
         rating: "8",
@@ -96,11 +96,10 @@ const OutputDashboard = () => {
 
   return (
     <>
-
       <div className="bodyDashb">
         <div className="body-dash">
           <Box sx={{ maxWidth: 400 }}>
-            <FormControl fullWidth >
+            <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label" style={styles.bold}>
                 Catalog number
               </InputLabel>
@@ -126,11 +125,11 @@ const OutputDashboard = () => {
           </div>
         </div>
         <div className="suggestion-con">
-        <div className="card-dash col-4">
-          <div className="card-header bg-warning text-center">
-            <h1 className="h1dash">CARD TITLE</h1>
-          </div>
-          {/* <svg
+          <div className="card-dash col-4">
+            <div className="card-header bg-warning text-center">
+              <h1 className="h1dash">CARD TITLE</h1>
+            </div>
+            {/* <svg
               data-name="Layer 1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1200 120"
@@ -141,14 +140,13 @@ const OutputDashboard = () => {
                 className="fill-success"
               ></path>
             </svg> */}
-          <div className="card-body px-3">
+            <div className="card-body px-3">
               HeHellobhaiHellobhaiHellobhaillobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhai
               HeHellobhaiHellobhaiHellobhaillobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhai
               HeHellobhaiHellobhaiHellobhaillobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhai
+            </div>
           </div>
         </div>
-        </div>
-        
       </div>
     </>
   );

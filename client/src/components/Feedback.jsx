@@ -23,10 +23,10 @@ const Feedback = () => {
           <div class="feedback-level">
           
             <div className="level">
-              <i className="sad-tear"></i>
+            <i className="las la-sad-tear" style={{"fontFamily": 'Line Awesome Free !important'}}></i>
             </div>
             <div className="level">
-              <i className="las la-frown"></i>
+              <i className="las la-frown" style={{fontFamily: 'Line Awesome Free'}}></i>
             </div>
             <div className="level">
               <i className="lar la-meh"></i>

@@ -10,6 +10,9 @@ const Layout = () => {
           <main>
             <header className="z-20 w-full">
               <nav>
+                <Link className="align-right" to="Login">
+                  Login
+                </Link>
                 <Link className="align-right" to="Feedback">
                   Feedback
                 </Link>

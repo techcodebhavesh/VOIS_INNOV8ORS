@@ -88,17 +88,16 @@ const Layout = () => {
                       <h4 className="footer-widget-title">Popular Category</h4>
                       <ul>
                         <li>
-                          <a href="#">Check Score</a>
+                        <Link to="Score">Check Score</Link>
                         </li>
                         <li>
-                          <a href="#">Dashboard</a>
+                        <Link to="Documentation">Documentation</Link>
                         </li>
+                        
                         <li>
-                          <a href="#">Feedback</a>
+                        <Link to="Feedback">Feedback</Link>
                         </li>
-                        <li>
-                          <a href="#">Get suggessions</a>
-                        </li>
+                        
                       </ul>
                     </div>
                   </div>
@@ -110,10 +109,10 @@ const Layout = () => {
                       <h4 className="footer-widget-title">Our Team</h4>
                       <ul>
                         <li>
-                          <a href="#">About Us</a>
+                          <Link to="Documentation">About Us</Link>
                         </li>
                         <li>
-                          <a href="#">How It Works</a>
+                        <Link to="">Home</Link>
                         </li>
                         <li>
                           <a href="#">Contact Us</a>

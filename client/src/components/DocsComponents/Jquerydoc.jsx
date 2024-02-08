@@ -1,17 +1,24 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import TextField from "@mui/material/TextField";
+import hljs from "highlight.js/lib/core";
+import javascript from "highlight.js/lib/languages/javascript";
+import "highlight.js/styles/monokai.css";
+hljs.registerLanguage("javascript", javascript);
 
 const Jquerydoc = () => {
+  const codeRef = useRef(null);
+
+  useEffect(() => {
+    hljs.highlightBlock(codeRef.current);
+  }, []);
+
   return (
     <div><div className="jQuery-imp">
     <h1>Innovators API: Get started with JQuery</h1>
-
-    <TextField
-      disabled
-      id="outlined-basic"
-      label="Exaample using Jquery"
-      defaultValue='
-      // Define your data
+    <pre>
+      <code className="javascript"  ref={codeRef}>
+        {`
+// Define your data
 var data = {
 // Your data here
 };
@@ -34,21 +41,10 @@ error: function(xhr, status, error) {
     console.error("Request failed:", error);
 }
 });
-
-      
-'
-      variant="filled"
-      multiline
-      sx={{
-        "& .MuiInputBase-input": {
-          color: "black", // Change color as needed
-        },
-        "& .MuiInputLabel-root": {
-          color: "blue", // Change color as needed
-        },
-      }}
-      style={{ width: "80%", margin: "3%" }}
-    />
+`}
+      </code>
+    </pre>
+    
 
   </div></div>
   )

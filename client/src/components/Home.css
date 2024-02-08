@@ -45,9 +45,11 @@ nav a {
   padding: 12px 25px;
   color: #ffffff;
   font-weight: 400;
-  letter-spacing: 0.1em;
+  /* letter-spacing: 0.1em; */
 }
-
+nav a:hover{
+  color: #000000;
+}
 #marker {
   border-radius: 20px;
   position: absolute;
@@ -430,8 +432,8 @@ a:hover {
 p {
   font-size: 16px;
   line-height: 30px;
-  color: #898b96;
-  font-weight: 300;
+  /* color: #898b96; */
+  /* font-weight: 300; */
 }
 
 h4 {

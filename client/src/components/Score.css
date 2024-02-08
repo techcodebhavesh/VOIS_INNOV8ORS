@@ -25,13 +25,17 @@ nav {
   flex-direction: row-reverse;
 }
 
+nav a:hover{
+  color: #000000;
+}
+
 nav div {
   position: relative;
   text-decoration: none;
   padding: 12px 25px;
   /* color: #000000; */
   font-weight: 400;
-  letter-spacing: 0.1em;
+  /* letter-spacing: 0.1em; */
 }
 
 #marker {

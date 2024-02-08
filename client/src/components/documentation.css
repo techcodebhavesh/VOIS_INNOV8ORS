@@ -25,7 +25,10 @@ nav a {
   text-decoration: none;
   padding: 12px 25px;
   font-weight: 400;
-  letter-spacing: 0.1em;
+  /* letter-spacing: 0.1em; */
+}
+nav a:hover{
+  color: #000000;
 }
 
 #marker {

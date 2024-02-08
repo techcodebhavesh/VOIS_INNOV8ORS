@@ -6,12 +6,12 @@ import Introduction from "./Introduction";
 import About from "./About";
 import Services from "./Services";
 import Apidocs from "./Apidocs";
-import Nodejsdoc from "./Nodejsdoc";
-import Phpdoc from "./Phpdoc";
-import Pythondoc from "./pythondoc";
-import Ruby from "./Ruby";
-import Jquerydoc from "./Jquerydoc";
-import Godoc from "./Godoc";
+import Nodejsdoc from "./DocsComponents/Nodejsdoc";
+import Phpdoc from "./DocsComponents/Phpdoc";
+import Pythondoc from "./DocsComponents/pythondoc";
+import Ruby from "./DocsComponents/Ruby";
+import Jquerydoc from "./DocsComponents/Jquerydoc";
+import Godoc from "./DocsComponents/Godoc";
 
 const Documentation = () => {
   const [selectedContent, setSelectedContent] = useState("Introduction");

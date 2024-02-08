@@ -1,17 +1,27 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import TextField from "@mui/material/TextField";
+import hljs from "highlight.js/lib/core";
+import javascript from "highlight.js/lib/languages/javascript";
+import "highlight.js/styles/monokai.css";
+hljs.registerLanguage("javascript", javascript);
 
 const Godoc = () => {
+  const codeRef = useRef(null);
+
+  useEffect(() => {
+    hljs.highlightBlock(codeRef.current);
+  }, []);
+
+
   return (
+    
     <div><div className="Go-imp">
     <h1>Innovators API: Get started with Go</h1>
+    <pre>
+      <code className="javascript"  ref={codeRef}>
+        {`
 
-    <TextField
-      disabled
-      id="outlined-basic"
-      label="Code example with Go"
-      defaultValue='
-      package main
+package main
 
 import (
 "bytes"
@@ -57,21 +67,10 @@ if err != nil {
 // Print response body
 fmt.Println("Response:", string(body))
 }
-      
-'
-      variant="filled"
-      multiline
-      sx={{
-        "& .MuiInputBase-input": {
-          color: "black", // Change color as needed
-        },
-        "& .MuiInputLabel-root": {
-          color: "blue", // Change color as needed
-        },
-      }}
-      style={{ width: "80%", margin: "3%" }}
-    />
-
+`}
+      </code>
+    </pre>
+    
   </div>
   </div>
   )

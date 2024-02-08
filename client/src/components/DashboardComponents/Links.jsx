@@ -6,11 +6,10 @@ import DashIcon from "./components/icons/DashIcon";
 
 
 export function SidebarLinks(props) {
-  console.log("Props in SidebarLinks:", props);
   // Chakra color mode
   let location = useLocation();
 
-  const { routes } = props;
+  const { routes, data } = props;
 
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {

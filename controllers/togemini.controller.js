@@ -101,7 +101,7 @@ const processEntriesHandler = async (req, res) => {
       }
     }
 
-    res.status(200).json({ data: results });
+    res.status(200).json(results);
   } catch (error) {
     console.error("Error processing entries:", error);
     return res.status(500).json({ error: "Internal Server Error" });

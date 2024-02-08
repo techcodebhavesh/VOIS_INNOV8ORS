@@ -117,6 +117,10 @@ const AllScoresLineChart = ({ data }) => {
     setlineChartData(transformData(data));
   }, [data]);
 
+  console.log({ data });
+
+  console.log({ lineChartData });
+
   return (
     <Card extra="!p-[20px] text-center">
       <div className="flex justify-between">
@@ -143,10 +147,9 @@ const AllScoresLineChart = ({ data }) => {
           </div>
         </div>
         <div className="h-full w-full">
-          <LineChart
-            options={lineChartOptions}
-            series={lineChartData}
-          />
+          <div className="h-[250px] w-full xl:h-[350px]">
+            <LineChart options={lineChartOptions} series={lineChartData} />
+          </div>
         </div>
       </div>
     </Card>

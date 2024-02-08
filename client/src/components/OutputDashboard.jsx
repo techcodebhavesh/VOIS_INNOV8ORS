@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material/Select";
+import DailyTraffic from "./DashboardComponents/DailyTraffic.jsx";
 
 const styles = {
   bold: {
@@ -20,7 +21,6 @@ const styles = {
 };
 
 const OutputDashboard = ({ data }) => {
-  console.log("output result from dashboard", data);
   const [sampleData, setSampleData] = useState({
     1: {
       title: {
@@ -99,16 +99,27 @@ const OutputDashboard = ({ data }) => {
         suggestion:
           "The overall score is a good representation of the product's quality, but it could be improved by adding more details about the product's ingredients or benefits.",
       },
+      data: {
+        ProductID: 2,
+        SKU: "",
+        ProductTitle:
+          "Dove Hair Therapy Dry Scalp Care Shampoo 380ml & Conditioner 380ml (Combo Pack)",
+        ProductDescription: "pure cotton, 10 devices connectivity",
+        ProductFeatures:
+          "Deeply nourishes and moisturizes the scalp, Proven dry scalp relief formula,Enriched with natural ingredients for healthier hair,Two-in-one combo pack for complete care",
+        ProductInfo:
+          "Manufacturer: Dove, Country of Origin: United States, Pricing: $15.99",
+      },
     },
   });
   const [currentIndex, setcurrentIndex] = useState("");
 
+  console.log({ currentIndex });
+  console.log(Object.keys(data));
+
   const handleChange = (event) => {
     setcurrentIndex(event.target.value);
   };
-
-  console.log("hi");
-  console.log(sampleData);
 
   return (
     <>
@@ -126,10 +137,8 @@ const OutputDashboard = ({ data }) => {
                 label="catalognum"
                 onChange={handleChange}
               >
-                {Object.keys(sampleData).map((value) => (
-                  <MenuItem value={value}>
-                    {sampleData[value]?.data?.ProductTitle}
-                  </MenuItem>
+                {Object.keys(data).map((value, index) => (
+                  <MenuItem value={value}>{value}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -137,9 +146,9 @@ const OutputDashboard = ({ data }) => {
           <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
             {/* <PieChartCard /> */}
             <Links />
-            <Widget obj={sampleData[currentIndex]} />
-            <AllScoresLineChart data={sampleData} />
-            <WeeklyRevenue />
+            <Widget obj={data[currentIndex]} />
+            {/* <AllScoresLineChart data={data} /> */}
+              {/* <WeeklyRevenue data={data} /> */}
           </div>
         </div>
         <div className="suggestion-con">

@@ -1,65 +1,30 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import TextField from "@mui/material/TextField";
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
-
+import "highlight.js/styles/monokai.css";
 hljs.registerLanguage("javascript", javascript);
 
-const pythondoc = () => {
+const Pythondoc = () => {
+  const codeRef = useRef(null);
+  useEffect(() => {
+    hljs.highlightBlock(codeRef.current);
+  }, []);
+
   return (
     <div><div className="pythom-imp">
     <h1>Innovator's API: Quickstart with PYTHON</h1>
     
-    <TextField
-        disabled
-        id="outlined-basic"
-        label="Imports"
-        defaultValue='
-        import requests
-        import json
-        
-'
-        variant="filled"
-        multiline
-        sx={{
-          "& .MuiInputBase-input": {
-            color: "black", // Change color as needed
-          },
-          "& .MuiInputLabel-root": {
-            color: "blue", // Change color as needed
-          },
-        }}
-        style={{ width: "80%", margin: "3%" }}
-      />
 
-<TextField
-        disabled
-        id="outlined-basic"
-        label="URL"
-        defaultValue='
-        url ="http://example.com/api/togemini/processall"
-        
-'
-        variant="filled"
-        multiline
-        sx={{
-          "& .MuiInputBase-input": {
-            color: "black", // Change color as needed
-          },
-          "& .MuiInputLabel-root": {
-            color: "blue", // Change color as needed
-          },
-        }}
-        style={{ width: "80%", margin: "3%" }}
-      />
+    <pre>
+      <code className="javascript" ref={codeRef}>
+        {`
+ #import requests
+ #import json
 
+ url ="http://example.com/api/togemini/processall"
 
-<TextField
-disabled
-id="outlined-basic"
-label="Example"
-defaultValue={`
-# Define headers
+ # Define headers
 headers = {
   "Content-Type": "application/json"
 }
@@ -82,23 +47,14 @@ if response.status_code == 200:
 else:
   print("Request failed with status code:", response.status_code)
   print(response.text)  # Print error message if any
-`}
-variant="filled"
-multiline
-sx={{
-  "& .MuiInputBase-input": {
-    color: "black", // Change color as needed
-  },
-  "& .MuiInputLabel-root": {
-    color: "blue", // Change color as needed
-  },
-}}
-style={{ width: "80%", margin: "3%" }}
-/>
 
 
+ `}
+      </code>
+    </pre>
+  
     </div></div>
   )
 }
 
-export default pythondoc
+export default Pythondoc

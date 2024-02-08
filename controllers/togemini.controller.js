@@ -37,6 +37,7 @@ const {
 */
 
 const { run } = require("./geminirun.controller.js");
+const logger = require("../logger");
 
 function isJsonString(str) {
   try {
@@ -48,6 +49,7 @@ function isJsonString(str) {
 }
 
 const processEntriesHandler = async (req, res) => {
+  logger("Processing entries...");
   try {
     const inputData = req.body.data;
     // console.log("Input Data:", inputData[0]);
@@ -64,8 +66,10 @@ const processEntriesHandler = async (req, res) => {
         let resultValidated = false;
         let i = 0;
         while (!resultValidated) {
-          if (i >= 5)
+          if (i >= 5) {
+            logger(`Error processing entry: ${entry.ProductID}`);
             return res.status(500).json({ error: "Internal Server Error" });
+          }
 
           const textResult = await run(entry);
           i++;
@@ -96,6 +100,7 @@ const processEntriesHandler = async (req, res) => {
         }
         results[entry.ProductID] = resultObject;
       } catch (error) {
+        logger(`Error processing entry: ${error}`);
         console.error("Error processing entry:", error);
         // results.push({ status: 'error', error: 'An error occurred processing the entry' });
       }
@@ -103,6 +108,7 @@ const processEntriesHandler = async (req, res) => {
 
     res.status(200).json(results);
   } catch (error) {
+    logger(`Error processing entries: ${error}`);
     console.error("Error processing entries:", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }

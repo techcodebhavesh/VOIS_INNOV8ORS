@@ -7,9 +7,11 @@ hljs.registerLanguage("javascript", javascript);
 
 const Nodejsdoc = () => {
   const codeRef = useRef(null);
+  const codeRef2 = useRef(null);
 
   useEffect(() => {
     hljs.highlightBlock(codeRef.current);
+    hljs.highlightBlock(codeRef2.current);
   }, []);
   return (
     <div><div className="nodejs-impl">
@@ -23,7 +25,7 @@ const Nodejsdoc = () => {
 
     <br></br>
     <pre>
-      <code className="javascript" ref={codeRef}>
+      <code className="javascript"  ref={codeRef2}>
         {`
 //Example API Request:
 http://localhost/togemini/processall   
@@ -54,8 +56,10 @@ body: JSON.stringify({ data }),
 `}
       </code>
     </pre>
+
     <br />
     <h2>Example Response</h2>
+
     <pre>
       <code className="javascript"  ref={codeRef}>
         {`

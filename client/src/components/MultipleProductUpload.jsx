@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import uploadimg from "./Assets/uploadimg.png";
 import "./MultipleProductUpload.css";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -15,8 +15,12 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import OutputDashboard from "./OutputDashboard";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useAuth } from "./context/auth/AuthState";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../base";
 
 const MultipleProductUpload = () => {
+  const { currentUser } = useAuth();
   const [droparea, setdroparea] = useState(false);
   const [CSVfile, setCSVfile] = useState(null);
   const [imageOpen, setimageOpen] = useState({ open: false, index: 0 });
@@ -28,6 +32,25 @@ const MultipleProductUpload = () => {
     success: false,
   });
   const [ouptuResult, setOuptuResult] = useState(undefined);
+  const [apiKey, setapiKey] = useState("");
+
+  async function getUserData() {
+    const docRef = doc(db, "users", currentUser.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      setapiKey(docSnap.data().apiKey);
+      // console.log("Document data:", docSnap.data());
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }
+
+  useEffect(() => {
+    getUserData();
+  }, [currentUser]);
+
   function showdroparea() {
     console.log("drag over");
     setdroparea(true);
@@ -149,7 +172,7 @@ const MultipleProductUpload = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ data }),
+      body: JSON.stringify({ data, apiKey }),
     })
       .then(async (response) => {
         if (response.ok) {

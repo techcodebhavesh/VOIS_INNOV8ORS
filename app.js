@@ -20,9 +20,11 @@ app.use("/api/apikey", apikeyRouter);
 app.use("/api/user", userRouter);
 app.use("/api/togemini", togeminiRouter);
 
-
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "hello.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
+// app.get("/", function (req, res) {
+//   res.sendFile(path.join(__dirname, "hello.html"));
+// });
 
 app.listen(PORT, () => console.log("Server running on " + PORT));

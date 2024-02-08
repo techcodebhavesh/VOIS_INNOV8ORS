@@ -44,6 +44,7 @@ const App = () => {
           <Route path="getapi" element={<Getapi />} />
           <Route path="Banner" element={<Banner />} />
           <Route path="*" element={<Navigate to="/login" />} />
+          
         </Route>
       </Routes>
     </div>

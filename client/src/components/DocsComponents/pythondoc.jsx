@@ -25,7 +25,7 @@ This Python code snippet serves as an example of how to utilize the Innovators A
  #import requests
  #import json
 
- url ="http://example.com/api/togemini/processall"
+ url ="https://innov8ors-ondc.el.r.appspot.com/api/togemini/processall"
 
  # Define headers
 headers = {

@@ -49,8 +49,7 @@ const Home = () => {
         />
 
         <h6>
-          A cutting-edge virtual platform designed to revolutionize discussions,
-          collaborative work, and team dynamics
+          A cutting-edge virtual API platform designed to Revolutionize the ONDC platform.
         </h6>
         <div className="cards">
           <div className="card-container">

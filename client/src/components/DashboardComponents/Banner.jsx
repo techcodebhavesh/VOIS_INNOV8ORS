@@ -1,10 +1,33 @@
-import React from "react";
-// import avatar from "assets/img/avatars/avatar11.png";
+import React, { useState, useEffect } from "react";
+import firebase from "firebase/app";
+import "firebase/firestore";
 import banner from "./banner.png"; 
 import Card from "./components/card";
 import General from "./General";
+import {db} from "../../base";
 
 const Banner = () => {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+
+        const docRef = db.collection("users").doc("userid");
+        const doc = await docRef.get();
+        if (doc.exists) {
+          setUserData(doc.data());
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching document: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="div-carduser" style={{padding: '20%',paddingRight: '20%',paddingTop:'3%',paddingBottom:'10%' ,backgroundRepeat: 'no-repeat',backgroundAttachment: 'fixed' ,background: 'linear-gradient(110.84deg, #fef3e8 1.01%, #bfebf4 102.07%)'}}>
       <Card extra={"items-center w-full h-full p-[16px] bg-cover"} style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#fff' }}>
@@ -21,28 +44,28 @@ const Banner = () => {
       {/* Name and position */}
       <div className="mt-16 flex flex-col items-center">
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-          Adela Parkson
+          {userData && userData.name} {/* Assuming "name" is a field in your document */}
         </h4>
-        <p className="text-base font-normal text-gray-600">Product Manager</p>
+        <p className="text-base font-normal text-gray-600">{userData && userData.position}</p> {/* Assuming "position" is a field in your document */}
       </div>
 
       {/* Post followers */}
       <div className="mt-6 mb-3 flex gap-4 md:!gap-14">
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl font-bold text-navy-700 dark:text-white">17</p>
-          <p className="text-sm font-normal text-gray-600">Posts</p>
+          <p className="text-2xl font-bold text-navy-700 dark:text-white">{userData && userData.apiCalled}</p> {/* Assuming "apiCalled" is a field in your document */}
+          <p className="text-sm font-normal text-gray-600">API called</p>
         </div>
         <div className="flex flex-col items-center justify-center">
           <p className="text-2xl font-bold text-navy-700 dark:text-white">
-            9.7K
-          </p>
-          <p className="text-sm font-normal text-gray-600">Followers</p>
+            {userData && userData.apiCalledFails}
+          </p> {/* Assuming "apiCalledFails" is a field in your document */}
+          <p className="text-sm font-normal text-gray-600">API call failed</p>
         </div>
         <div className="flex flex-col items-center justify-center">
           <p className="text-2xl font-bold text-navy-700 dark:text-white">
-            434
-          </p>
-          <p className="text-sm font-normal text-gray-600">Following</p>
+            {userData && userData.apiCalledSuccess}
+          </p> {/* Assuming "apiCalledSuccess" is a field in your document */}
+          <p className="text-sm font-normal text-gray-600">API call Success</p>
         </div>
       </div>
     </Card>

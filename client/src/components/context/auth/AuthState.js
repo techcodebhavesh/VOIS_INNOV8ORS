@@ -6,6 +6,8 @@ import { auth } from "../../../base";
 const AuthState = (props) => {
   const [currentUser, setcurrentUser] = useState(0);
 
+  console.log({ currentUser });
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setcurrentUser(user);

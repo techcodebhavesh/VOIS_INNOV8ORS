@@ -1,42 +1,34 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import "./Login.css"; // Import your stylesheet
+import {
+  signOut,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth, db } from "../base";
+import { doc, setDoc } from "firebase/firestore";
+import uuid from "react-uuid";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { useAuth } from "./context/auth/AuthState";
 
-const Login = ({ onLoginSuccess }) => {
-  const [name, setName] = useState("");
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    try {
-      const apiUrl = "http://localhost:5001/api/user/login"; // Replace with your server endpoint
-
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-
-        navigate("/home");
-        onLoginSuccess && onLoginSuccess();
-      } else {
-        const errorMessage = await response.text();
-        console.error("Failed to send data to the server:", errorMessage);
-        alert(`Error!!`);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
   };
 
   return (
@@ -68,38 +60,73 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const { currentUser } = useAuth();
+
+  // Function to search for a given API key
+  async function searchApiKey(apiKey) {
+    const q = query(collection(db, "users"), where("apiKey", "==", apiKey));
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.docs.length > 0) {
+      console.log("API key exists");
+      return true;
+    } else {
+      console.log("API key does not exist");
+      return false;
+    }
+  }
 
   const handleSignUp = async () => {
-    try {
-      const apiUrl = "http://localhost:5001/api/user/create"; // Replace with your server endpoint
+    console.log({ name, email, password });
+    if (name && email && password) {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log({ user });
+          updateProfile(user, {
+            displayName: name,
+          })
+            .then(async () => {
+              // Profile updated!
+              // ...
 
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
+              let apiKey = uuid();
+              while (await searchApiKey(apiKey)) {
+                apiKey = uuid();
+              }
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-
-        navigate("/home");
-      } else {
-        const errorMessage = await response.text();
-        console.error("Failed to send data to the server:", errorMessage);
-        alert(`Error!!`);
-      }
-    } catch (error) {
-      console.error("Error:", error);
+              await setDoc(doc(db, "users", user.uid), {
+                apiKey: apiKey,
+                apiCalled: 0,
+                apiCalledFails: 0,
+                apiCalledSuccess: 0,
+              });
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
     }
   };
+
+  function handleSignOut() {
+    if (currentUser) {
+      signOut(auth)
+        .then(() => {
+          // Sign-out successful.
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    }
+  }
+  // currentUser && handleSignOut();
 
   return (
     <div className="login-form-container sign-up">
@@ -133,6 +160,9 @@ const SignUp = () => {
 
 const LoginPage = () => {
   const [isLoginFormActive, setIsLoginFormActive] = useState(true);
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const switchToRegister = () => {
     setIsLoginFormActive(false);
@@ -151,11 +181,10 @@ const LoginPage = () => {
 
   return (
     <>
-      
       <div className="login-parent">
         <div className={`container-ls ${isLoginFormActive ? "" : "active"}`}>
           {isLoginFormActive ? (
-            <Login onLoginSuccess={handleLoginSuccess} />
+            <Login />
           ) : (
             <SignUp />
           )}
@@ -184,6 +213,11 @@ const LoginPage = () => {
             </div>
           </div>
         </div>
+        {Boolean(currentUser) ? (
+          <Navigate to="/" state={{ from: location }} replace />
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

@@ -20,17 +20,6 @@ nav {
   flex-direction: row-reverse;
 }
 
-nav a {
-  position: relative;
-  text-decoration: none;
-  padding: 12px 25px;
-  font-weight: 400;
-  /* letter-spacing: 0.1em; */
-}
-nav a:hover{
-  color: #000000;
-}
-
 #marker {
   border-radius: 20px;
   position: absolute;

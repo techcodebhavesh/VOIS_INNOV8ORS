@@ -50,7 +50,8 @@ function isJsonString(str) {
 const processEntriesHandler = async (req, res) => {
   try {
     const inputData = req.body.data;
-    // console.log("Input Data:", inputData[0]);
+    const apiKey = req.body.apiKey;
+    console.log("Input Data:", inputData);
 
     if (!inputData || !Array.isArray(inputData)) {
       return res.status(400).json({ error: "Invalid data format" });

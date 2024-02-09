@@ -32,6 +32,7 @@ nav {
   display: flex;
   padding: 10px 0;
   flex-direction: row-reverse;
+  margin: 0 10px;
 }
 
 .navbar {
@@ -39,7 +40,7 @@ nav {
   z-index: 1500;
 }
 
-nav a {
+nav a, nav div {
   position: relative;
   text-decoration: none;
   padding: 12px 25px;
@@ -47,8 +48,9 @@ nav a {
   font-weight: 400;
   /* letter-spacing: 0.1em; */
 }
-nav a:hover{
+nav a:hover, nav div:hover{
   color: #000000;
+  cursor: pointer;
 }
 #marker {
   border-radius: 20px;

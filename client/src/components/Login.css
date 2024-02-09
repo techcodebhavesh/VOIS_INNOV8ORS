@@ -39,9 +39,7 @@ nav div {
   font-weight: 400;
   /* letter-spacing: 0.1em; */
 }
-nav a:hover{
-  color: #000000;
-}
+
 #marker {
   border-radius: 20px;
   position: absolute;

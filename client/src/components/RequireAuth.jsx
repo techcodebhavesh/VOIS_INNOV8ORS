@@ -1,5 +1,5 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../context/auth/AuthState";
+import { useAuth } from "./context/auth/AuthState";
 import React from "react";
 
 import CircularProgress from "@mui/material/CircularProgress";

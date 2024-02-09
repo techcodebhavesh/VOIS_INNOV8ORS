@@ -6,8 +6,9 @@ const apidocs = () => {
     <div>
       <h1>Quickstart</h1>
       <p>
-        The Innovators API gives you access to cutting-edge generative AI models
-        for a wide range of applications. The Innovators quickstarts will guide
+      The Innovators API provides access to cutting-edge catelogue scorer designed for a wide range of applications. With the Innovators API, you can leverage state-of-the-art technology to enhance your product catalog by automatically rating various aspects of your products such as titles, descriptions, images, features, and additional information.
+</p>
+        <p>The Innovators quickstarts will guide
         you through getting started with the Innovators API using a programming
         language of your choice:
       </p>

@@ -14,6 +14,12 @@ const Ruby = () => {
   return (
     <div><div className="Ruby-imp">
     <h1>Innovators API: Get started with Ruby</h1>
+    <p className="small-font">
+    This Ruby code snippet serves as an example of how to utilize the Innovators API within a Ruby environment. It demonstrates how to use the requests library to send a POST request to the specified API endpoint (http://loclhost/api/togemini/processall).
+
+
+</p>
+
 
     <pre>
       <code className="javascript"  ref={codeRef}>
@@ -52,6 +58,12 @@ else
 end`}
       </code>
     </pre>
+
+    <p className="small-font">
+    This code snippet can be integrated into your application to interact with the Innovators API and process product data accordingly.
+
+</p>
+
 
     
 

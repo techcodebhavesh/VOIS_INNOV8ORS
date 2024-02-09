@@ -18,17 +18,17 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useAuth } from "./context/auth/AuthState";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../base";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { hiIN } from '@mui/material/locale';
-
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { hiIN } from "@mui/material/locale";
+import Alert from "@mui/material/Alert";
 
 const theme = createTheme(
   {
     palette: {
-      primary: { main: '#1976d2' },
+      primary: { main: "#1976d2" },
     },
   },
-  hiIN,
+  hiIN
 );
 
 const MultipleProductUpload = () => {
@@ -45,6 +45,11 @@ const MultipleProductUpload = () => {
   });
   const [ouptuResult, setOuptuResult] = useState(undefined);
   const [apiKey, setapiKey] = useState("");
+  const [alertData, setalertData] = useState({
+    alert: false,
+    message: "",
+    severity: "",
+  });
 
   async function getUserData() {
     const docRef = doc(db, "users", currentUser.uid);
@@ -270,6 +275,11 @@ const MultipleProductUpload = () => {
   const uploadFileBlock = () => {
     return (
       <>
+        {alertData.alert && (
+          <Alert variant="filled" severity={alertData.severity}>
+            {alertData.message}
+          </Alert>
+        )}
         <div className="product-upload-parent" onDragOver={showdroparea}>
           {!CSVfile && (
             <div className="upload-file-area">
@@ -374,12 +384,12 @@ const MultipleProductUpload = () => {
               })}
             </div>
             <div className="product-card-details">
-            {shouldShowInstructions && (
+              {shouldShowInstructions && (
+                <h1 className="Dnd-instructions">
+                  Drag and drop Images of the Catalog here
+                </h1>
+              )}
               <h1 className="Dnd-instructions">
-                Drag and drop Images of the Catalog here
-              </h1>
-            )}
-            <h1 className="Dnd-instructions">
                 Drag and drop Images of the Catalog here
               </h1>
               <div className="product-card-title">
@@ -399,13 +409,13 @@ const MultipleProductUpload = () => {
                 {CSVfile[imageOpen.index].ProductInfo}
               </div>
               <Button
-            variant="contained"
-            color="success"
-            className="submit-button"
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
+                variant="contained"
+                color="success"
+                className="submit-button"
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
             </div>
           </div>
           <div
@@ -468,8 +478,15 @@ const MultipleProductUpload = () => {
     }
     return (
       <>
-
-      <h2 style={{color:'red'}}>Upload Product images to get score.<br></br> Product images cannot be NULL.</h2>
+        {alertData.alert && (
+          <Alert variant="filled" severity={alertData.severity}>
+            {alertData.message}
+          </Alert>
+        )}
+        <h2 style={{ color: "red" }}>
+          Upload Product images to get score.<br></br> Product images cannot be
+          NULL.
+        </h2>
         <table id="maintable">
           <thead>
             <tr>
@@ -482,24 +499,24 @@ const MultipleProductUpload = () => {
               <th>Product Info</th>
             </tr>
           </thead>
-          
+
           <tbody>
             {CSVfile.map((value, i) => (
               <tr key={i}>
                 {/* Product ID */}
                 <td>
-                <ThemeProvider theme={theme}>
-          <TextareaAutosize
-                    id="standard-textarea"
-                    className="numberinput"
-                    variant="standard"
-                    type="number"
-                    value={value.ProductID}
-                    onChange={(e) =>
-                      handleChange(i, "ProductID", e.target.value)
-                    }
-                  />
-</ThemeProvider>
+                  <ThemeProvider theme={theme}>
+                    <TextareaAutosize
+                      id="standard-textarea"
+                      className="numberinput"
+                      variant="standard"
+                      type="number"
+                      value={value.ProductID}
+                      onChange={(e) =>
+                        handleChange(i, "ProductID", e.target.value)
+                      }
+                    />
+                  </ThemeProvider>
                 </td>
                 {/* SKU */}
                 <td>
@@ -513,16 +530,16 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Title */}
                 <td>
-                <ThemeProvider theme={theme}>
-                  <TextareaAutosize
-                    id="standard-textarea"
-                    variant="standard"
-                    type="text"
-                    value={value.ProductTitle}
-                    onChange={(e) =>
-                      handleChange(i, "ProductTitle", e.target.value)
-                    }
-                  />
+                  <ThemeProvider theme={theme}>
+                    <TextareaAutosize
+                      id="standard-textarea"
+                      variant="standard"
+                      type="text"
+                      value={value.ProductTitle}
+                      onChange={(e) =>
+                        handleChange(i, "ProductTitle", e.target.value)
+                      }
+                    />
                   </ThemeProvider>
                 </td>
                 {/* Product Images */}
@@ -610,7 +627,10 @@ const MultipleProductUpload = () => {
   ) : submitted.success === true ? (
     <OutputDashboard data={ouptuResult} />
   ) : (
-    <CircularProgress />
+    <div className="progress">
+      <CircularProgress /><br />
+      Please wait while we process your request
+    </div>
   );
 };
 

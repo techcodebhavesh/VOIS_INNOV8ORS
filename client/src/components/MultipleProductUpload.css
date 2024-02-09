@@ -296,3 +296,9 @@ td textarea:focus-visible {
 .buttons-multi-sc .feedback-button {
   margin-left: 20px;
 }
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./OutputDashboard.css";
 import AllScoresLineChart from "./DashboardComponents/AllScoresLineChart.jsx";
 import WeeklyRevenue from "./DashboardComponents/WeeklyRevenue";
@@ -25,6 +25,10 @@ const OutputDashboard = ({ data }) => {
 
   console.log({ currentIndex });
   console.log(Object.keys(data));
+
+  useEffect(() => {
+    setcurrentIndex(Object.keys(data)[0]);
+  }, [data]);
 
   const handleChange = (event) => {
     setcurrentIndex(event.target.value); 

@@ -180,6 +180,13 @@ const SingleProductUpload = () => {
         onDragOver={showdroparea}
       >
         <div className="images-prev">
+        <Button
+            style={{maxwidth:'20%',maxHeight:'50px'}}
+            variant="contained"
+            className="Dnd-instructions-img"
+          >
+            Drag Images
+          </Button>
           {productImage.map((obj, index) => {
             return (
               <div className="product-card-image-container" key={index}>
@@ -200,13 +207,7 @@ const SingleProductUpload = () => {
             );
           })}
           <br />
-          <Button
-            variant="contained"
-            endIcon={<SendIcon />}
-            className="Dnd-instructions-img"
-          >
-            Drag Images
-          </Button>
+          
         </div>
         <div className="fieldBoxes box-input my-10 ">
           {/* Start white textfields bloc */}

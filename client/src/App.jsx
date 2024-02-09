@@ -37,11 +37,10 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="" element={<RequireAuth />}>
             <Route path="score" element={<Score />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
           <Route path="documentation" element={<Documentation />} />
           <Route path="feedback" element={<Feedback />} />
-          <Route path="getapi" element={<Getapi />} />
-          <Route path="profile" element={<Profile />} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Route>
       </Routes>

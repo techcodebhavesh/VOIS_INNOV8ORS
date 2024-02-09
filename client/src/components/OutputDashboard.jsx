@@ -26,6 +26,9 @@ const OutputDashboard = ({ data }) => {
   console.log({ currentIndex });
   console.log(Object.keys(data));
 
+  const handleChange = (event) => {
+    setcurrentIndex(event.target.value); 
+  };
 
   return (
     <>

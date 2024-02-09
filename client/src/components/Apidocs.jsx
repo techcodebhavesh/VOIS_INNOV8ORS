@@ -13,12 +13,12 @@ const apidocs = () => {
       </p>
       <br />
       <br />
-      <h2>NodeJs</h2>
-      <h2>Pyhton</h2>
-      <h2>PHP</h2>
-      <h2>jQuery</h2>
-      <h2>Go</h2>
-      <h2>Ruby</h2>
+      <h2 style={{fontFamily:"cursive" ,fontWeight:'600'}}>NodeJs</h2>
+      <h2  style={{fontFamily:"cursive" ,fontWeight:'600'}}>Pyhton</h2>
+      <h2  style={{fontFamily:"cursive" ,fontWeight:'600'}}>PHP</h2>
+      <h2  style={{fontFamily:"cursive" ,fontWeight:'600'}}>jQuery</h2>
+      <h2  style={{fontFamily:"cursive" ,fontWeight:'600'}}>Go</h2>
+      <h2  style={{fontFamily:"cursive" ,fontWeight:'600'}}>Ruby</h2>
       <br />
       
 

@@ -18,6 +18,18 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useAuth } from "./context/auth/AuthState";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../base";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { hiIN } from '@mui/material/locale';
+
+
+const theme = createTheme(
+  {
+    palette: {
+      primary: { main: '#1976d2' },
+    },
+  },
+  hiIN,
+);
 
 const MultipleProductUpload = () => {
   const { currentUser } = useAuth();
@@ -362,6 +374,14 @@ const MultipleProductUpload = () => {
               })}
             </div>
             <div className="product-card-details">
+            {shouldShowInstructions && (
+              <h1 className="Dnd-instructions">
+                Drag and drop Images of the Catalog here
+              </h1>
+            )}
+            <h1 className="Dnd-instructions">
+                Drag and drop Images of the Catalog here
+              </h1>
               <div className="product-card-title">
                 <b>Title</b>
                 {CSVfile[imageOpen.index].ProductTitle}
@@ -378,6 +398,14 @@ const MultipleProductUpload = () => {
                 <b>Additional Information</b>
                 {CSVfile[imageOpen.index].ProductInfo}
               </div>
+              <Button
+            variant="contained"
+            color="success"
+            className="submit-button"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
             </div>
           </div>
           <div
@@ -440,6 +468,8 @@ const MultipleProductUpload = () => {
     }
     return (
       <>
+
+      <h2 style={{color:'red'}}>Upload Product images to get score.<br></br> Product images cannot be NULL.</h2>
         <table id="maintable">
           <thead>
             <tr>
@@ -452,12 +482,14 @@ const MultipleProductUpload = () => {
               <th>Product Info</th>
             </tr>
           </thead>
+          
           <tbody>
             {CSVfile.map((value, i) => (
               <tr key={i}>
                 {/* Product ID */}
                 <td>
-                  <TextareaAutosize
+                <ThemeProvider theme={theme}>
+          <TextareaAutosize
                     id="standard-textarea"
                     className="numberinput"
                     variant="standard"
@@ -467,6 +499,7 @@ const MultipleProductUpload = () => {
                       handleChange(i, "ProductID", e.target.value)
                     }
                   />
+</ThemeProvider>
                 </td>
                 {/* SKU */}
                 <td>
@@ -480,6 +513,7 @@ const MultipleProductUpload = () => {
                 </td>
                 {/* Product Title */}
                 <td>
+                <ThemeProvider theme={theme}>
                   <TextareaAutosize
                     id="standard-textarea"
                     variant="standard"
@@ -489,6 +523,7 @@ const MultipleProductUpload = () => {
                       handleChange(i, "ProductTitle", e.target.value)
                     }
                   />
+                  </ThemeProvider>
                 </td>
                 {/* Product Images */}
                 <td>

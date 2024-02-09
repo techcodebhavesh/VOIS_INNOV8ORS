@@ -9,6 +9,7 @@ body {
 .product-upload-parent {
   display: flex;
   flex-direction: column;
+  width: 100%;
   align-items: center;
   justify-content: center;
   width: 100%;

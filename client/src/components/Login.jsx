@@ -23,11 +23,13 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // ...
+        window.alert("Login successful!");
+        navigate("/"); // Redirect to home page or any desired location
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        window.alert(errorMessage); // Display error message in alert
       });
   };
 
@@ -82,7 +84,7 @@ const SignUp = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log({ user });
+          window.alert("Sign up successful!");
           updateProfile(user, {
             displayName: name,
           })
@@ -105,12 +107,14 @@ const SignUp = () => {
             .catch((error) => {
               // An error occurred
               // ...
+              window.alert(error.message); // Display error message in alert
             });
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           // ..
+          window.alert(errorMessage); // Display error message in alert
         });
     }
   };
@@ -120,9 +124,11 @@ const SignUp = () => {
       signOut(auth)
         .then(() => {
           // Sign-out successful.
+          window.alert("Sign out successful!");
         })
         .catch((error) => {
           // An error happened.
+          window.alert(error.message); // Display error message in alert
         });
     }
   }
@@ -224,3 +230,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+

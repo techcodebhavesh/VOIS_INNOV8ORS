@@ -113,3 +113,11 @@ nav {
 .sidebar a:hover {
   background-color: #ddd;
 }
+
+.dropdownDoc{
+  width: 100%;
+  border: none;
+  background-color: #3498db;
+  height: 50px;
+  padding: 10px;
+}

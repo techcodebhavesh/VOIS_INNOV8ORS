@@ -12,6 +12,7 @@ import Pythondoc from "./DocsComponents/pythondoc";
 import Ruby from "./DocsComponents/Ruby";
 import Jquerydoc from "./DocsComponents/Jquerydoc";
 import Godoc from "./DocsComponents/Godoc";
+import SampleTemplate from "./DocsComponents/SampleTemplate";
 
 const Documentation = () => {
   const [selectedContent, setSelectedContent] = useState("Introduction");
@@ -25,44 +26,31 @@ const Documentation = () => {
 
 
       <div className="body-doc">
-        <div className="sidebar">
-          <a href="#Introduction" onClick={() => handleSidebarClick("Introduction")}>
-            Introduction
-          </a>
-          <a href="#services" onClick={() => handleSidebarClick("services")}>
-            Services
-          </a>
-          <a href="#apidocs" onClick={() => handleSidebarClick("apidocs")}>
-            API Documentation
-          </a>
-          <a href="#apidocs" onClick={() => handleSidebarClick("Nodejsdoc")}>
-          NodeJs
-          </a>
-          
-          <a href="#apidocs" onClick={() => handleSidebarClick("Pythondoc")}>
-          Pyhton
-          </a>
-          <a href="#apidocs" onClick={() => handleSidebarClick("Phpdoc")}>
-          PHP
-
-          </a>
-          <a href="#apidocs" onClick={() => handleSidebarClick("Jquerydoc")}>
-          jQuery
-          </a>
-          <a href="#apidocs" onClick={() => handleSidebarClick("Godoc")}>
-            Go
-          </a>
-          <a href="#apidocs" onClick={() => handleSidebarClick("Ruby")}>
-            Ruby
-          </a>
-        
-          <a
-            href="#get-apikey"
-            onClick={() => handleSidebarClick("get-apikey")}
-          >
-            Get API key
-          </a>
-        </div>
+      <div className="sidebar">
+  <a href="#Introduction" onClick={() => handleSidebarClick("Introduction")}>
+    Introduction
+  </a>
+  <a href="#services" onClick={() => handleSidebarClick("services")}>
+    Services
+  </a>
+  <a href="#apidocs" onClick={() => handleSidebarClick("apidocs")}>
+    API Documentation
+  </a>
+  <select className="dropdownDoc" onChange={(e) => handleSidebarClick(e.target.value)}>
+    <option value="Nodejsdoc">NodeJs</option>
+    <option value="Pythondoc">Python</option>
+    <option value="Phpdoc">PHP</option>
+    <option value="Jquerydoc">jQuery</option>
+    <option value="Godoc">Go</option>
+    <option value="Ruby">Ruby</option>
+  </select>
+  <a href="#get-apikey" onClick={() => handleSidebarClick("get-apikey")}>
+    Get API key
+  </a>
+  <a href="#SampleTemplate" onClick={() => handleSidebarClick("SampleTemplate")}>
+    Download Sample Template
+  </a>
+</div>
 
         <div className="content">
         
@@ -78,6 +66,7 @@ const Documentation = () => {
           {selectedContent === "Ruby" && <Ruby />}       
         
           {selectedContent === "get-apikey" && <Getapi />}
+          {selectedContent === "SampleTemplate" && <SampleTemplate />}
         </div>
       </div>
     </div>

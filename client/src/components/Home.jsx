@@ -3,8 +3,18 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom"; // Import Link from React Router
 import "./Home.css";
 import OutputDashboard from "./OutputDashboard";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
+import { useAuth } from "./context/auth/AuthState";
 
 const Home = () => {
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
+
+  const handlesubsclick = (e) => {Boolean(currentUser) ? (
+    window.alert("Already subscribed !")
+  ) : (
+    navigate('/login')
+  )}
 
   return (
     <div className="page">
@@ -70,7 +80,8 @@ const Home = () => {
             </Link>
 
             {/* Card 3 */}
-            <Link to="/AI" className="card-link">
+            
+            <div onClick={handlesubsclick} className="card-link">
               <div className="card">
                 <h2>Subscribe to our API</h2>
                 <p>
@@ -80,14 +91,14 @@ const Home = () => {
                 </p>
                 <img src="svg3.png" alt="svg1" />
               </div>
-            </Link>
+            </div>
           </div>
         </div>
 
 
         <div className="context"></div>
       </div>
-
+      
     </div>
   );
 };

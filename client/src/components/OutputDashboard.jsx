@@ -21,7 +21,7 @@ const styles = {
 };
 
 const OutputDashboard = ({ data }) => {
-  const [currentIndex, setcurrentIndex] = useState("");
+  const [currentIndex, setcurrentIndex] = useState("0");
 
   console.log({ currentIndex });
   console.log(Object.keys(data));

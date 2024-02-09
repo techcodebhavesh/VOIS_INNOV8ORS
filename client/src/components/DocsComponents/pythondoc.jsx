@@ -14,6 +14,9 @@ const Pythondoc = () => {
   return (
     <div><div className="pythom-imp">
     <h1>Innovator's API: Quickstart with PYTHON</h1>
+    <p className="small-font">
+This Python code snippet serves as an example of how to utilize the Innovators API within a Python environment. It demonstrates how to use the requests library to send a POST request to the specified API endpoint (http://loclhost/api/togemini/processall).</p>
+    
     
 
     <pre>
@@ -52,6 +55,12 @@ else:
  `}
       </code>
     </pre>
+    <p className="small-font">
+    This code snippet can be integrated into your application to interact with the Innovators API and process product data accordingly.
+
+</p>
+    
+
   
     </div></div>
   )

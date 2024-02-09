@@ -15,6 +15,11 @@ const Jquerydoc = () => {
   return (
     <div><div className="jQuery-imp">
     <h1>Innovators API: Get started with JQuery</h1>
+    <p className="small-font">
+    
+This jQuery code snippet serves as an example of how to utilize the Innovators API within a jQuery environment. It demonstrates how to use the requests library to send a POST request to the specified API endpoint (http://loclhost/api/togemini/processall).
+
+</p>
     <pre>
       <code className="javascript"  ref={codeRef}>
         {`
@@ -44,7 +49,10 @@ error: function(xhr, status, error) {
 `}
       </code>
     </pre>
-    
+    <p className="small-font">
+    This code snippet can be integrated into your application to interact with the Innovators API and process product data accordingly.
+
+</p>
 
   </div></div>
   )

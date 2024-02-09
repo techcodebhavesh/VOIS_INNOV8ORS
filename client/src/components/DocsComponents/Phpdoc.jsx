@@ -15,6 +15,12 @@ const Phpdoc = () => {
   return (
     <div><div className="php-imp">
     <h1>Innovators API: Get started with PHP</h1>
+    <p className="small-font">
+   
+This PHP code snippet serves as an example of how to utilize the Innovators API within a PHP environment. It demonstrates how to use the requests library to send a POST request to the specified API endpoint (http://loclhost/api/togemini/processall).
+
+</p>
+    
     <h2>CODE EXAMPLE PHP</h2>
     <pre>
       <code className="javascript" ref={codeRef}>
@@ -66,6 +72,11 @@ if(curl_errno($ch)) {
       </code>
     </pre>
 
+    <p className="small-font">
+    This code snippet can be integrated into your application to interact with the Innovators API and process product data accordingly.
+
+</p>
+    
 
   </div>
 </div>

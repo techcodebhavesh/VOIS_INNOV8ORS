@@ -17,6 +17,8 @@ const Godoc = () => {
     
     <div><div className="Go-imp">
     <h1>Innovators API: Get started with Go</h1>
+    <p className="small-font">This Go lang code snippet serves as an example of how to utilize the Innovators API within a Go lang environment. It demonstrates how to use the requests library to send a POST request to the specified API endpoint (http://loclhost/api/togemini/processall).
+</p>
     <pre>
       <code className="javascript"  ref={codeRef}>
         {`
@@ -69,8 +71,13 @@ fmt.Println("Response:", string(body))
 }
 `}
       </code>
+
     </pre>
-    
+    <p className="small-font">
+This code snippet can be integrated into your application to interact with the Innovators API and process product data accordingly.
+
+
+</p>
   </div>
   </div>
   )

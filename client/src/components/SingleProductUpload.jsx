@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -41,6 +41,10 @@ const SingleProductUpload = () => {
       console.log("No such document!");
     }
   }
+
+  useEffect(() => {
+    getUserData();
+  }, [currentUser]);
 
   function showdroparea() {
     console.log("drag over");

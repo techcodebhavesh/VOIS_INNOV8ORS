@@ -37,6 +37,10 @@ const {
 */
 
 const { run } = require("./geminirun.controller.js");
+const {
+  searchApiKey,
+  incrementAPICallCount,
+} = require("../models/apiKey/apiKey.queries");
 
 function isJsonString(str) {
   try {
@@ -53,6 +57,17 @@ const processEntriesHandler = async (req, res) => {
     const apiKey = req.body.apiKey;
     console.log("Input Data:", inputData);
 
+    if (!apiKey) {
+      return res.status(400).json({ error: "API key is required" });
+    }
+
+    const searchApiKeyResult = await searchApiKey(apiKey);
+
+    if (searchApiKeyResult === 0) {
+      return res.status(401).json({ error: "Invalid API Key" });
+    }
+    
+
     if (!inputData || !Array.isArray(inputData)) {
       return res.status(400).json({ error: "Invalid data format" });
     }
@@ -66,6 +81,7 @@ const processEntriesHandler = async (req, res) => {
         let i = 0;
         while (!resultValidated) {
           if (i >= 5) {
+            incrementAPICallCount(apiKey, 0, 1)
             return res.status(500).json({ error: "Internal Server Error" });
           }
 
@@ -99,13 +115,16 @@ const processEntriesHandler = async (req, res) => {
         results[entry.ProductID] = resultObject;
       } catch (error) {
         console.error("Error processing entry:", error);
-        // results.push({ status: 'error', error: 'An error occurred processing the entry' });
+        incrementAPICallCount(apiKey, 0, 1)
+        return res.status(500).json({ error: "Internal Server Error" });
       }
     }
 
-    res.status(200).json(results);
+    incrementAPICallCount(apiKey, 1, 0)
+    return res.status(200).json(results);
   } catch (error) {
     console.error("Error processing entries:", error);
+    incrementAPICallCount(apiKey, 1, 0)
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };

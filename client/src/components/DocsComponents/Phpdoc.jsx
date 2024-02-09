@@ -23,7 +23,7 @@ This PHP code snippet serves as an example of how to utilize the Innovators API 
     
     <h2>CODE EXAMPLE PHP</h2>
     <pre>
-      <code className="javascript" ref={codeRef}>
+      <code className="javascript" ref={codeRef} style={{borderRadius:'10px',margin:'px'}}>
         {`
 <?php
 // Define your data

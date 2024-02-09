@@ -22,7 +22,7 @@ const Ruby = () => {
 
 
     <pre>
-      <code className="javascript"  ref={codeRef}>
+      <code className="javascript"  ref={codeRef} style={{borderRadius:'10px',margin:'px'}}>
         {`
 require 'json'
       

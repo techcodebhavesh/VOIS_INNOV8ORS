@@ -21,7 +21,7 @@ This jQuery code snippet serves as an example of how to utilize the Innovators A
 
 </p>
     <pre>
-      <code className="javascript"  ref={codeRef}>
+      <code className="javascript"  ref={codeRef} style={{borderRadius:'10px',margin:'px'}}>
         {`
 // Define your data
 var data = {

@@ -25,7 +25,7 @@ const Nodejsdoc = () => {
 
     <br></br>
     <pre>
-      <code className="javascript"  ref={codeRef2}>
+      <code className="javascript"  ref={codeRef2} style={{borderRadius:'10px',margin:'px'}}>
         {`
 //Example API Request:
 http://localhost/togemini/processall   

@@ -20,7 +20,7 @@ This Python code snippet serves as an example of how to utilize the Innovators A
     
 
     <pre>
-      <code className="javascript" ref={codeRef}>
+      <code className="javascript" ref={codeRef} style={{borderRadius:'10px',margin:'px'}}>
         {`
  #import requests
  #import json

@@ -35,9 +35,7 @@ const SingleProductUpload = () => {
 
     if (docSnap.exists()) {
       setapiKey(docSnap.data().apiKey);
-      // console.log("Document data:", docSnap.data());
     } else {
-      // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
   }
@@ -80,9 +78,6 @@ const SingleProductUpload = () => {
     });
   }
 
-  console.log("files");
-  console.log(productImage);
-
   function imageToBase64(imgBlob, mimeType) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -91,7 +86,6 @@ const SingleProductUpload = () => {
         if (typeof reader.result === "string") {
           resolve(
             reader.result.split(",")[1] // Extracting base64 part
-            //mimeType,
           );
         } else {
           reject(new Error("Failed to read image as base64."));
@@ -118,7 +112,7 @@ const SingleProductUpload = () => {
         ProductImages: productImage,
       },
     ];
-    console.log({ data });
+
     data = await Promise.all(
       data.map(async (obj) => {
         let newObj = { ...obj };
@@ -130,9 +124,7 @@ const SingleProductUpload = () => {
         return newObj;
       })
     );
-    // validate data
-    console.log({ data });
-    // fetch data
+  
     setsubmitted((prev) => {
       return { ...prev, submitted: true };
     });
@@ -173,9 +165,17 @@ const SingleProductUpload = () => {
       });
   }
 
-  console.log({ ouptuResult });
+  const handleFileInput = (e) => {
+    setProductImage((prevImages) => [
+      ...prevImages,
+      ...Array.from(e.target.files).map((file) => ({
+        name: file.name,
+        blob: file,
+      })),
+    ]);
+  };
 
-  const inputData = () => (
+  return submitted.submitted === false ? (
     <>
       <div
         className={`tab1-container mx-auto ${
@@ -184,12 +184,20 @@ const SingleProductUpload = () => {
         onDragOver={showdroparea}
       >
         <div className="images-prev">
-        <Button
-            style={{maxwidth:'20%',maxHeight:'50px'}}
+          <Button
+            style={{maxWidth:'20%',maxHeight:'50px'}}
             variant="contained"
             className="Dnd-instructions-img"
+            component="label"
           >
             Drag Images
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              hidden
+              onChange={handleFileInput}
+            />
           </Button>
           {productImage.map((obj, index) => {
             return (
@@ -211,7 +219,6 @@ const SingleProductUpload = () => {
             );
           })}
           <br />
-          
         </div>
         <div className="fieldBoxes box-input my-10 ">
           {/* Start white textfields bloc */}
@@ -227,7 +234,6 @@ const SingleProductUpload = () => {
                   multiline
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  // onClick={(e) => e.stopPropagation()}
                 />
               </div>
               <div className="textfield overflow-hidden rounded-md ">
@@ -239,7 +245,6 @@ const SingleProductUpload = () => {
                   multiline
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  // onClick={(e) => e.stopPropagation()}
                 />
               </div>
               <div className="textfield overflow-hidden rounded-md ">
@@ -251,7 +256,6 @@ const SingleProductUpload = () => {
                   multiline
                   value={features}
                   onChange={(e) => setFeatures(e.target.value)}
-                  // onClick={(e) => e.stopPropagation()}
                 />
               </div>
               <div className="textfield overflow-hidden rounded-md ">
@@ -263,7 +267,6 @@ const SingleProductUpload = () => {
                   multiline
                   value={additionalFeatures}
                   onChange={(e) => setAdditionalFeatures(e.target.value)}
-                  // onClick={(e) => e.stopPropagation()}
                 />
               </div>
             </div>
@@ -271,7 +274,7 @@ const SingleProductUpload = () => {
         </div>
       </div>
 
-      <Button variant="contained" color="success" onClick={handleSubmit}>
+      <Button variant="contained" color="success" onClick={handleSubmit} style={{margin:'10px'}}>
         Submit
       </Button>
       <Link to="/feedback">
@@ -313,10 +316,6 @@ const SingleProductUpload = () => {
         </div>
       </div>
     </>
-  );
-
-  return submitted.submitted === false ? (
-    inputData()
   ) : submitted.success === true ? (
     <OutputDashboard data={ouptuResult} />
   ) : (

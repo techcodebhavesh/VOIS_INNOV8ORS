@@ -36,7 +36,9 @@ const Documentation = () => {
   <a href="#apidocs" onClick={() => handleSidebarClick("apidocs")}>
     API Documentation
   </a>
-  <select className="dropdownDoc" onChange={(e) => handleSidebarClick(e.target.value)}>
+
+  <select className="dropdownDoc" onChange={(e) => handleSidebarClick(e.target.value)} >
+  <option value="">Select language to deploy</option>
     <option value="Nodejsdoc">NodeJs</option>
     <option value="Pythondoc">Python</option>
     <option value="Phpdoc">PHP</option>
@@ -44,6 +46,7 @@ const Documentation = () => {
     <option value="Godoc">Go</option>
     <option value="Ruby">Ruby</option>
   </select>
+  
   <a href="#get-apikey" onClick={() => handleSidebarClick("get-apikey")}>
     Get API key
   </a>

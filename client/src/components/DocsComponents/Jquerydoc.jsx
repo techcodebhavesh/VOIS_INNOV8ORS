@@ -29,7 +29,7 @@ var data = {
 };
 
 // Define the URL
-var url = "http://example.com/api/togemini/processall";
+var url = "https://innov8ors-ondc.el.r.appspot.com/api/togemini/processall";
 
 // Perform HTTP POST request
 $.ajax({

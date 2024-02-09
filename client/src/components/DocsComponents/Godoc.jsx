@@ -40,7 +40,7 @@ data := map[string]interface{}{
 }
 
 // Define the URL
-url := "http://example.com/api/togemini/processall"
+url := "https://innov8ors-ondc.el.r.appspot.com/api/togemini/processall"
 
 // Convert data to JSON
 jsonData, err := json.Marshal(data)

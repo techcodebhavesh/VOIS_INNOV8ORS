@@ -32,7 +32,7 @@ data = {
 }
 
 # Define the URL
-url = URI("http://example.com/api/togemini/processall")
+url = URI("https://innov8ors-ondc.el.r.appspot.com/api/togemini/processall")
 
 # Convert data to JSON
 json_data = data.to_json

@@ -32,7 +32,7 @@ $data = array(
 );
 
 // Define the URL
-$url = 'http://example.com/api/togemini/processall';
+$url = 'https://innov8ors-ondc.el.r.appspot.com/api/togemini/processall';
 
 // Convert data to JSON string
 $data_string = json_encode(array('data' => $data));

@@ -1,10 +1,9 @@
 import Card from "./components/card";
 
-const Widget = ({ icon, title, subtitle, obj }) => {
-  console.log({ obj });
+const Widget = ({ icon, obj }) => {
   return (
     <>
-      <Card extra="!flex-row flex-grow items-center rounded-[20px]">
+      <Card extra="!flex-row flex-grow items-center rounded-[20px] widget-cards">
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
             <span className="flex items-center text-brand-500 dark:text-white">
@@ -14,16 +13,16 @@ const Widget = ({ icon, title, subtitle, obj }) => {
         </div>
 
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-          TITLE
-          <p className="font-dm text-sm font-medium text-gray-600">
+          <span className="font-bold">TITLE</span>
+          <p className="font-dm text-sm font-bold">
             {obj?.title?.rating}
           </p>
-          <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-            {subtitle}
+          <h4 className="text-xl text-navy-700 dark:text-white">
+            {obj?.title?.suggestion}
           </h4>
         </div>
       </Card>
-      <Card extra="!flex-row flex-grow items-center rounded-[20px]">
+      <Card extra="!flex-row flex-grow items-center rounded-[20px] widget-cards">
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
             <span className="flex items-center text-brand-500 dark:text-white">
@@ -33,16 +32,16 @@ const Widget = ({ icon, title, subtitle, obj }) => {
         </div>
 
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-          DESCRIPTION
-          <p className="font-dm text-sm font-medium text-gray-600">
+          <span className="font-bold">DESCRIPTION</span>
+          <p className="font-dm text-sm font-bold">
             {obj?.description?.rating}
           </p>
-          <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-            {subtitle}
+          <h4 className="text-xl text-navy-700 dark:text-white">
+            {obj?.description?.suggestion}
           </h4>
         </div>
       </Card>
-      <Card extra="!flex-row flex-grow items-center rounded-[20px]">
+      <Card extra="!flex-row flex-grow items-center rounded-[20px] widget-cards">
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
             <span className="flex items-center text-brand-500 dark:text-white">
@@ -52,16 +51,16 @@ const Widget = ({ icon, title, subtitle, obj }) => {
         </div>
 
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-          IMAGE
-          <p className="font-dm text-sm font-medium text-gray-600">
+          <span className="font-bold">IMAGE</span>
+          <p className="font-dm text-sm font-bold">
             {obj?.image?.rating}
           </p>
-          <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-            {subtitle}
+          <h4 className="text-xl text-navy-700 dark:text-white">
+            {obj?.image?.suggestion}
           </h4>
         </div>
       </Card>
-      <Card extra="!flex-row flex-grow items-center rounded-[20px]">
+      <Card extra="!flex-row flex-grow items-center rounded-[20px] widget-cards">
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
             <span className="flex items-center text-brand-500 dark:text-white">
@@ -71,16 +70,16 @@ const Widget = ({ icon, title, subtitle, obj }) => {
         </div>
 
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-          FEATURES AND BENIFITS
-          <p className="font-dm text-sm font-medium text-gray-600">
+          <span className="font-bold">FEATURES AND BENIFITS</span>
+          <p className="font-dm text-sm font-bold">
             {obj?.featuresAndBenefits?.rating}
           </p>
-          <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-            {subtitle}
+          <h4 className="text-xl text-navy-700 dark:text-white">
+            {obj?.featuresAndBenefits?.suggestion}
           </h4>
         </div>
       </Card>
-      <Card extra="!flex-row flex-grow items-center rounded-[20px]">
+      <Card extra="!flex-row flex-grow items-center rounded-[20px] widget-cards">
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
             <span className="flex items-center text-brand-500 dark:text-white">
@@ -90,16 +89,16 @@ const Widget = ({ icon, title, subtitle, obj }) => {
         </div>
 
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-          ADDITIONAL INFORMATION
-          <p className="font-dm text-sm font-medium text-gray-600">
+          <span className="font-bold">ADDITIONAL INFORMATION</span>
+          <p className="font-dm text-sm font-bold">
             {obj?.additionalInformation?.rating}
           </p>
-          <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-            {subtitle}
+          <h4 className="text-xl text-navy-700 dark:text-white">
+            {obj?.additionalInformation?.suggestion}
           </h4>
         </div>
       </Card>
-      <Card extra="!flex-row flex-grow items-center rounded-[20px]">
+      <Card extra="!flex-row flex-grow items-center rounded-[20px] widget-cards">
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
             <span className="flex items-center text-brand-500 dark:text-white">
@@ -109,12 +108,12 @@ const Widget = ({ icon, title, subtitle, obj }) => {
         </div>
 
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-          OVERALL RATING
-          <p className="font-dm text-sm font-medium text-gray-600">
+        <span className="font-bold">OVERALL RATING</span>
+          <p className="font-dm text-sm font-bold">
             {obj?.overallScore?.rating}
           </p>
-          <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-            {subtitle}
+          <h4 className="text-xl text-navy-700 dark:text-white">
+            {obj?.overallScore?.suggestion}
           </h4>
         </div>
       </Card>

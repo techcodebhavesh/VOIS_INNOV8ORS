@@ -319,7 +319,10 @@ const SingleProductUpload = () => {
   ) : submitted.success === true ? (
     <OutputDashboard data={ouptuResult} />
   ) : (
-    <CircularProgress />
+    <div className="progress">
+      <CircularProgress /><br />
+      Please wait while we process your request
+    </div>
   );
 };
 

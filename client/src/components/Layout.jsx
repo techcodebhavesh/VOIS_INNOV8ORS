@@ -125,7 +125,7 @@ const Layout = () => {
                     <h4 className="footer-widget-title">Our Team</h4>
                     <ul>
                       <li>
-                        <Link to="Documentation">About Us</Link>
+                        <Link to="About">About Us</Link>
                       </li>
                       <li>
                         <Link to="">Home</Link>

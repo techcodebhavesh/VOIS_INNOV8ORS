@@ -15,6 +15,7 @@ import Getapi from "./components/Getapi.jsx";
 import Layout from "./components/Layout.jsx";
 import Profile from "./components/Profile.jsx";
 import RequireAuth from "./components/RequireAuth.jsx";
+import About from "./components/About.jsx";
 
 const App = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const App = () => {
           </Route>
           <Route path="documentation" element={<Documentation />} />
           <Route path="feedback" element={<Feedback />} />
+          <Route path="About" element={<About />} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Route>
       </Routes>

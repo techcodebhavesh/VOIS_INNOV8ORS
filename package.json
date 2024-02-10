@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "innov8ors-ondc-backend",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,6 +8,7 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "build": "cd client && npm install && npm run build && cd .."
+    
   },
   "author": "",
   "license": "ISC",

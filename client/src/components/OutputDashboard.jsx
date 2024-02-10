@@ -80,11 +80,7 @@ const OutputDashboard = ({ data }) => {
                 className="fill-success"
               ></path>
             </svg> */}
-            <div className="card-body px-3">
-              HeHellobhaiHellobhaiHellobhaillobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhai
-              HeHellobhaiHellobhaiHellobhaillobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhai
-              HeHellobhaiHellobhaiHellobhaillobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhaiHellobhai
-            </div>
+          
           </div>
         </div>
       </div>

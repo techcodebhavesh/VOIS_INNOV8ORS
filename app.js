@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 5001;
 
 app.use(express.json({ limit: "10mb" }));
 
+app.use((req, res, next) => {
+  res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
+  next();
+});
+
 app.use(cors());
 
 app.use(express.static(path.join(__dirname, "client/build")));
@@ -23,8 +28,5 @@ app.use("/api/togemini", togeminiRouter);
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
-// app.get("/", function (req, res) {
-//   res.sendFile(path.join(__dirname, "hello.html"));
-// });
 
 app.listen(PORT, () => console.log("Server running on " + PORT));

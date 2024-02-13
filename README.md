@@ -25,12 +25,12 @@ The objective of this project is to develop a transparent and extensible catalog
 
 1. **Clone the Repository:**
    ```
-   git clone <repository_url>
+   git clone https://github.com/techcodebhavesh/ONDC_Hackathon.git
    ```
 
 2. **Navigate to Project Directory:**
    ```
-   cd <project_directory>
+   cd ONDC_Hackathon
    ```
 
 3. **Configure Gemini API Credentials:**

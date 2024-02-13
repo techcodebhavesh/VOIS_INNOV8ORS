@@ -24,7 +24,7 @@ import LoginIcon from "@mui/icons-material/Login";
 const Layout = () => {
   const { currentUser } = useAuth();
   const [anchor, setanchor] = useState(false);
-  const [drawer, setdrawer] = useState(true);
+  const [drawer, setdrawer] = useState(false);
 
   function handleSignOut() {
     if (currentUser) {

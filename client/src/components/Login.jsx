@@ -178,8 +178,6 @@ const LoginPage = () => {
     setIsLoginFormActive(true);
   };
 
-  console.log({ isLoginFormActive });
-
   const handleLoginSuccess = () => {
     // Handle actions after successful login
     console.log("Login successful!");

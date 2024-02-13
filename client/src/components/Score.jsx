@@ -11,11 +11,14 @@ import uploadimg from "./Assets/uploadimg.png";
 import SingleProductUpload from "./SingleProductUpload";
 
 const TabContent1 = () => <SingleProductUpload />;
-const TabContent2 = () => <MultipleProductUpload />;
+const TabContent2 = ({ setdiableTabOne }) => (
+  <MultipleProductUpload setdiableTabOne={setdiableTabOne} />
+);
 
 const Score = () => {
   const tabsRef = useRef(null);
   const [activeTab, setActiveTab] = useState("#tab1");
+  const [diableTabOne, setdiableTabOne] = useState(false);
 
   const handleTabClick = (s) => {
     setActiveTab(s);
@@ -27,7 +30,15 @@ const Score = () => {
         <h1>Innov8or's Catalog Scoring</h1>
         <div className="tabs" ref={tabsRef}>
           <div
-            onClick={() => handleTabClick("#tab1")}
+            onClick={() => {
+              !diableTabOne && handleTabClick("#tab1");
+              if (diableTabOne) {
+                if(window.confirm("You will lose the data in the form. Are you sure?")){
+                  setdiableTabOne(false);
+                  handleTabClick("#tab1");
+                }
+              }
+            }}
             className={activeTab === "#tab1" ? "active" : ""}
           >
             Upload Catalog
@@ -42,7 +53,9 @@ const Score = () => {
       </header>
       <div className="tab-content">
         {activeTab === "#tab1" && <TabContent1 />}
-        {activeTab === "#tab2" && <TabContent2 />}
+        {activeTab === "#tab2" && (
+          <TabContent2 setdiableTabOne={setdiableTabOne} />
+        )}
       </div>
     </div>
   );

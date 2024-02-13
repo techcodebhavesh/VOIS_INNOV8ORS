@@ -1,7 +1,4 @@
-.navbar {
-  background: linear-gradient(90deg, #1c75bc, #4aa1e0 51%, #1c75bc)
-    var(--x, 100%) / 200%;
-}
+
 /* navbar */
 * {
   /* margin: 0;
@@ -16,22 +13,6 @@
   backdrop-filter: blur(10px);
   transition: 0.85s;
   background: transparent;
-}
-
-nav {
-  position: relative;
-  display: flex;
-  padding: 10px 0;
-  flex-direction: row-reverse;
-}
-
-nav div {
-  position: relative;
-  text-decoration: none;
-  padding: 12px 25px;
-  /* color: #000000; */
-  font-weight: 400;
-  /* letter-spacing: 0.1em; */
 }
 
 #marker {
@@ -87,7 +68,7 @@ body {
 .images-prev{
   display: flex;
   justify-content:flex-start;
-  padding: 20px;
+  padding: 0 10px;
 }
 .tab1-container{
   width: 100%;
@@ -119,7 +100,7 @@ h1 {
 
 .tab1-container.drag-active {
   /* Add your styles for the drag-active state here */
-  border: 2px dashed #002f5c;
+  border: 2px solid #002f5c;
   background-color: #f0f0f0;
 }
 
@@ -226,13 +207,8 @@ h1 {
 
 .textfield{
   margin: 2%;
-  /* width:100% !important; */
-  /* margin-bottom: 2% !important; */
   margin-top: 2% !important;
   background-color: aliceblue;
-  margin-left: 40px;
-
-
 }
 
 .fieldboxes{

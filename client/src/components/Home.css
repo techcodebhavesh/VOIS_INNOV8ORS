@@ -27,31 +27,6 @@
   background: transparent;
 }
 
-nav {
-  position: relative;
-  display: flex;
-  padding: 10px 0;
-  flex-direction: row-reverse;
-  margin: 0 10px;
-}
-
-.navbar {
-  position: relative;
-  z-index: 1500;
-}
-
-nav a, nav div {
-  position: relative;
-  text-decoration: none;
-  padding: 12px 25px;
-  color: #ffffff;
-  font-weight: 400;
-  /* letter-spacing: 0.1em; */
-}
-nav a:hover, nav div:hover{
-  color: #000000;
-  cursor: pointer;
-}
 #marker {
   border-radius: 20px;
   position: absolute;
@@ -98,8 +73,14 @@ nav a:hover, nav div:hover{
   font-size: 3em !important; /* Relative font size */
 }
 
+@media screen and (max-width: 600px) {
+  .text-overlay1 h1 {
+    font-size: 2.3em !important; /* Relative font size */
+  }
+}
+
 .text-overlay1 h6 {
-  font-size: 1.5em; /* Relative font size */
+  font-size: 1.2em; /* Relative font size */
   font-weight: 400;
   font-variant: small-caps;
   margin: 10vh;
@@ -241,7 +222,7 @@ a:hover {
   }
 }
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 600px) {
   .card-container {
     display: flex;
     flex-direction: column;
@@ -260,9 +241,6 @@ a:hover {
   .card {
     width: 100%;
     padding: 2vh;
-  }
-  .navbar {
-    display: none;
   }
   .card img {
     padding: 0;

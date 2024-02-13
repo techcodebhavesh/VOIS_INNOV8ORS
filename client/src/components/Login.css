@@ -14,7 +14,7 @@
       padding: 0; */
   box-sizing: border-box;
   /* font-family: sans-serif !important; */
-  font-size: medium !important;
+  /* font-size: medium !important; */
 }
 
 .ground-glass {
@@ -22,22 +22,6 @@
   backdrop-filter: blur(10px);
   transition: 0.85s;
   background: transparent;
-}
-
-nav {
-  position: relative;
-  display: flex;
-  padding: 10px 0;
-  flex-direction: row-reverse;
-}
-
-nav div {
-  position: relative;
-  text-decoration: none;
-  padding: 12px 25px;
-  /* color: #000000; */
-  font-weight: 400;
-  /* letter-spacing: 0.1em; */
 }
 
 #marker {

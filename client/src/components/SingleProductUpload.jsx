@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -19,6 +19,7 @@ const SingleProductUpload = () => {
   const [description, setDescription] = useState("");
   const [features, setFeatures] = useState("");
   const [additionalFeatures, setAdditionalFeatures] = useState("");
+  const hiddenFileInput = useRef(null);
   const [productImage, setProductImage] = useState([]);
   const [apiKey, setapiKey] = useState("");
   const [submitted, setsubmitted] = useState({
@@ -124,7 +125,7 @@ const SingleProductUpload = () => {
         return newObj;
       })
     );
-  
+
     setsubmitted((prev) => {
       return { ...prev, submitted: true };
     });
@@ -166,13 +167,20 @@ const SingleProductUpload = () => {
   }
 
   const handleFileInput = (e) => {
-    setProductImage((prevImages) => [
-      ...prevImages,
-      ...Array.from(e.target.files).map((file) => ({
-        name: file.name,
-        blob: file,
-      })),
-    ]);
+    const newFiles = Array.from(productImage); // Create a copy of the files array
+    for (let i = 0; i < e.target.files.length; i++) {
+      const file = e.target.files[i];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const blob = new Blob([event.target.result], { type: file.type });
+        newFiles.push({
+          name: file.name,
+          blob: blob,
+        });
+        setProductImage(newFiles); // Update the state with the new array
+      };
+      reader.readAsArrayBuffer(file);
+    }
   };
 
   return submitted.submitted === false ? (
@@ -183,22 +191,23 @@ const SingleProductUpload = () => {
         }`}
         onDragOver={showdroparea}
       >
-        <div className="images-prev">
-          <Button
-            style={{maxWidth:'20%',maxHeight:'50px'}}
-            variant="contained"
-            className="Dnd-instructions-img"
-            component="label"
-          >
-            Drag Images
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              hidden
-              onChange={handleFileInput}
-            />
-          </Button>
+        <h1
+          className="Dnd-instructions"
+          onClick={() => hiddenFileInput.current.click()}
+          style={{ margin: "10px" }}
+        >
+          Drag and drop Images of the Catalog here
+        </h1>
+        <div className="images-prev" hidden={productImage.length === 0}>
+          <br />
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            hidden
+            ref={hiddenFileInput}
+            onChange={handleFileInput}
+          />
           {productImage.map((obj, index) => {
             return (
               <div className="product-card-image-container" key={index}>
@@ -220,7 +229,7 @@ const SingleProductUpload = () => {
           })}
           <br />
         </div>
-        <div className="fieldBoxes box-input my-10 ">
+        <div className="fieldBoxes box-input ">
           {/* Start white textfields bloc */}
           <div className="fieldboxes" style={{ width: "100%" }}>
             <div id="first_style">
@@ -274,7 +283,12 @@ const SingleProductUpload = () => {
         </div>
       </div>
 
-      <Button variant="contained" color="success" onClick={handleSubmit} style={{margin:'10px'}}>
+      <Button
+        variant="contained"
+        color="success"
+        onClick={handleSubmit}
+        style={{ margin: "10px" }}
+      >
         Submit
       </Button>
       <Link to="/feedback">
@@ -320,7 +334,8 @@ const SingleProductUpload = () => {
     <OutputDashboard data={ouptuResult} />
   ) : (
     <div className="progress">
-      <CircularProgress /><br />
+      <CircularProgress />
+      <br />
       Please wait while we process your request
     </div>
   );

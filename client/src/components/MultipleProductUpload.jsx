@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import uploadimg from "./Assets/uploadimg.png";
 import "./MultipleProductUpload.css";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -31,7 +31,7 @@ const theme = createTheme(
   hiIN
 );
 
-const MultipleProductUpload = () => {
+const MultipleProductUpload = ({ setdiableTabOne }) => {
   const { currentUser } = useAuth();
   const [droparea, setdroparea] = useState(false);
   const [CSVfile, setCSVfile] = useState(null);
@@ -43,6 +43,8 @@ const MultipleProductUpload = () => {
     errormsg: "",
     success: false,
   });
+  const hiddenCSVFileInput = useRef(null);
+  const hiddenImageFilesInput = useRef(null);
   const [ouptuResult, setOuptuResult] = useState(undefined);
   const [apiKey, setapiKey] = useState("");
   const [alertData, setalertData] = useState({
@@ -68,6 +70,14 @@ const MultipleProductUpload = () => {
     getUserData();
   }, [currentUser]);
 
+  useEffect(() => {
+    if (CSVfile) {
+      setdiableTabOne(true);
+    } else {
+      setdiableTabOne(false);
+    }
+  }, [CSVfile, setdiableTabOne]);
+
   function showdroparea() {
     console.log("drag over");
     setdroparea(true);
@@ -86,6 +96,16 @@ const MultipleProductUpload = () => {
 
   function handleProductImageDrop(e) {
     e.preventDefault();
+    handleProductImages(e.dataTransfer.files);
+  }
+
+  function handleProductImageButton(e) {
+    e.preventDefault();
+    console.log(e.target.files);
+    handleProductImages(e.target.files);
+  }
+
+  function handleProductImages(array) {
     setCSVfile((prev) => {
       let newCSVfile = [...prev];
       let obj = { ...newCSVfile[imageOpen.index] };
@@ -94,8 +114,8 @@ const MultipleProductUpload = () => {
       let arr = [...newCSVfile[imageOpen.index].ProductImages];
 
       // Loop through dropped files
-      for (let i = 0; i < e.dataTransfer.files.length; i++) {
-        const file = e.dataTransfer.files[i];
+      for (let i = 0; i < array.length; i++) {
+        const file = array[i];
 
         // Create a Blob for each file
         const reader = new FileReader();
@@ -161,6 +181,19 @@ const MultipleProductUpload = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    // validate data IF PRODUCT IMAGES ARE NOT NULL
+    for (let i = 0; i < CSVfile.length; i++) {
+      if (CSVfile[i].ProductImages.length === 0) {
+        setalertData({
+          alert: true,
+          message: "Product Images cannot be NULL",
+          severity: "error",
+        });
+        return;
+      }
+    }
+
     let data = [...CSVfile];
     data = await Promise.all(
       data.map(async (obj) => {
@@ -251,7 +284,39 @@ const MultipleProductUpload = () => {
     };
 
     const processFiles = async () => {
-      await handleFile(array[0]);
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].type === "text/csv") {
+          await handleFile(array[i]);
+          break;
+        }
+      }
+
+      // validate if jsonData is in correct format
+      if (jsonData.length === 0) {
+        setalertData({
+          alert: true,
+          message: "CSV file is empty or not in correct format",
+          severity: "error",
+        });
+        return;
+      }
+
+      for (let i = 0; i < jsonData.length; i++) {
+        if (
+          !jsonData[i].ProductTitle ||
+          !jsonData[i].ProductDescription ||
+          !jsonData[i].ProductFeatures ||
+          !jsonData[i].ProductInfo
+        ) {
+          setalertData({
+            alert: true,
+            message:
+              "Product Title, Description, Features and Info cannot be NULL or the CSV file is not in correct format",
+            severity: "error",
+          });
+          return;
+        }
+      }
 
       // Here, 'jsonArray' contains an array of objects with file names and corresponding JSON data
       console.log({ jsonData });
@@ -272,6 +337,23 @@ const MultipleProductUpload = () => {
     processFiles();
   }
 
+  const handleCSVButtonFileInput = (e) => {
+    handlefiles(e.target.files);
+  };
+
+  const handleDownload = () => {
+    // Assuming your CSV file is named 'sample.csv' and is located in the 'public' directory
+    const downloadLink = "./Trial_pdt.csv";
+    // Create a temporary anchor element
+    const anchor = document.createElement("a");
+    // Set the href attribute to the download link
+    anchor.href = downloadLink;
+    // Set the download attribute to specify the filename
+    anchor.download = "Trial_pdt.csv";
+    // Programmatically click the anchor element to trigger the download
+    anchor.click();
+  };
+
   const uploadFileBlock = () => {
     return (
       <>
@@ -282,18 +364,37 @@ const MultipleProductUpload = () => {
         )}
         <div className="product-upload-parent" onDragOver={showdroparea}>
           {!CSVfile && (
-            <div className="upload-file-area">
+            <div
+              className="upload-file-area"
+              onClick={() => hiddenCSVFileInput.current.click()}
+            >
+              <input
+                type="file"
+                accept=".csv"
+                multiple
+                hidden
+                ref={hiddenCSVFileInput}
+                onChange={handleCSVButtonFileInput}
+              />
               <CloudUploadIcon className="cloud-icon" />
               <br />
               Drag and Drop CSV file here
             </div>
           )}
-          <Button
+          {/* <Button
             className="download-temp-button"
             variant="contained"
             color="success"
           >
             Bulk Upload
+          </Button> */}
+          <Button
+            variant="contained"
+            className="download-temp-button"
+            color="success"
+            onClick={handleDownload}
+          >
+            Download Template
           </Button>
         </div>
         <div
@@ -357,11 +458,21 @@ const MultipleProductUpload = () => {
           }}
         >
           <div className="product-card">
-            {shouldShowInstructions && (
-              <h1 className="Dnd-instructions">
-                Drag and drop Images of the Catalog here
-              </h1>
-            )}
+            <h1
+              className="Dnd-instructions"
+              onClick={() => hiddenImageFilesInput.current.click()}
+            >
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                hidden
+                ref={hiddenImageFilesInput}
+                onChange={handleProductImageButton}
+              />
+              Drag and drop Images of the Catalog here
+            </h1>
+
             <div className="product-card-image">
               {CSVfile[imageOpen.index].ProductImages.map((obj, index) => {
                 return (
@@ -384,14 +495,6 @@ const MultipleProductUpload = () => {
               })}
             </div>
             <div className="product-card-details">
-              {shouldShowInstructions && (
-                <h1 className="Dnd-instructions">
-                  Drag and drop Images of the Catalog here
-                </h1>
-              )}
-              <h1 className="Dnd-instructions">
-                Drag and drop Images of the Catalog here
-              </h1>
               <div className="product-card-title">
                 <b>Title</b>
                 {CSVfile[imageOpen.index].ProductTitle}
@@ -628,7 +731,8 @@ const MultipleProductUpload = () => {
     <OutputDashboard data={ouptuResult} />
   ) : (
     <div className="progress">
-      <CircularProgress /><br />
+      <CircularProgress />
+      <br />
       Please wait while we process your request
     </div>
   );

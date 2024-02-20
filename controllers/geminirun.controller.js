@@ -111,16 +111,16 @@ Additional Information: Offers supplementary details or context to enhance under
   }
 }
  `;
-    // JPG doesnt work
-    // JPEG, WEBP, PNG, HEIC, HEIF works
-
-    // const imageParts = [
-    //   fileToGenerativePart("blackc (1).jpeg.jpg", "image/jpeg"),
-    //   fileToGenerativePart("whitec (1).jpeg.jpg", "image/jpeg"),
-    // ];
-
-    //const imageParts = entry.ProductImage;
-
+/*  
+ //for adding custom weights
+    "weights": {
+              "title": 0.3,
+              "description": 0.2,
+              "image": 0.2,
+              "featuresAndBenefits": 0.15,
+              "additionalInformation": 0.15} can be added to the prompt 
+              or additional function might be incorporated
+*/
     const imageParts = entry.ProductImages.map((image) =>
       base64ToGenerativePart(image, "image/jpeg")
     );
@@ -131,13 +131,11 @@ Additional Information: Offers supplementary details or context to enhance under
     ]);
     const response = await result.response;
     text = response.text();
-    //console.log(text);
-    // console.log(JSON.stringify(response));
-    // console.log(JSON.stringify(response));
+  
 
     console.log(text);
 
-    // Remove unwanted characters (assuming "const obj" is unwanted)
+ 
 
     return text;
   } catch (error) {
@@ -149,47 +147,7 @@ Additional Information: Offers supplementary details or context to enhance under
     };
   }
 };
-/*
 
-async function run2() {
-  // For text-only input, use the gemini-pro model
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-  const prompt = text + ` convert this in the below json format
-  const obj = {
-    title:{
-        rating: "",
-        suggestion:""
-    },
-    description:{
-        rating: "",
-        suggestion:""
-    },
-    image:{
-        rating: "",
-        suggestion:""
-    },
-    featuresAndBenefits:{
-        rating: "",
-        suggestion:""
-    },
-    additionalInformation:{
-        rating: "",
-        suggestion:""
-    },
-    overallScore:{
-        rating: "",
-        suggestion:""
-    }
-}
-  
-  `;
-  const result = await model.generateContent([prompt]);
-  const response = await result.response;
-  const text1 = response.text();
-  console.log(text1);
-}
-*/
 
 module.exports = {
   run,
@@ -198,50 +156,6 @@ module.exports = {
 
 
 
-// const prompt2 = `
-//     Now, let's proceed with analyzing a product catalog:
-  
-//   Title: "${promptInputs.title}"
-//   Description: "${promptInputs.description}"
-//   Features and Benefits: "${promptInputs.featuresAndBenefits}"
-//   Additional Information: "${promptInputs.additionalInformation}"
-  
-//   Questions:
-//   1. What is the normalized price of this product in the Indian market? (Refer to Indian E-commerce websites)
-//   2. How should I structure my pricing tiers?
-  
-//   Catalog Evaluation:
-//   - Check compliance (labelling, safety standards, safety instructions, certifications) and score on a scale of 10.
-//   - Check correctness (brand logo, contact information, brand authenticity) and score.
-//   - Evaluate overall quality and relevance, checking category alignment, image representation, and data accuracy. Score on a scale of 1 to 10.
-  
-
-//   you should check title field for its category from these (Electronics, Clothing and Fashion, Home and Furniture, Beauty and Personal Care, Health and Wellness, Books, Movies, and Music, Toys and Games, Automotive, Office Supplies and Stationery, Jewelry and Accessories, Food and Grocery, Pet Supplies, Crafts and Hobbies, Baby and Maternity, Travel and Luggage    ).
-//     important:check whether data from every field matched the category.if not rating should affect.
-//     important:check what the image represents ,and title ...if they dont reassemble similar product.rating should affect.mention the mismatched category.
-  
-//     if any field is empty u can score it 0.
-  
-//     refer the title field ,and compare all other fields with the products descriptions available world-wide.then suggest changes in it.
-//     you can suggest the changes in image so that it looks more professional.
-//     IMPORTANT: suggest the changes in grammer of the product description and spelling mistakes.
- 
-
-//   Compulsory output:
-//   Provide ratings and suggestions in the following format:
-//   COMPLIANCE SCORING:
-//   CORRECTNESS SCORING:
-//   OVERALL CATALOG SCORE:
-//   {
-//     title: { rating: "", suggestion: "" },
-//     description: { rating: "", suggestion: "" },
-//     image: { rating: "", suggestion: "" },
-//     featuresAndBenefits: { rating: "", suggestion: "" },
-//     additionalInformation: { rating: "", suggestion: "" },
-//     overallScore: { rating: "", suggestion: "" }
-//   }
-//     `
-    
 
 
 

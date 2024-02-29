@@ -4,7 +4,7 @@ async function webScraper() {
   const browser = await puppeteer.launch({});
   const page = await browser.newPage();
   await page.goto(
-    "https://www.flipkart.com/giva-sterling-silver-zircon-rhodium-bracelet/p/itmbd7c4f54e1b63?pid=BBAG8SH2MBWDM7HV&lid=LSTBBAG8SH2MBWDM7HVAODG5Y&marketplace=FLIPKART&store=mcr%2Ftfz%2Ffey%2Flzk&srno=b_1_1&otracker=browse&fm=organic&iid=en_OUYBlpwcIXxJ47WfTz4zz5RmXwJB2Rjzu4Lm6WW5gbbQ_JXoC-ertrsPSgN44mTH8WLpJ51yNdA85Jg2Ti5Ciw%3D%3D&ppt=browse&ppn=browse&ssid=62mddc77tc0000001709047904238"
+    "https://www.flipkart.com/blaupunkt-cybersound-g2-series-80-cm-32-inch-hd-ready-led-smart-android-tv-2023-dolby-digital-plus-40-w-sound-output/p/itm4a4c48379c152?pid=TVSGQFRY28WQPTFW&lid=LSTTVSGQFRY28WQPTFWAE2MJ7&marketplace=FLIPKART&q=iffalcon+smart+tv&store=ckf%2Fczl&srno=s_1_1&otracker=AS_QueryStore_OrganicAutoSuggest_1_2_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_2_na_na_ps&iid=en_8f6Za4MFS-movEJUo_We5m4UUvUSidmopdtJs2nWNdMOQLMDf5lCc7y3syVLTuelmfcpuHOlC8hVWsOCWJb6Pw%3D%3D&ssid=mjpu2fz8a80000001709211192343&qH=373d45a20447b46d"
   );
 
   const fomat1_detector = page.waitForSelector("._2cLjiM");
@@ -65,6 +65,10 @@ async function flipkart_format_1(page) {
 
 async function flipkart_format_2(page) {
     // example: https://www.flipkart.com/blaupunkt-cybersound-g2-series-80-cm-32-inch-hd-ready-led-smart-android-tv-2023-dolby-digital-plus-40-w-sound-output/p/itm4a4c48379c152?pid=TVSGQFRY28WQPTFW&lid=LSTTVSGQFRY28WQPTFWAE2MJ7&marketplace=FLIPKART&q=iffalcon+smart+tv&store=ckf%2Fczl&srno=s_1_1&otracker=AS_QueryStore_OrganicAutoSuggest_1_2_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_2_na_na_ps&iid=en_8f6Za4MFS-movEJUo_We5m4UUvUSidmopdtJs2nWNdMOQLMDf5lCc7y3syVLTuelmfcpuHOlC8hVWsOCWJb6Pw%3D%3D&ssid=mjpu2fz8a80000001709211192343&qH=373d45a20447b46d
+
+    const title = await page.waitForSelector(".B_NuCI");
+  const titleText = await page.evaluate((title) => title.textContent, title);
+  console.log({ titleText });
 }
 
 webScraper();

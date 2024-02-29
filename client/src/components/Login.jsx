@@ -102,6 +102,9 @@ const SignUp = () => {
                 apiCalled: 0,
                 apiCalledFails: 0,
                 apiCalledSuccess: 0,
+                id: user.uid,
+                fails: [],
+                success: [],
               });
             })
             .catch((error) => {
@@ -187,11 +190,7 @@ const LoginPage = () => {
     <>
       <div className="login-parent">
         <div className={`container-ls ${isLoginFormActive ? "" : "active"}`}>
-          {isLoginFormActive ? (
-            <Login />
-          ) : (
-            <SignUp />
-          )}
+          {isLoginFormActive ? <Login /> : <SignUp />}
           <div className="toggle-container">
             <div className="toggle">
               <div className="toggle-panel toggle-left">
@@ -228,4 +227,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-

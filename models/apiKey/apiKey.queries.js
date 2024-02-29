@@ -18,6 +18,7 @@ async function incrementAPICallCount(apiKey, success, failed) {
   } else {
     // console log the first document
     const data = snapshot.docs[0].data();
+    data.id = apiKey;
     data.apiCalled += 1;
     if (success) data.apiCalledSuccess += 1;
     if (failed) data.apiCalledFails += 1;

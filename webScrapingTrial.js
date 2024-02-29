@@ -7,10 +7,14 @@ async function webScraper() {
     "https://www.flipkart.com/blaupunkt-cybersound-g2-series-80-cm-32-inch-hd-ready-led-smart-android-tv-2023-dolby-digital-plus-40-w-sound-output/p/itm4a4c48379c152?pid=TVSGQFRY28WQPTFW&lid=LSTTVSGQFRY28WQPTFWAE2MJ7&marketplace=FLIPKART&q=iffalcon+smart+tv&store=ckf%2Fczl&srno=s_1_1&otracker=AS_QueryStore_OrganicAutoSuggest_1_2_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_2_na_na_ps&iid=en_8f6Za4MFS-movEJUo_We5m4UUvUSidmopdtJs2nWNdMOQLMDf5lCc7y3syVLTuelmfcpuHOlC8hVWsOCWJb6Pw%3D%3D&ssid=mjpu2fz8a80000001709211192343&qH=373d45a20447b46d"
   );
 
-  let x = ""
+  let x = "";
 
-  const fomat1_detector = page.waitForSelector("._2cLjiM").then(()=>x="format1");
-  const fomat2_detector = page.waitForSelector("._1A1InN").then(()=>x="format2");
+  const fomat1_detector = page
+    .waitForSelector("._2cLjiM")
+    .then(() => (x = "format1"));
+  const fomat2_detector = page
+    .waitForSelector("._1A1InN")
+    .then(() => (x = "format2"));
 
   let data = {
     ProductID: 1,

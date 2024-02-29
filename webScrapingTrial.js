@@ -84,7 +84,76 @@ async function flipkart_format_2(page) {
 
     const title = await page.waitForSelector(".B_NuCI");
   const titleText = await page.evaluate((title) => title.textContent, title);
-  console.log({ titleText });
+
+
+  const productDetailsButton = await page.waitForSelector("._3nkT-2");
+  await productDetailsButton.click();
+  const readMoreButton = await page.waitForSelector("._2o-xpa");
+  await readMoreButton.click();
+  const productDetails = await page.waitForSelector(".RmoJUa");
+  const productDetailsText = await page.evaluate(
+    (productDetails) => productDetails.textContent,
+    productDetails
+  );
+
+
+//._3AsE0T
+
+// const productImage = await page.waitForSelector("._3AsE0T");
+// const imageUrl = await page.evaluate((productImage) => productImage.getAttribute('src'), productImage);
+
+// Wait for the element that contains the product image
+const productImageElement = await page.waitForSelector("._3GnUWp");
+
+// Evaluate JavaScript in the context of the page to get the background image URL
+const imageUrl = await page.evaluate(() => {
+  // Get the computed style of the element
+  const style = window.getComputedStyle(document.querySelector("._3GnUWp"));
+
+  // Check if the element has a background image
+  const backgroundImage = style.getPropertyValue("background-image");
+
+  // Extract the URL from the background image CSS property
+  const imageUrl = backgroundImage.replace(/^url\(['"](.+)['"]\)$/, '$1');
+
+  return imageUrl;
+});
+
+console.log(imageUrl);
+
+
+
+  const [ProductFeatures, productFeature2] = await Promise.all([
+    page.waitForSelector("._3zQntF"),
+    page.waitForSelector("._3zQntF"),
+  ]);
+  const ProductFeaturesText = await page.evaluate(
+    (ProductFeatures) => ProductFeatures.textContent,
+    ProductFeatures
+  );
+  
+  const productFeature2text = await page.evaluate(
+    (productFeature2) => productFeature2.textContent,
+    productFeature2
+  );
+
+  const manufacturingInfoButton = await page.waitForSelector("._3dtsli");
+  await manufacturingInfoButton.click();
+  const manufacturingInfoDiv = await page.waitForSelector("._3AsE0T");
+  const manufacturingInfoText = await page.evaluate(
+    (manufacturingInfo) => manufacturingInfo.textContent,
+    manufacturingInfoDiv
+  );
+  
+  console.log({
+    ProductID: 1,
+    ProductTitle: titleText,
+    ProductDescription: productDetailsText,
+    ProductImages: imageUrl,
+    ProductFeatures: ProductFeaturesText,
+    productFeature2: productFeature2text,
+    ProductInfo: manufacturingInfoText,
+  });
 }
 
 webScraper();
